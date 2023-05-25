@@ -1,0 +1,20 @@
+[
+  { 
+    "name": "Prime Mover" 
+  },
+  {
+    "name": "Closed Coupling"
+  },
+  {
+    "name": "Belt Or Chain Drive"
+  },
+  {
+    "name": "Coupling"
+  },
+  {
+    "name": "Gearbox"
+  },
+  {
+    "name": "Driven"
+  } 
+]

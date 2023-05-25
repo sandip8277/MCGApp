@@ -1,0 +1,763 @@
+{
+  "name": "Component",
+  "start" : "D-S39",
+  "endFilters" : [
+  {"exp":"cpl2=='Belt Drive'","state":"GCPL2-S2"},
+  {"exp":"cpl2!='Belt Drive'","state":"GCPL2-S1"},
+  {"exp":"(driven == 'Centrifugal Pump' || driven == 'Centrifugal Pump-Motor-Centrifugal Pump' || driven == 'Centrifugal Pump (Overhung)' || driven == 'Centrifugal Pump (Supported)')","state":"D-S27"},
+  {"exp":"driven=='Centrifugal Compressor'","state":"D-S28"},
+  {"exp":"(driven == 'Single-Stage Fan' || driven == 'Single-Stage Fan with Slinger')","state":"D-S29"},
+  {"exp":"driven == 'Rotary Gear Pump'","state":"D-S30"},
+  {"exp":"Driven_locations==1","state":"DR-S23"},
+  {"exp":"Driven_locations!=1","state":"DR-S14"},
+  {"exp":"not_monitored_driven=='Generator'","state":"DR-S9"},
+  {"exp":"component=='Belt or Chain Drive'","state":"B-S1"},
+  {"exp":"component=='Close Coupled Machine'","state":"D-S30"},
+  {"exp":"Driven=='Not Monitored' && not_monitored_driven=='Generator'","state":"DR-S43"}
+],
+  "data" : {
+    "firstComponent" : [{"text" : "Prime Mover", "iconKey":  "0"},
+      {"text" : "Close Coupled Machine", "iconKey":  "0"},
+      {"text" : "Belt or Chain Drive", "iconKey":  "0"},
+      {"text" : "Coupling", "iconKey":  "0"},
+      {"text" : "Gearbox", "iconKey":  "0"},
+      {"text" : "Driven", "iconKey":  "0"}],
+
+    "closeCoupledMachine" : [
+      {"text" : "Motor", "iconKey":  "0"},
+      {"text" : "Turbine", "iconKey":  "0"}],
+
+    "nonMonitoredPrime" : [{"text" : "Motor", "iconKey":  "4"},
+      {"text" : "Diesel Engine", "iconKey":  "5"},
+      {"text" : "Turbine", "iconKey":  "6"}
+      ],
+
+
+    "pumpTypes" : [
+      {"text" : "Centrifugal Pump", "iconKey":  "12"},
+      {"text" : "Rotary Thread Pump", "iconKey":  "16"},
+      {"text" : "Screw Pump", "iconKey":  "14"},
+      {"text" : "Gear Pump", "iconKey":  "13"},
+      {"text" : "Propeller Pump", "iconKey":  "22"},
+      {"text" : "Sliding Vane Pump", "iconKey":  "0"},
+      {"text" : "Axial Recip Pump", "iconKey":  "17"},
+      {"text" : "Radial Recip Pump", "iconKey":  "15"}],
+
+    "pumpTypes1" : [
+      {"text" : "Centrifugal Pump", "iconKey":  "12"},
+      {"text" : "Rotary Gear Pump", "iconKey":  "16"}],
+
+    "compressorTypes":["Centrifugal  Compressor","Reciprocating Compressor",
+      "Screw  Compressor","Screw (twin)  Compressor"],
+
+    "thrustBearingCompressors":["Centrifugal Compressor"],
+
+    "fanOrBlowerTypes":[
+      "Lobed Fan or Blower",
+      "overhung Rotor Fan or Blower",
+      "Supported Rotor Fan or Blower"],
+
+    "purifierTypes": ["Purifier (Centrifuge)"],
+    "purifierDriven" :["Geared with clutch","Belt Drive"],
+    "generatorBearingTypes": [
+      "Ball Bearings Both Ends",
+      "Journal Bearings Both Ends",
+      "NDE Journal",
+      "NDE Ball"
+    ],
+
+    "primeMovers" : [{"text" : "Motor", "iconKey":  "4"},
+      {"text" : "Diesel Engine", "iconKey":  "5"},
+      {"text" : "Turbine", "iconKey":  "6"},
+      {"text" : "Not Monitored", "iconKey":  "101"}],
+
+    "drivers" : [{"text" : "Motor", "iconKey":  "4"},
+      {"text" : "Turbine", "iconKey":  "6"}],
+
+    "motorTypes" : [{"text" : "AC", "iconKey":  "1"},
+      {"text" : "DC", "iconKey":  "2"},
+      {"text" : "VFD", "iconKey":  "3"},
+      {"text" : "Unknown", "iconKey":  "0"}],
+
+    "couplingTypes" : [{"text" : "Flexible", "iconKey":  "8"},
+      {"text" : "Magnetic", "iconKey":  "9"},
+      {"text" : "Rigid Coupling", "iconKey":  "50"}],
+
+    "closeCoupledFlex" : [{"text" : "Close Coupled", "iconKey":  "0"},
+      {"text" : "Flexible", "iconKey":  "0"}],
+
+    "couplingTypes2" : [{"text" : "Flexible", "iconKey":  "8"},
+      {"text" : "Close Coupled", "iconKey":  "0"}],
+
+    "couplingTypes3" : [{"text" : "Close Coupled", "iconKey":  "0"}],
+
+    "drivenTypes1" : [{"text" : "Centrifugal Pump", "iconKey":  "12"}],
+
+
+    "cylinderTypes" : ["2","4","6","8","10","12","16","18","20"],
+    "yesNo" : ["Yes","No"],
+    "addSkip" : ["Add","Skip"],
+    "no" : ["No"],
+    "yes" : ["Yes"],
+    "pole2" : ["2"],
+    "pole4" : ["4"],
+    "pole6" : ["6"],
+    "pole8" : ["8"],
+    "pole10" : ["10"],
+    "locations" : ["1","2"],
+    "orientation" : ["VAH", "HVA", "AVH", "VHA", "AHV", "HAV"],
+    "locationType" : ["DE", "NDE"],
+
+    "drivenTypes" : [{"text" : "Centrifugal Pump", "iconKey":  "12"},
+      {"text" : "Centrifugal Compressor", "iconKey":  "35"},
+      {"text" : "Centrifugal Pump-Motor-Centrifugal Pump", "iconKey":  "12"},
+      {"text" : "Single-Stage Fan", "iconKey":  "23"},
+      {"text" : "Rotary Gear Pump", "iconKey":  "13"},
+      {"text" : "Centrifugal Pump (Overhung), Centrifugal Pump (Supported)", "iconKey":  "0"},
+      {"text" : "Single-Stage Fan with Slinger", "iconKey":  "51"}],
+
+    "drivenTypes2" : [{"text" : "Centrifugal Compressor", "iconKey":  "35"},
+      {"text" : "Centrifugal Pump - Overhung Rotor", "iconKey":  "21"},
+      {"text" : "Centrifugal Pump - Supported Rotor", "iconKey":  "20"},
+      {"text" : "Centrifugal Pump-Motor-Centrifugal Pump", "iconKey":  "12"},
+      {"text" : "Single-Stage Fan", "iconKey":  "23"},
+      {"text" : "Rotary Gear Pump", "iconKey":  "13"}],
+
+    "drivenTypes3" : [{"text" : "Centrifugal Pump", "iconKey":  "12"},
+      {"text" : "Rotary Gear Pump", "iconKey":  "13"}],
+
+    "drivenTypes4" : [{"text" : "Centrifugal Compressor", "iconKey":  "35"},
+      {"text" : "Centrifugal Pump (Overhung)", "iconKey":  "21"},
+      {"text" : "Centrifugal Pump (Supported)", "iconKey":  "20"},
+      {"text" : "Single-Stage Fan", "iconKey":  "23"},
+      {"text" : "Single-Stage Fan with Slinger", "iconKey":  "51"}],
+
+    "drivenTypes5" : [{"text" : "Centrifugal Compressor", "iconKey":  "35"},
+      {"text" : "Centrifugal Pump", "iconKey":  "12"},
+      {"text" : "Single-Stage Fan", "iconKey":  "23"}],
+
+    "drivenTypes6" : [{"text" : "Centrifugal Compressor", "iconKey":  "35"}],
+    "fanType1" : [{"text" : "Single-Stage Fan", "iconKey":  "23"}],
+    "fanType2" : [{"text" : "Single-Stage Fan with Slingler", "iconKey":  "51"}],
+
+    "drivenTypes7" : [
+      {"text" : "Pump", "iconKey":  "12"},
+      {"text" : "Vacuum Pump", "iconKey":  "18"},
+      {"text" : "Compressor", "iconKey":  "36"},
+      {"text" : "Fan or Blower", "iconKey":  "34"},
+      {"text" : "Purifier (Centrifuge)", "iconKey":  "32"},
+      {"text" : "Spindle Shaft or Bearing", "iconKey":  "27"},
+      {"text" : "Decanter", "iconKey":  "25"},
+      {"text" : "Generator", "iconKey":  "37"},
+      {"text" : "Not Monitored", "iconKey":  "101"}
+    ],
+
+    "drivenTypes8" : [
+      {"text" : "Pump", "iconKey":  "12"},
+      {"text" : "Vacuum Pump", "iconKey":  "18"},
+      {"text" : "Compressor", "iconKey":  "36"},
+      {"text" : "Fan or Blower", "iconKey":  "34"},
+      {"text" : "Purifier (Centrifuge)", "iconKey":  "32"},
+      {"text" : "Spindle Shaft or Bearing", "iconKey":  "27"},
+      {"text" : "Decanter", "iconKey":  "25"},
+      {"text" : "Generator", "iconKey":  "37"}
+    ],
+
+    "vacuumColCTypes": [
+      {"text" : "Axial Recip Vacuum Pump", "iconKey":  "0"},
+      {"text" : "Centrifugal Vacuum Pump", "iconKey":  "0"},
+      {"text" : "Lobed Vacuum Pump", "iconKey":  "0"},
+      {"text" : "Radial Recip Vacuum Pump", "iconKey":  "0"},
+      {"text" : "Reciprocating Vacuum Pump", "iconKey":  "0"}
+    ],
+
+    "pumpTypes2" : [
+      {"text" : "Centrifugal Pump", "iconKey":  "12"},
+      {"text" : "Rotary Thread Pump", "iconKey":  "16"},
+      {"text" : "Screw Pump", "iconKey":  "14"},
+      {"text" : "Gear Pump", "iconKey":  "13"},
+      {"text" : "Propeller Pump", "iconKey":  "22"},
+      {"text" : "Sliding Vane Pump", "iconKey":  "0"},
+      {"text" : "Axial Recip Pump", "iconKey":  "17"},
+      {"text" : "Radial Recip Pump", "iconKey":  "15"}
+    ],
+    "compressorTypes1":[{"text" : "Centrifugal Compressor", "iconKey":  "35"},
+      {"text" : "Screw Compressor", "iconKey":  "33"},
+      {"text" : "Screw (twin) Compressor", "iconKey":  "31"},
+      {"text" : "Reciprocating Compressor", "iconKey":  "38"}],
+
+    "thrustBearingCompressors1":[{"text" : "Centrifugal Compressor", "iconKey":  "35"}],
+    "fanOrBlowerTypes1":[
+      {"text" : "Lobed Fan or Blower", "iconKey":  "0"},
+      {"text" : "Overhung Rotor Fan or Blower", "iconKey":  "0"},
+      {"text" : "Supported Rotor Fan or Blower", "iconKey":  "0"}],
+
+    "purifierTypes1": [{"text" : "Purifier (Centrifuge)", "iconKey":  "0"}],
+    "purifierDriven1" :[{"text" : "Geared with clutch Purifier (Centrifuge)", "iconKey":  "0"},
+      {"text" : "Geared with coupling Purifier (Centrifuge)", "iconKey":  "0"},
+      {"text" : "Belt Drive Purifier (Centrifuge)", "iconKey":  "0"}],
+
+    "generatorBearingTypes1": [
+      {"text" : "Ball Bearings Both Ends", "iconKey":  "0"},
+      {"text" : "Journal Bearings Both Ends", "iconKey":  "0"},
+      {"text" : "NDE Ball", "iconKey":  "0"},
+      {"text" : "NDE Journal", "iconKey":  "0"}
+    ],
+
+    "vacuumBearingTypes" : [{"text" : "Ball Bearings", "iconKey":  "0"},
+      {"text" : "Journal", "iconKey":  "0"}],
+
+    "vacuumBearingTypes1" : [{"text" : "Ball Bearings", "iconKey":  "0"}],
+    "spindleShaftBearingColCTypes": [
+      {"text" : "Spindle Bearing", "iconKey":  "27"},
+      {"text" : "Shaft Bearing", "iconKey":  "27"}
+    ],
+    "yesNoBoth" : ["Yes","No", "Mixed"],
+    "overHunSupported" : ["overhung","Supported"],
+    "overHung" : ["overhung"],
+    "drivenByTypes" : [{"text" : "Electric Motor or Turbine", "iconKey":  "0"},
+      {"text" : "Diesel Engine", "iconKey":  "0"}],
+
+    "drivenByType1" : [{"text" : "Diesel Engine", "iconKey":  "0"}],
+
+    "drivenByType2" : [{"text" : "Electric Motor or Turbine", "iconKey":  "0"}],
+
+    "thrustBearing" : ["Yes - Journal", "Yes - Ball","No"],
+    "thrustBearing1" : ["Yes - Journal","No"],
+    "thrustBearing2" : ["No", "Journal"],
+    "thrustBearing3" : ["Journal", "Ball"],
+    "thrustBallBearing" : ["Yes - Ball"],
+    "vacuumThrustBearing" : ["Journal Thrust", "Ball Bearing Thrust Plate"],
+    "vacuumThrustBearing1" : ["No","Journal Thrust","Ball Thrust Bearing"],
+    "vacuumThrustBearing2" : ["Ball Thrust Bearing"],
+    "vacuumThrustBearing3" : ["No","Journal Thrust"],
+    "reciprocatingBearing" : ["All Ball Bearings","Crankshaft journal bearings at end only","Crankshaft journal bearings with intermediate"],
+    "lobedBearing" : ["Ball Bearings","Journal and Ball Bearings","Journal"],
+    "centrifugalBearing" : ["Ball Bearings","Journal"],
+    "centrifugalBearing1" : ["Ball Bearings on main", "Journal bearings on main"],
+    "centrifugalBearing2" : ["Ball Bearings","Both","Journal"],
+    "centrifugalBearing3" : ["Journal","Ball Bearings"],
+    "impellerRotor" : [{"text" : "Impeller", "iconKey":  "0"},
+      {"text" : "Rotor", "iconKey":  "0"}],
+
+    "stages" : [{"text" : "2+", "iconKey":  "24"},{"text" : "1", "iconKey":  "23"}],
+    "yesNoNotSpecified" : ["Yes","No", "Not Specified"],
+    "notSpecified" : ["Not Specified"],
+    "yesNoScrewTwin" : ["Yes on HP side","Yes on LP side"],
+    "components" : [{"text" : "Yes", "iconKey":  "0"},{"text" : "No", "iconKey":  "0"}],
+    "speedChange" : [{"text" : "1", "iconKey":  "28"},{"text" : "2", "iconKey":  "29"},{"text" : "Multi", "iconKey":  "30"}],
+    "ccplDriven" : [{"text" : "Pump", "iconKey":  "0"},{"text" : "Compressor", "iconKey":  "0"},{"text" : "Fan", "iconKey":  "0"}],
+
+    "ratio1" : ["1"],
+    "ratio2" : ["2"],
+    "ratio3" : ["3"],
+    "location" : ["1","2", "3","4"],
+    "locationOption1" : ["brg 3","brg 4", "brg 5", "brg 6"],
+    "locationOption2" : ["brg 3","brg 4", "brg 5", "brg 6","brg 7", "brg 8"],
+    "locationOption3" : ["brg 3","brg 4", "brg 5", "brg 6","brg 7", "brg 8", "brg 9", "brg 10"],
+
+    "locationType1": ["DE"],
+    "location1": ["1"],
+
+    "couplingTypes4" : [{"text" : "Flexible", "iconKey":  "8"},
+      {"text" : "No Coupling", "iconKey":  "101"},
+      {"text" : "Magnetic", "iconKey":  "9"},
+      {"text" : "Belt Drive", "iconKey":  "10"},
+      {"text" : "Chain Drive", "iconKey":  "11"}]
+  },
+  "states":
+  {
+    "D-S39":{ "text": "Select first component","eaKey": "component","options": "firstComponent"},
+    "D-S40":{ "text": "No Driver component was selected.  To include component diagnostic annotation for the prime mover without sensor locations defined, click Add and select the applicable Prime Mover.To not include component annotation details of prime mover, click the Skip button.","eaKey": "nonPrimeMovers","options": "addSkip"},
+    "D-S41":{ "text": "Close Coupled Machines","eaKey": "closeCoupled","options": "closeCoupledMachine"},
+    "D-S42":{ "text": "Prime Mover Not-Monitored \n \n To include component diagnostic annotation for the prime mover without sensor locations defined, select the applicable prime mover.","eaKey": "Non_Monitored","options": "nonMonitoredPrime"},
+    "D-S43" : { "text": "What type of Pump?", "eaKey":"drivenc", "options":"pumpTypes"},
+    "D-S44" : { "text": "What type of Compressor?", "eaKey":"drivenc", "options":"compressorTypes"},
+    "D-S45" : { "text": "Driven Component", "eaKey":"drivenType", "options":"drivenTypes7"},
+    "D-S46" : { "text": "What type of Coupling?", "eaKey":"couplingType", "options":"couplingTypes"},
+    "D-S47" : { "text": "Does the motor have a cooling fan?", "eaKey":"motorfan", "options":"yesNo"},
+    "D-S1":{ "text": "Prime Mover","eaKey": "PRIME_MOVER","options": "primeMovers"},
+
+    "D-S36":{ "text": "What is the driver","eaKey": "Driver","options": "drivers"},
+
+    "D-S38":{ "text": "How many close-coupled locations are monitored?","eaKey": "couplingLocation","options": "locations"},
+
+    "D-S2":{ "text": "How many cylinders?", "eaKey": "cyl","options": "cylinderTypes"},
+    "D-S3": { "text": "Is motor AC, DC or VFD?", "eaKey": "drive", "options": "motorTypes"},
+    "D-S4" : { "text": "Is Turbine driving a reduction gear?", "eaKey": "redgear","options": "yesNo"},
+    "D-S5" : { "text": "What is motor rated speed?","eaKey": "motospeed", "inputType" : "editText"},
+    "D-S6" : { "text": "Does the motor have a cooling fan?", "eaKey": "motofan","options": "yesNo"},
+    "D-S7" : { "text": "How many poles?","eaKey": "motorpoles" , "inputType" : "auto_calculate",
+      "optionFilters":[
+        {"exp":"motospeed > 3600f","values":"pole2",  "eaKey":"motorpoles"},
+        {"exp":"motospeed > 1800f && motospeed <= 3600f","values":"pole2",  "eaKey":"motorpoles"},
+        {"exp":"motospeed > 1200f && motospeed <= 1800f","values":"pole4",  "eaKey":"motorpoles"},
+        {"exp":"motospeed > 900f && motospeed <= 1200f","values":"pole6",  "eaKey":"motorpoles"},
+        {"exp":"motospeed > 720f && motospeed <= 900f","values":"pole8",  "eaKey":"motorpoles"},
+        {"exp":"motospeed <= 720f","values":"pole10",  "eaKey":"motorpoles"}
+      ]},
+    "D-S8" : { "text": "Is Turbine rotor supported?", "eaKey": "turbinesupported", "options": "yesNo"},
+    "D-S9" : { "text": "Does the motor have ball bearings?", "eaKey": "motorbb", "options": "yesNo"},
+    "D-S10" : { "text": "Excluding thrust bearing, if applicable, does turbine have ball bearings?", "eaKey": "turbinebb","options": "yesNo"},
+    "D-S12" : { "text": "Does Turbine have a thrust bearing?", "eaKey": "turbineTbrg","options": "yesNo"},
+    "D-S14" : { "text": "Is the thrust bearing a ball bearing?", "eaKey": "Tbrgbb", "options": "yesNo"},
+    "D-S15" : { "text": "How many locations are being monitored?", "eaKey": "Driver_locations","options": "locations"},
+    "D-S16" : { "text": "Select the position for this Location?", "eaKey": "Driver_locationType","options": "locationType"},
+
+    "D-S21" : { "text": "Is the coupling, Closed coupled or Flexible?", "eaKey": "CCcpl", "options": "couplingTypes2"},
+
+    "D-S37" : { "text": "Is the coupling, Closed coupled or Flexible?", "eaKey": "CCcpl", "inputType" : "auto_calculate" ,"options": "couplingTypes3"},
+
+
+    "D-S22" : { "text": "What type of driven component?", "eaKey": "driven", "options": "drivenTypes", "optionFilters":[
+      {"exp":"(PRIME_MOVER == 'Motor' && motorbb =='No') || (PRIME_MOVER == 'Turbine' && turbinebb == 'Yes')", "values":"drivenTypes1",  "eaKey":"driven"},
+      {"exp":"PRIME_MOVER == 'Motor' && motorbb =='Yes' && motorfan == 'No' && CCcpl == 'Close Coupled'", "values":"drivenTypes2",  "eaKey":"driven"},
+      {"exp":"PRIME_MOVER == 'Motor' && motorbb =='Yes' && motorfan == 'No' && CCcpl == 'Flexible'", "values":"drivenTypes3",  "eaKey":"driven"},
+      {"exp":"PRIME_MOVER == 'Motor' && motorbb =='Yes' && motorfan == 'Yes'", "values":"drivenTypes4",  "eaKey":"driven"},
+      {"exp":"PRIME_MOVER == 'Turbine' && turbinebb == 'No'", "values":"drivenTypes5",  "eaKey":"driven"}
+    ]},
+
+    "D-S23" : { "text": "Does motor have a fan?", "eaKey": "motorfan",   "optionFilters":[
+      {"exp":"motorbb =='No'", "values":"no",  "eaKey":"motorfan"},
+      {"exp":"motorbb !='No'", "values":"yesNo",  "eaKey":"motorfan"}
+    ]},
+
+    "D-S24" : {"text": "Does Turbine have ball bearings?", "eaKey": "turbinebb","options": "yesNo"},
+
+    "D-S25" : { "text": "Does the ${driven} have ball bearings?", "eaKey": "drivenbb", "options": "yesNo", "inputType" : "auto_calculate","optionFilters":[
+      {"exp":"PRIME_MOVER == 'Motor' && motorbb =='No'", "values":"no",  "eaKey":"drivenbb"},
+      {"exp":"PRIME_MOVER == 'Motor' && motorbb =='Yes' && motorfan == 'No' && CCcpl == 'Close Coupled'", "values":"yes",  "eaKey":"drivenbb"},
+      {"exp":"PRIME_MOVER == 'Motor' && motorbb =='Yes' && motorfan == 'No' && CCcpl == 'Flexible'", "values":"no",  "eaKey":"drivenbb"},
+      {"exp":"PRIME_MOVER == 'Motor' && motorbb =='Yes' && motorfan == 'Yes'", "values":"yes",  "eaKey":"drivenbb"},
+      {"exp":"PRIME_MOVER == 'Turbine' && turbinebb == 'No'", "values":"no",  "eaKey":"drivenbb"},
+      {"exp":"PRIME_MOVER == 'Turbine' && turbinebb == 'Yes'", "values":"yes",  "eaKey":"drivenbb"}
+    ]},
+
+    "D-S26" : { "text": "Select the position for the ${PRIME_MOVER} Location?", "eaKey": "Driver_locationType","options": "locationType"},
+    "D-S54" : { "text": "Select the position for the ${closeCoupled} Location?", "eaKey": "Driver_locationType","options": "locationType"},
+    "D-S31" : { "text": "Select the position for the ${driven} Location?", "eaKey": "driven_locationType","options": "locationType"},
+    "D-S55" : { "text": "Select the position for the ${drivenc} Location?", "eaKey": "driven_locationType","options": "locationType"},
+
+    "D-S27" : { "text": "How many pump vanes?", "eaKey": "pumpVanes","inputType" : "text","askAgain" : true},
+    "D-S28" : { "text": "How many compressor vanes?", "eaKey": "compressorVanes","inputType" : "text","askAgain" : true},
+    "D-S29" : { "text": "How many fan blades?", "eaKey": "fanBlades","inputType" : "text","askAgain" : true},
+    "D-S30" : { "text": "How many gear teeth?", "eaKey": "gearTeeth","inputType" : "text","askAgain" : true},
+    "D-S53": { "text": "Is rotor overhung?", "eaKey":"rotorOH" , "options":"yesNo"},
+
+    "G-S2":{"text":"Speed Changes?", "eaKey":"ISC" ,"options":"speedChange"},
+    "G-S11" : { "text": "How many gearbox locations are being monitored?" , "eaKey":"NOL", "options": "location"},
+
+    "G-S12" : { "text": "Select Bearing number of location 1" , "eaKey":"location_1", "filterOption": true, "optionFilters" : [
+      {"exp":"ISC == '1'","values": "locationOption1"},
+      {"exp":"ISC == '2'","values": "locationOption2"},
+      {"exp":"ISC == 'Multi'","values": "locationOption3"}
+    ]},
+
+    "G-S13" : { "text": "Select Bearing number of location 2" , "eaKey":"location_2", "filterOption": true, "optionFilters" : [
+      {"exp":"ISC == '1'","values": "locationOption1"},
+      {"exp":"ISC == '2'","values": "locationOption2"},
+      {"exp":"ISC == 'Multi'","values": "locationOption3"}
+    ]},
+
+    "G-S14" : { "text": "Select Bearing number of location 3" , "eaKey":"location_3",  "filterOption": true, "optionFilters" : [
+      {"exp":"ISC == '1'","values": "locationOption1"},
+      {"exp":"ISC == '2'","values": "locationOption2"},
+      {"exp":"ISC == 'Multi'","values": "locationOption3"}
+    ]},
+
+    "G-S15" : { "text": "Select Bearing number of location 4" , "eaKey":"location_4",  "filterOption": true, "optionFilters" : [
+      {"exp":"ISC == '1'","values": "locationOption1"},
+      {"exp":"ISC == '2'","values": "locationOption2"},
+      {"exp":"ISC == 'Multi'","values": "locationOption3"}
+    ]},
+
+    "G-S16" : { "text": "Enter the Ratios" , "eaKey":"ratios","inputType" : "ratios",  "optionFilters" : [
+      {"exp":"ISC == '1'","values": "ratio1","eaKey":"ratios"},
+      {"exp":"ISC == '2'","values": "ratio2","eaKey":"ratios"},
+      {"exp":"ISC == 'Multi'","values": "ratio3","eaKey":"ratios"}
+    ]},
+    "GCPL2-S1" : { "text": "What type of coupling?" , "eaKey":"cpl2","options":"couplingTypes4"},
+    "GCPL2-S2" : { "text": "Show Speed Widget" ,"eaKey":"speed","inputType" : "speedChange"},
+
+
+    "B-S1" : { "text": "Show Speed Widget" ,"eaKey":"speed","inputType" : "speedChange"},
+    "CCPL-S1" : { "text": "Is the coupling, Closed coupled or Flexible?", "eaKey": "CCcpl", "options": "couplingTypes2"},
+
+    "CCPL-S2" : { "text": "What type of driven component?", "eaKey": "driven", "options": "drivenTypes", "optionFilters":[
+      {"exp":"(closeCoupled == 'Motor' && motorbb =='No') || (closeCoupled == 'Turbine' && turbinebb == 'Yes')", "values":"drivenTypes1",  "eaKey":"driven"},
+      {"exp":"closeCoupled == 'Motor' && motorbb =='Yes' && motorfan == 'No'", "values":"drivenTypes2",  "eaKey":"driven"},
+      {"exp":"closeCoupled == 'Motor' && motorbb =='Yes' && motorfan == 'No'", "values":"drivenTypes3",  "eaKey":"driven"},
+      {"exp":"closeCoupled == 'Motor' && motorbb =='Yes' && motorfan == 'Yes'", "values":"drivenTypes4",  "eaKey":"driven"},
+      {"exp":"closeCoupled == 'Turbine' && turbinebb == 'No'", "values":"drivenTypes5",  "eaKey":"driven"}
+    ]},
+
+    "CCPL-S3" : { "text": "Does the ${driven} have ball bearings?", "eaKey": "drivenbb", "options": "yesNo", "inputType" : "auto_calculate"},
+    "CCPL-S4" : { "text": "Select the position for the ${closeCoupled} Location?", "eaKey": "Driver_locationType","options": "locationType"},
+    "CCPL-S5" : { "text": "Is the motor VFD?", "eaKey": "vfd","options": "yesNo"},
+    "CCPL-S6" : { "text": "What type of driven component?", "eaKey": "driven","options": "ccplDriven"},
+    "CCPL-S7" : { "text": "What type of Pump?", "eaKey":"drivenc", "options":"pumpTypes1"},
+    "CCPL-S8" : { "text": "Is pump impeller supported?", "eaKey":"impl", "options":"yesNo"},
+    "CCPL-S9" : { "text": "Does pump have journal bearing(s)?", "eaKey":"bearing", "options":"yesNo"},
+    "CCPL-S10" : { "text": "Does fan have heat slinger?", "eaKey":"fansling", "options":"yesNo"},
+    "CCPL-S15" : { "text": "Does fan have heat slinger?", "eaKey":"fanslinger", "options":"no"},
+    "CCPL-S11" : { "text": "What type of Pump?", "eaKey":"drivenc", "options":"drivenTypes1"},
+    "CCPL-S12" : { "text": "", "eaKey":"drivenc", "options":"drivenTypes6"},
+    "CCPL-S13" : { "text": "", "eaKey":"drivenc", "options":"fanType1"},
+    "CCPL-S14" : { "text": "", "eaKey":"drivenc", "options":"fanType2"},
+    "CCPL-S16" : { "text": "Does the motor have ball bearings?", "eaKey": "motorbb", "options": "yesNo"},
+
+    "DR-S1" : { "text": "What type of driven component?" , "eaKey":"Driven", "options":"drivenTypes7"},
+    "DR-S2" : { "text": "What type of Pump?", "eaKey":"drivenc", "options":"pumpTypes2"},
+    "DR-S3" : { "text": "What type of Compressor?", "eaKey":"drivenc", "options":"compressorTypes1"},
+    "DR-S4" : { "text": "What type of Fan or Blower?", "eaKey":"drivenc", "options":"fanOrBlowerTypes1"},
+    "DR-S5" : { "text": "How is purifier driven?", "eaKey":"drivenc", "options":"purifierDriven1"},
+    "DR-S6" : { "text": "What type of Vacuum Pump?", "eaKey":"drivenc", "options":"vacuumColCTypes"},
+    "DR-S38" : { "text": "Is this a Spindle or Shaft Bearing?", "eaKey":"drivenc", "options":"spindleShaftBearingColCTypes"},
+    "DR-S7" : { "text": "Exciter?", "eaKey":"exc" , "options":"yesNo",
+      "optionFilters":[
+        {"exp":"drivenbrgs=='Ball Bearings Both Ends'","values":"no"}
+      ]},
+    "DR-S8" : { "text": "Is Exciter overhung or supported?", "eaKey":"excOH", "options":"overHunSupported",
+      "optionFilters":[
+        {"exp":"drivenbrgs=='NDE Journal'","values":"overHung"}
+      ]},
+    "DR-S9" : { "text": "Driven By?", "eaKey":"gendriver", "options":"drivenByTypes" ,"inputType" : "auto_calculate","checkAllContext" : true,
+      "optionFilters":[
+        {"exp":"Driver=='Diesel Engine'","values":"drivenByType1"},
+        {"exp":"Driver=='Motor' || Driver=='Turbine' || Driver=='Not Monitored' ","values":"drivenByType2"}
+      ]},
+
+    "DR-S10": { "text": "Bearing types?", "eaKey":"drivenbrgs",
+      "optionFilters":[
+        {"exp":"Driven=='Generator'","values":"generatorBearingTypes"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Axial Recip Vacuum Pump' && Aop == 'Yes'", "values" :  "vacuumBearingTypes1"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Radial Recip Vacuum Pump'", "values" :  "notSpecified"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Axial Recip Vacuum Pump' && Aop == 'No'", "values" :  "vacuumBearingTypes"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Reciprocating Vacuum Pump'", "values" :  "reciprocatingBearing"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Lobed Vacuum Pump'", "values" :  "lobedBearing"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && Impelleronmain == 'Yes'", "values" :  "centrifugalBearing"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && Impelleronmain == 'No'", "values" :  "centrifugalBearing1"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && RotorOH == 'No'", "values" :  "centrifugalBearing2"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && RotorOH == 'Yes'", "values" :  "centrifugalBearing3"},
+        {"exp":"not_monitored_driven=='Generator'","values":"generatorBearingTypes"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Axial Recip Vacuum Pump' && Aop == 'Yes'", "values" :  "vacuumBearingTypes1"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Radial Recip Vacuum Pump'", "values" :  "notSpecified"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Axial Recip Vacuum Pump' && Aop == 'No'", "values" :  "vacuumBearingTypes"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Reciprocating Vacuum Pump'", "values" :  "reciprocatingBearing"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Lobed Vacuum Pump'", "values" :  "lobedBearing"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && Impelleronmain == 'Yes'", "values" :  "centrifugalBearing"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && Impelleronmain == 'No'", "values" :  "centrifugalBearing1"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && RotorOH == 'No'", "values" :  "centrifugalBearing2"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && RotorOH == 'Yes'", "values" :  "centrifugalBearing3"}
+
+      ]},
+    "DR-S11": { "text": "Is the rotor overhung?", "eaKey":"rotorOH" , "options":"yesNo",
+      "optionFilters":[
+        {"exp":"Driven=='Pump' && drivenc=='Sliding Vane Pump'","values":"yesNoNotSpecified",  "eaKey":"rotorOH"},
+        {"exp":"not_monitored_driven=='Pump' && drivenc=='Sliding Vane Pump'","values":"yesNoNotSpecified",  "eaKey":"rotorOH"}
+      ]},
+    "DR-S12": { "text": "Does the ${drivenc} have ball bearings?", "eaKey":"drivenbb", "options":"yesNo",
+      "optionFilters":[
+        {"exp":"Driven=='Pump' && (drivenc=='Rotary Thread Pump' || drivenc=='Propeller Pump' || (rotorOH == 'No' && drivenc!='Sliding Vane Pump'))","values":"yesNoBoth",  "eaKey":"drivenbb"},
+        {"exp":"Driven=='Pump' && (drivenc=='Screw Pump' || (drivenc=='Sliding Vane Pump' && rotorOH != 'Not Specified') || Aop=='Yes') ","values":"yes",  "eaKey":"drivenbb"},
+        {"exp":"not_monitored_driven=='Pump' && (drivenc=='Rotary Thread Pump' || drivenc=='Propeller Pump' || (rotorOH == 'No' && drivenc!='Sliding Vane Pump'))","values":"yesNoBoth",  "eaKey":"drivenbb"},
+        {"exp":"not_monitored_driven=='Pump' && (drivenc=='Screw Pump' || (drivenc=='Sliding Vane Pump' && rotorOH != 'Not Specified') || Aop=='Yes') ","values":"yes",  "eaKey":"drivenbb"},
+        {"exp":"drivenc=='Sliding Vane Pump' && rotorOH == 'Not Specified'","values":"no",  "eaKey":"drivenbb"},
+        {"exp":"drivenc=='Radial Recip Pump'","values":"notSpecified",  "eaKey":"drivenbb"}
+      ]
+    },
+    "DR-S20": { "text": "Does the ${drivenc} have ball bearings?", "eaKey":"drivenbb", "options":"yesNo",
+      "optionFilters":[
+        {"exp":"drivenc=='Screw (twin) Compressor'","values":"yesNoScrewTwin"},
+        {"exp":"drivenc=='Screw Compressor'","values":"yesNoBoth"},
+        {"exp":"drivenc=='Reciprocating Compressor' && crankintbrg!='Not Specified'","values":"no"},
+        {"exp":"drivenc=='Reciprocating Compressor' && crankintbrg=='Not Specified'","values":"yes"}
+      ]},
+    "DR-S21": { "text": "Does the ${drivenc} have ball bearings?", "eaKey":"drivenbb", "options":"yesNo",
+      "optionFilters":[
+        {"exp":"drivenc=='Lobed Fan or Blower'","values":"yesNoBoth"},
+        {"exp":"drivenc=='Overhung Rotor Fan or Blower' && stages=='2+'","values":"yes"},
+        {"exp":"drivenc=='Overhung Rotor Fan or Blower' && stages=='1'","values":"yesNo"}
+      ]},
+    "DR-S13": { "text": "Is there a thrust bearing?", "eaKey":"DriverTbrg",
+      "optionFilters":[
+        {"exp":"Driven=='Pump' && drivenc!='Axial Recip Pump' && (drivenbb == 'Yes' || drivenbb == 'Both')","values":"yesNo",  "eaKey":"DriverTbrg"},
+        {"exp":"Driven=='Pump' && drivenc!='Axial Recip Pump' && rotorOH == 'No' && drivenbb == 'No'","values":"thrustBearing1",  "eaKey":"DriverTbrg"},
+        {"exp":"Driven=='Pump' && drivenc!='Axial Recip Pump' && drivenbb == 'No'","values":"thrustBearing",  "eaKey":"DriverTbrg"},
+        {"exp":"Driven=='Compressor'", "eaKey":"DriverTbrg","values":"yesNo"},
+        {"exp":"Driven=='Pump' && ((drivenc=='Axial Recip Pump' && Aop=='Yes') || drivenc=='Radial Recip Pump')", "eaKey":"DriverTbrg","values":"no"},
+        {"exp":"Driven=='Pump' && drivenc=='Axial Recip Pump' && Aop=='No' && drivenbb == 'Yes'", "eaKey":"DriverTbrg","values":"thrustBearing2"},
+        {"exp":"Driven=='Pump' && drivenc=='Axial Recip Pump' && Aop=='No' && drivenbb == 'No'", "eaKey":"DriverTbrg","values":"thrustBearing3"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Axial Recip Vacuum Pump' && drivenbrgs == 'Ball Bearings'","eaKey":"genTbrg", "values" :"no"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Axial Recip Vacuum Pump' && drivenbrgs == 'Journal'","eaKey":"genTbrg", "values" :"vacuumThrustBearing"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc!='Centrifugal Vacuum Pump' && drivenc!='Axial Recip Vacuum Pump' && drivenc!='Radial Recip Vacuum Pump'", "eaKey":"genTbrg", "values" :  "vacuumThrustBearing"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && type == 'Impeller'", "eaKey":"genTbrg","values":"yesNo"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && type == 'Rotor' && RotorOH == 'Yes' && drivenbrgs == 'Journal'", "eaKey":"genTbrg","values":"vacuumThrustBearing1"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && type == 'Rotor' && ((RotorOH == 'Yes' && drivenbrgs == 'Ball Bearings') || (RotorOH == 'No' && (drivenbrgs == 'Ball Bearings' || drivenbrgs == 'Both')))", "eaKey":"genTbrg","values":"vacuumThrustBearing2"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && type == 'Rotor' && RotorOH == 'No' && drivenbrgs == 'Journal'", "eaKey":"genTbrg","values":"vacuumThrustBearing3"},
+        {"exp":"Driven=='Vacuum Pump' && drivenc=='Radial Recip Vacuum Pump'", "eaKey":"genTbrg","values":"no"},
+        {"exp":"not_monitored_driven=='Pump' && drivenc!='Axial Recip Pump' && (drivenbb == 'Yes' || drivenbb == 'Both')","values":"yesNo",  "eaKey":"DriverTbrg"},
+        {"exp":"not_monitored_driven=='Pump' && drivenc!='Axial Recip Pump' && rotorOH == 'No' && drivenbb == 'No'","values":"thrustBearing1",  "eaKey":"DriverTbrg"},
+        {"exp":"not_monitored_driven=='Pump' && drivenc!='Axial Recip Pump' && drivenbb == 'No'","values":"thrustBearing",  "eaKey":"DriverTbrg"},
+        {"exp":"not_monitored_driven=='Compressor'", "eaKey":"DriverTbrg","values":"yesNo"},
+        {"exp":"not_monitored_driven=='Pump' && ((drivenc=='Axial Recip Pump' && Aop=='Yes') || drivenc=='Radial Recip Pump')", "eaKey":"DriverTbrg","values":"no"},
+        {"exp":"not_monitored_driven=='Pump' && drivenc=='Axial Recip Pump' && Aop=='No' && drivenbb == 'Yes'", "eaKey":"DriverTbrg","values":"thrustBearing2"},
+        {"exp":"not_monitored_driven=='Pump' && drivenc=='Axial Recip Pump' && Aop=='No' && drivenbb == 'No'", "eaKey":"DriverTbrg","values":"thrustBearing3"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Axial Recip Vacuum Pump' && drivenbrgs == 'Ball Bearings'","eaKey":"genTbrg", "values" :"no"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Axial Recip Vacuum Pump' && drivenbrgs == 'Journal'","eaKey":"genTbrg", "values" :"vacuumThrustBearing"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc!='Centrifugal Vacuum Pump' && drivenc!='Axial Recip Vacuum Pump' && drivenc!='Radial Recip Vacuum Pump'", "eaKey":"genTbrg", "values" :  "vacuumThrustBearing"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && type == 'Impeller'", "eaKey":"genTbrg","values":"yesNo"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && type == 'Rotor' && RotorOH == 'Yes' && drivenbrgs == 'Journal'", "eaKey":"genTbrg","values":"vacuumThrustBearing1"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && type == 'Rotor' && ((RotorOH == 'Yes' && drivenbrgs == 'Ball Bearings') || (RotorOH == 'No' && (drivenbrgs == 'Ball Bearings' || drivenbrgs == 'Both')))", "eaKey":"genTbrg","values":"vacuumThrustBearing2"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && type == 'Rotor' && RotorOH == 'No' && drivenbrgs == 'Journal'", "eaKey":"genTbrg","values":"vacuumThrustBearing3"},
+        {"exp":"not_monitored_driven=='Vacuum Pump' && drivenc=='Radial Recip Vacuum Pump'", "eaKey":"genTbrg","values":"no"}
+      ]},
+
+    "DR-S16": { "text": "Is the impeller on main shaft?", "eaKey": "Impelleronmain" ,"options":"yesNo"},
+    "DR-S17": { "text": "Does crank have an intermediate bearing?","eaKey":"crankintbrg","options":"yesNoNotSpecified"},
+    "DR-S18": { "text": "Fan Stages?", "eaKey":"stages","options": "stages"},
+    "DR-S19": { "text": "Is there an attached oil pump?", "eaKey":"Aop", "options":"yesNo",
+      "optionFilters":[
+        {"exp":"drivenc=='Radial Recip Pump' || drivenc=='Radial Recip Vacuum Pump'","values":"no"}
+      ]},
+    "DR-S22" : { "text": "Is the rotor overhung?", "eaKey":"RotorOH" , "options":"yesNo"},
+
+    "DR-S14": { "text": "How many locations are being monitored?", "eaKey": "Driven_locations", "options":"locations"},
+    "DR-S23" : { "text": "Select the position for this Location?", "eaKey": "Driven_locationType","options": "locationType"},
+
+    "DR-S28": { "text": "How many ${Driven} impeller vanes?", "eaKey": "vanes" ,"inputType" : "text"},
+    "DR-S42": { "text": "How many ${not_monitored_driven} impeller vanes?", "eaKey": "vanes" ,"inputType" : "text"},
+    "DR-S29": { "text": "How many threads are on the ${Driven} driven rotor?", "eaKey": "Driven_Threads" ,"inputType" : "text"},
+    "DR-S43": { "text": "How many threads are on the ${not_monitored_driven} driven rotor?", "eaKey": "Driven_Threads" ,"inputType" : "text"},
+    "DR-S35": { "text": "How many threads are on the ${Driven} idler rotor?", "eaKey": "Idler_threads" ,"inputType" : "text"},
+    "DR-S44": { "text": "How many threads are on the ${not_monitored_driven} idler rotor?", "eaKey": "Idler_threads" ,"inputType" : "text"},
+    "DR-S30": { "text": "How many gear teeth does the pump have?", "eaKey": "teeth" ,"inputType" : "text"},
+    "DR-S31": { "text": "How many pistons are on the ${Driven} crankshaft?", "eaKey": "pistons" ,"inputType" : "text"},
+    "DR-S45": { "text": "How many pistons are on the ${not_monitored_driven} crankshaft?", "eaKey": "pistons" ,"inputType" : "text"},
+    "DR-S32": { "text": "How many lobes are on the ${Driven} driven rotor?", "eaKey": "input_lobes" ,"inputType" : "text"},
+    "DR-S46": { "text": "How many lobes are on the ${not_monitored_driven} driven rotor?", "eaKey": "input_lobes" ,"inputType" : "text"},
+    "DR-S36": { "text": "How many lobes are on the ${Driven} idler rotor?", "eaKey": "Idler_lobes" ,"inputType" : "text"},
+    "DR-S47": { "text": "How many lobes are on the ${not_monitored_driven} idler rotor?", "eaKey": "Idler_lobes" ,"inputType" : "text"},
+    "DR-S33": { "text": "How many blades are on the 1st stage Fan rotor?", "eaKey": "stage1_fan_blades" ,"inputType" : "text"},
+    "DR-S37": { "text": "How many blades are on the 2nd stage Fan rotor?", "eaKey": "stage2_fan_blades" ,"inputType" : "text"},
+    "DR-S34": { "text": "How many blades are on the Fan rotor?", "eaKey": "fan_blades" ,"inputType" : "text"},
+    "DR-S39": { "text": "How many Propeller blades does the pump have?", "eaKey": "propeller_blades" ,"inputType" : "text"},
+    "DR-S40": { "text": "Describe the Impeller/Rotor", "eaKey": "type" ,"options" : "impellerRotor"},
+    "DR-S41" : { "text": "Non-monitored Driven Component?" , "eaKey":"not_monitored_driven", "options":"drivenTypes8"},
+
+    "DR-S48" : { "text": "Exciter?", "eaKey":"exc" , "options":"yesNo"
+      },
+    "DR-S49" : { "text": "Is Exciter overhung or supported?", "eaKey":"excOH", "options":"overHunSupported"
+     },
+    "DR-S50" : { "text": "Driven By?", "eaKey":"gendriver", "options":"drivenByTypes" ,"inputType" : "auto_calculate","checkAllContext" : true
+     }
+  },
+  "transitions": [
+    { "from" : "D-S39" , "to":"D-S1", "on": "component=='Prime Mover'"},
+    { "from" : "D-S39" , "to":"D-S41", "on": "component=='Close Coupled Machine'"},
+    { "from" : "D-S39" , "to":"D-S40", "on": "component=='Belt or Chain Drive' || component=='Coupling' || component=='Gearbox' || component=='Driven'"},
+    { "from" : "D-S40" , "to":"D-S42", "on": "nonPrimeMovers=='Add'"},
+    { "from" : "D-S40" , "to":"D-S46", "on": "nonPrimeMovers=='Skip' && component=='Coupling'"},
+    { "from" : "D-S40" , "to":"DR-S1", "on": "nonPrimeMovers=='Skip' && component=='Driven'"},
+    { "from" : "D-S40" , "to":"G-S2", "on": "nonPrimeMovers=='Skip' && component=='Gearbox'"},
+    { "from" : "D-S40" , "to":"B-S1", "on": "nonPrimeMovers=='Skip' && component=='Belt or Chain Drive'"},
+    { "from" : "D-S41" , "to":"D-S47", "on": "closeCoupled=='Motor'"},
+    { "from" : "D-S41" , "to":"D-S24", "on": "closeCoupled=='Turbine'"},
+    { "from" : "D-S24" , "to":"CCPL-S6", "on": "turbinebb=='Yes' || turbinebb=='No'" },
+    { "from" : "CCPL-S6" , "to":"CCPL-S11","on": "closeCoupled=='Turbine' && driven=='Pump'"},
+    { "from" : "CCPL-S10" , "to":"CCPL-S14","on": "closeCoupled=='Motor' && fansling=='Yes'"},
+    { "from" : "CCPL-S10" , "to":"CCPL-S13","on": "closeCoupled=='Motor' && fansling=='No'"},
+    { "from" : "CCPL-S10" , "to":"D-S15","on": "closeCoupled=='Turbine'"},
+    { "from" : "CCPL-S6" , "to":"CCPL-S12","on": "driven=='Compressor'"},
+    { "from" : "CCPL-S12" , "to":"D-S15","on": " driven=='Compressor'"},
+    { "from" : "CCPL-S11" , "to":"CCPL-S8", "on": "closeCoupled=='Turbine' || closeCoupled=='Motor'"},
+    { "from" : "D-S47" , "to":"CCPL-S16", "on": "closeCoupled=='Motor'"},
+    { "from" : "CCPL-S16" , "to":"CCPL-S5", "on": "closeCoupled=='Motor' && (motorfan=='Yes' || motorfan=='No')"},
+    { "from" : "CCPL-S5" , "to":"CCPL-S6"},
+    { "from" : "CCPL-S6" , "to":"CCPL-S7","on": "closeCoupled=='Motor' && driven=='Pump'"},
+    { "from" : "CCPL-S6" , "to":"CCPL-S10","on": " closeCoupled=='Motor' && driven=='Fan'"},
+    { "from" : "CCPL-S6" , "to":"CCPL-S15","on": "closeCoupled=='Turbine' && driven=='Fan'"},
+    { "from" : "CCPL-S15" , "to":"CCPL-S13","on": "closeCoupled=='Turbine' && driven=='Fan'"},
+    { "from" : "CCPL-S7" , "to":"CCPL-S8"},
+    { "from" : "CCPL-S8" , "to":"CCPL-S9"},
+    { "from" : "CCPL-S9" , "to":"D-S15"},
+    { "from" : "CCPL-S13" , "to":"D-S15"},
+    { "from" : "CCPL-S14" , "to":"D-S15"},
+    { "from" : "D-S15" , "to":"D-S54", "on": "(closeCoupled=='Motor' || closeCoupled=='Turbine') && Driver_locations != 2 "},
+
+    { "from" : "D-S1" , "to":"D-S2", "on": "PRIME_MOVER=='Diesel Engine'"},
+    { "from" : "D-S1" , "to" : "D-S3", "on": "PRIME_MOVER=='Motor'" },
+    { "from" : "D-S1" , "to" : "D-S4", "on": "PRIME_MOVER=='Turbine'" },
+    { "from" : "D-S1" , "to" : "D-S42", "on": "PRIME_MOVER=='Not Monitored'" },
+
+    { "from" : "D-S42" , "to" : "D-S3", "on": "Non_Monitored=='Motor'" },
+    { "from" : "D-S42" , "to" : "D-S4", "on": "Non_Monitored=='Turbine'" },
+    { "from" : "D-S42" , "to" : "D-S2", "on": "Non_Monitored=='Diesel Engine'" },
+
+    { "from" : "D-S36" , "to" : "D-S38"},
+    { "from" : "D-S38" , "to" : "D-S9", "on": "Driver=='Motor'" },
+    { "from" : "D-S38" , "to" : "D-S24", "on": "Driver=='Turbine'" },
+
+    { "from" : "D-S3" , "to":"D-S6", "on":"drive=='AC'||drive=='DC'||drive=='VFD'"},
+    { "from" : "D-S4" , "to" : "D-S8"},
+    { "from" : "D-S8" , "to" : "D-S10"},
+    { "from" : "D-S5" , "to" : "D-S7"},
+    { "from" : "D-S6" , "to" : "D-S9"},
+    { "from" : "D-S7" , "to" : "D-S9"},
+
+    { "from" : "D-S10" , "to" : "D-S12"},
+    { "from" : "D-S12" , "to" : "D-S14" , "on":"turbineTbrg=='Yes'"},
+
+
+
+    { "from" : "D-S23" , "to" : "D-S21",  "on":"motorfan == 'No'"},
+    { "from" : "D-S23" , "to" : "D-S37",  "on":"motorfan == 'Yes'"},
+    { "from" : "D-S24" , "to" : "D-S37"},
+
+    { "from" : "D-S21" , "to" : "D-S22"},
+    { "from" : "D-S37" , "to" : "D-S22"},
+    { "from" : "D-S22" , "to" : "D-S25"},
+    { "from" : "D-S25" , "to" : "D-S26"},
+
+
+    { "from" : "D-S2" , "to" : "D-S15", "on": "PRIME_MOVER!='Not Monitored'"},
+    { "from" : "D-S14" , "to" : "D-S15", "on": "PRIME_MOVER!='Not Monitored'"},
+    { "from" : "D-S12" , "to" : "D-S15" , "on":"turbineTbrg=='No' && PRIME_MOVER!='Not Monitored'"},
+    { "from" : "D-S9" , "to" : "D-S15", "on": "PRIME_MOVER!='Not Monitored'"},
+    { "from" : "D-S15" , "to" : "D-S16" , "on":"Driver_locations==1 && PRIME_MOVER!='Not Monitored'"},
+
+
+
+    {"from": "G-S2", "to" : "G-S16" },
+    {"from": "G-S16", "to" : "G-S11" },
+    {"from": "G-S11", "to" : "G-S12" },
+    {"from": "G-S12", "to" : "G-S13","on":"NOL>1" },
+    {"from": "G-S13", "to" : "G-S14", "on":"NOL>2"},
+    {"from": "G-S14", "to" : "G-S15", "on":"NOL>3"},
+
+    {"from":"GCPL2-S1" , "to" : "GCPL2-S2", "on":"cpl2=='Belt Drive'"},
+
+    { "from" : "CCPL-S4" , "to" : "D-S27" , "on":"(driven == 'Centrifugal Pump' || driven == 'Centrifugal Pump-Motor-Centrifugal Pump' || driven == 'Centrifugal Pump (Overhung)' || driven == 'Centrifugal Pump (Supported)')"},
+    { "from" : "CCPL-S4" , "to" : "D-S28" , "on":"(driven == 'Centrifugal Compressor')"},
+    { "from" : "CCPL-S4" , "to" : "D-S29" , "on":"(driven == 'Single-Stage Fan' || driven == 'Single-Stage Fan with Slinger')"},
+    { "from" : "CCPL-S4" , "to" : "D-S30" , "on":"(driven == 'Rotary Gear Pump')"},
+
+    {"from":"DR-S1" , "to" : "DR-S2", "on":"Driven=='Pump'"},
+    {"from":"DR-S41" , "to" : "DR-S2", "on":"not_monitored_driven=='Pump'"},
+    {"from":"DR-S2" , "to" : "DR-S11","on":"drivenc=='Centrifugal Pump' || drivenc=='Sliding Vane Pump'"},
+    {"from":"DR-S2" , "to" : "DR-S12","on":"drivenc=='Propeller Pump' || drivenc=='Rotary Thread Pump' || drivenc=='Gear Pump' || drivenc== 'Screw Pump'"},
+    {"from":"DR-S2" , "to" : "DR-S19","on":"drivenc=='Axial Recip Pump' || drivenc=='Radial Recip Pump'"},
+    {"from":"DR-S11" , "to" : "DR-S12"},
+    {"from":"DR-S12" , "to" : "DR-S13", "on":"(Driven=='Pump' || Driven=='Not Monitored') && drivenc=='Centrifugal Pump' || drivenc=='Axial Recip Pump' || drivenc=='Radial Recip Pump'"},
+    {"from":"DR-S12" , "to" : "DR-S39", "on":" drivenc=='Propeller Pump'"},
+    {"from":"DR-S39", "to" : "DR-S14","on": "Driven=='Pump'"},
+    {"from":"DR-S12" , "to" : "DR-S28", "on" : "drivenc=='Sliding Vane Pump'"},
+    {"from":"DR-S12" , "to" : "DR-S42", "on" : "Driven=='Not Monitored' && drivenc=='Sliding Vane Pump'"},
+    {"from":"DR-S13" , "to" : "DR-S42", "on" : "Driven=='Not Monitored'"},
+    {"from":"DR-S12" , "to" : "DR-S29", "on":"Driven=='Pump' && drivenc=='Rotary Thread Pump' || drivenc== 'Screw Pump'"},
+    {"from":"DR-S12" , "to" : "DR-S43", "on":"not_monitored_driven=='Pump' && drivenc=='Rotary Thread Pump' || drivenc== 'Screw Pump'"},
+    {"from":"DR-S12" , "to" : "DR-S30", "on":"drivenc=='Gear Pump'"},
+    {"from":"DR-S19", "to" : "DR-S12", "on":"Driven=='Pump' || not_monitored_driven=='Pump'"},
+
+
+
+    {"from":"DR-S1" , "to" : "DR-S3", "on":"Driven=='Compressor'"},
+    {"from":"DR-S41" , "to" : "DR-S3", "on":"not_monitored_driven=='Compressor'"},
+    {"from":"DR-S3",  "to" : "DR-S16", "on": "drivenc=='Centrifugal Compressor'"},
+    {"from":"DR-S3",  "to" : "DR-S17", "on": "drivenc=='Reciprocating Compressor'"},
+    {"from":"DR-S3",  "to" : "DR-S20", "on": "drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor'"},
+    {"from":"DR-S16", "to" : "DR-S20", "on": "drivenc=='Centrifugal Compressor'"},
+    {"from":"DR-S17", "to" : "DR-S20"},
+    {"from":"DR-S20", "to" : "DR-S13", "on": "drivenc=='Centrifugal Compressor' && Impelleronmain == 'Yes'"},
+    {"from":"DR-S20", "to" : "DR-S28", "on": "drivenc=='Centrifugal Compressor' && Impelleronmain != 'Yes'"},
+    {"from":"DR-S20", "to" : "DR-S42", "on": "not_monitored_driven=='Compressor' && drivenc=='Centrifugal Compressor' && Impelleronmain != 'Yes'"},
+    {"from":"DR-S20", "to" : "DR-S31", "on": "Driven=='Compressor' && drivenc=='Reciprocating Compressor'"},
+    {"from":"DR-S20", "to" : "DR-S45", "on": "not_monitored_driven=='Compressor' && drivenc=='Reciprocating Compressor'"},
+    {"from":"DR-S20", "to" : "DR-S29", "on": "(Driven=='Compressor') && (drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor')"},
+    {"from":"DR-S20", "to" : "DR-S43", "on": "(not_monitored_driven=='Compressor')  && (drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor')"},
+
+
+    {"from":"DR-S1" , "to" : "DR-S4", "on":"Driven=='Fan or Blower'"},
+    {"from":"DR-S41" , "to" : "DR-S4", "on":"not_monitored_driven=='Fan or Blower'"},
+    {"from":"DR-S4" , "to" : "DR-S18", "on":"drivenc == 'Overhung Rotor Fan or Blower'"},
+    {"from":"DR-S4" , "to" : "DR-S21", "on":"drivenc != 'Overhung Rotor Fan or Blower'"},
+    {"from":"DR-S18", "to" : "DR-S21"},
+    {"from":"DR-S21", "to" : "DR-S32", "on" : "Driven=='Fan or Blower' && drivenc == 'Lobed Fan or Blower'"},
+    {"from":"DR-S21", "to" : "DR-S46", "on" : "not_monitored_driven=='Fan or Blower' && drivenc == 'Lobed Fan or Blower'"},
+    {"from":"DR-S21", "to" : "DR-S33", "on" : "drivenc == 'Overhung Rotor Fan or Blower' && stages =='2+'"},
+    {"from":"DR-S21", "to" : "DR-S34", "on" : "drivenc == 'Supported Rotor Fan or Blower' || (drivenc == 'Overhung Rotor Fan or Blower' && stages =='1')"},
+
+
+    {"from":"DR-S1" , "to" : "DR-S5", "on":"Driven=='Purifier (Centrifuge)'"},
+    {"from":"DR-S41" , "to" : "DR-S5", "on":"not_monitored_driven=='Purifier (Centrifuge)'"},
+    {"from":"DR-S5" , "to" : "DR-S14","on":"Driven=='Purifier (Centrifuge)'"},
+
+    {"from":"DR-S1" , "to" : "DR-S14", "on":"Driven=='Decanter'"},
+    {"from":"DR-S1" , "to" : "DR-S41", "on":"Driven=='Not Monitored'"},
+
+
+    {"from":"DR-S1" , "to" : "DR-S10", "on":"Driven=='Generator'"},
+    {"from":"DR-S41" , "to" : "DR-S10", "on":"not_monitored_driven=='Generator'"},
+
+
+    {"from":"DR-S10", "to" : "DR-S7", "on":"Driven=='Generator'"},
+    {"from":"DR-S7" , "to" : "DR-S8", "on":"Driven=='Generator' && exc=='Yes'"},
+    {"from":"DR-S7" , "to" : "DR-S9", "on":"Driven=='Generator' &&  exc!='Yes'"},
+    {"from":"DR-S8" , "to" : "DR-S9"},
+    {"from":"DR-S9" , "to" : "DR-S14"},
+
+    {"from":"DR-S10", "to" : "DR-S48", "on":" not_monitored_driven=='Generator'"},
+    {"from":"DR-S48" , "to" : "DR-S49", "on":"not_monitored_driven=='Generator' && exc=='Yes'"},
+    {"from":"DR-S48" , "to" : "DR-S50", "on":"not_monitored_driven=='Generator' &&  exc!='Yes'"},
+    {"from":"DR-S49" , "to" : "DR-S50"},
+
+
+    {"from":"DR-S1" , "to" : "DR-S6", "on":"Driven=='Vacuum Pump'"},
+    {"from":"DR-S41" , "to" : "DR-S6", "on":"not_monitored_driven=='Vacuum Pump'"},
+    {"from":"DR-S1" , "to" : "DR-S38", "on":"Driven=='Spindle Shaft or Bearing'"},
+    {"from":"DR-S41" , "to" : "DR-S38", "on":"not_monitored_driven=='Spindle Shaft or Bearing'"},
+    {"from":"DR-S6" , "to" : "DR-S19","on":"drivenc=='Axial Recip Vacuum Pump' || drivenc=='Radial Recip Vacuum Pump'"},
+    {"from":"DR-S19" , "to" : "DR-S10", "on":"drivenc=='Axial Recip Vacuum Pump' || drivenc=='Radial Recip Vacuum Pump'"},
+    {"from":"DR-S13" , "to" : "DR-S28","on" :  "drivenc!='Axial Recip Pump'"},
+    {"from":"DR-S13" , "to" : "DR-S31", "on" : "(Driven=='Vacuum Pump' || Driven=='Pump') && drivenc=='Axial Recip Pump' || drivenc=='Axial Recip Vacuum Pump' || drivenc=='Radial Recip Pump' || drivenc=='Radial Recip Vacuum Pump'"},
+    {"from":"DR-S13" , "to" : "DR-S45", "on" : "(not_monitored_driven=='Vacuum Pump' || not_monitored_driven=='Pump') && drivenc=='Axial Recip Pump' || drivenc=='Axial Recip Vacuum Pump' || drivenc=='Radial Recip Pump' || drivenc=='Radial Recip Vacuum Pump'"},
+
+
+    {"from":"DR-S6" , "to" : "DR-S10","on":"drivenc=='Reciprocating Vacuum Pump' || drivenc=='Lobed Vacuum Pump'"},
+
+    {"from":"DR-S10" , "to" : "DR-S28","on":"Driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && (drivenbrgs=='Journal bearings on main' || drivenbrgs=='Ball Bearings on main')"},
+    {"from":"DR-S10",  "to" : "DR-S13", "on": "(Driven=='Vacuum Pump' || not_monitored_driven=='Vacuum Pump') && (drivenc=='Axial Recip Vacuum Pump' || drivenc=='Radial Recip Vacuum Pump' || (drivenc=='Centrifugal Vacuum Pump' && drivenbrgs!='Journal bearings on main' && drivenbrgs!='Ball Bearings on main'))"},
+    {"from":"DR-S10" , "to" : "DR-S31" ,"on" : "Driven=='Vacuum Pump' && drivenc=='Reciprocating Vacuum Pump'"},
+    {"from":"DR-S10" , "to" : "DR-S32" ,"on" : "Driven=='Vacuum Pump' && drivenc=='Lobed Vacuum Pump'"},
+
+    {"from":"DR-S10" , "to" : "DR-S42","on":"not_monitored_driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && (drivenbrgs=='Journal bearings on main' || drivenbrgs=='Ball Bearings on main')"},
+   {"from":"DR-S10" , "to" : "DR-S45" ,"on" : "not_monitored_driven=='Vacuum Pump' && drivenc=='Reciprocating Vacuum Pump'"},
+    {"from":"DR-S10" , "to" : "DR-S46" ,"on" : "not_monitored_driven=='Vacuum Pump' && drivenc=='Lobed Vacuum Pump'"},
+
+
+
+    {"from":"DR-S6",  "to" : "DR-S40", "on": "drivenc=='Centrifugal Vacuum Pump'"},
+    {"from":"DR-S40",  "to" : "DR-S16", "on": "type=='Impeller'"},
+    {"from":"DR-S40",  "to" : "DR-S22", "on": "type=='Rotor'"},
+    {"from":"DR-S22" , "to" : "DR-S10"},
+    {"from":"DR-S16",  "to" : "DR-S10", "on": "drivenc=='Centrifugal Vacuum Pump'"},
+
+    {"from":"DR-S38" , "to" : "DR-S14", "on":"Driven=='Spindle Shaft or Bearing'"},
+
+    {"from":"DR-S28" , "to" : "DR-S14"},
+    {"from":"DR-S29" , "to" : "DR-S35", "on" : "Driven=='Pump' && drivenc!= 'Screw Pump'"},
+    {"from":"DR-S29" , "to" : "DR-S44", "on" : "not_monitored_driven=='Pump' && drivenc!= 'Screw Pump'"},
+    {"from":"DR-S29" , "to" : "DR-S14", "on" : "(Driven=='Pump' || Driven=='Compressor') && drivenc== 'Screw Pump' || drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor'"},
+    {"from":"DR-S35" , "to" : "DR-S14"},
+    {"from":"DR-S30" , "to" : "DR-S14", "on" : "Driven=='Pump'"},
+    {"from":"DR-S31" , "to" : "DR-S14"},
+    {"from":"DR-S32" , "to" : "DR-S36" },
+    {"from":"DR-S36" , "to" : "DR-S14"},
+    {"from":"DR-S33" , "to" : "DR-S37"},
+    {"from":"DR-S37" , "to" : "DR-S14", "on":"Driven=='Fan or Blower'"},
+    {"from":"DR-S34" , "to" : "DR-S14", "on":"Driven=='Fan or Blower'"},
+    {"from":"DR-S46" , "to" : "DR-S47"},
+
+    { "from" : "DR-S14" , "to" : "DR-S23" , "on":"Driven_locations==1"}
+  ]
+}

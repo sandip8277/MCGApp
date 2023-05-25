@@ -1,0 +1,31 @@
+<section class="vh-100" style="background-color:white;">
+   <div class="container py-5 h-100">
+     <div class="row d-flex justify-content-center align-items-center h-100">
+       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+         <div class="card shadow-2-strong" style="border-radius: 1rem;">
+           <div class="card-body p-5 text-center">
+            <img  src="../../../assets/logos/siai-logo.svg" height="40px"> <br/><br/>
+             <h3 class="mb-5">Login</h3>
+ 
+             <div class="form-outline mb-4">
+               <input type="email" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Username"/>
+              
+             </div>
+ 
+             <div class="form-outline mb-4">
+               <input type="password" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Password" />
+              
+             </div>
+ 
+           
+             <button class="btn btn-primary btn-lg btn-block login-button text-semibold" type="submit" (click)="onLogin($event)">
+               <label class="content-align-center">
+               Login
+             </label></button>
+             <P><a href="" class="content-align-center">{{ 'Forgot your password?'  }}</a></P>
+            </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
