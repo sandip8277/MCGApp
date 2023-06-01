@@ -1,0 +1,1 @@
+export const defaulturl: string = "https://auth-staging.symphonyindai.com/api/auth/token";

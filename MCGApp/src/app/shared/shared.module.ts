@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { SharedRoutingModule } from './shared.routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { LogoutComponent } from './logout/logout.component';
 @NgModule({
   declarations: [
-    TopBarComponent
+    TopBarComponent,
+    LogoutComponent
   ],
   imports: [
     FormsModule,
@@ -13,6 +15,6 @@ import { TopBarComponent } from './top-bar/top-bar.component';
     CommonModule,
     SharedRoutingModule
   ],
-  exports:[TopBarComponent]
+  exports:[TopBarComponent,LogoutComponent]
 })
 export class SharedModule { }
