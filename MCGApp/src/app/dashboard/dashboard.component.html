@@ -1,4 +1,4 @@
-<app-top-bar></app-top-bar>
+<!-- <app-top-bar></app-top-bar>
 
 <main id="main" class="main">
   <div class="pagetitle">
@@ -82,10 +82,48 @@
                          </mat-button-toggle>
                        </mat-button-toggle-group>
                    </mat-panel-description>
-                   <!-- <div class="selected-value">Selected value: {{group.value}}</div> -->
+                   <div class="selected-value">Selected value: {{group.value}}</div>
                    <button mat-button matStepperPrevious *ngIf="hideNext1"> < Back </button>
                    <button mat-button color="primary" (click)="onNext('2')" *ngIf="hideNext1">Next ></button>
                  </mat-expansion-panel>
+              </div>
+           </div>
+        </div>
+       
+     </div>
+  </section>
+</main> -->
+
+
+
+
+<app-top-bar></app-top-bar>
+
+<main id="main" class="main">
+  <div class="pagetitle">
+     <h3>Machine Configuration Generator</h3>
+  </div>
+  <section class="section">
+     <div class="row">
+        <div class="col-lg-12">
+           <div class="card">
+              <div class="card-body">
+               <div>
+                 <h5 class="card-title">Components 
+                  <button mat-raised-button color="primary" class="my-button" (click)="removePanel(intialPanelNumber)"> - Remove</button> 
+                  <button mat-raised-button color="primary" class="my-button" (click)="addPanel(intialPanelNumber)"> + Add</button>
+               </h5>
+                
+               <div *ngFor="let panel of panelData let i = index">
+                  <div *ngIf="panel.value==0">
+                     <app-first-json-component [panel]="panel"></app-first-json-component> 
+                  </div>
+                  <div *ngIf="panel.value>0">
+                     <!-- <app-second-json-component [panel]="panel"></app-second-json-component>  -->
+                     <app-first-json-component [panel]="panel"></app-first-json-component> 
+                  </div>
+               </div>
+               </div>
               </div>
            </div>
         </div>

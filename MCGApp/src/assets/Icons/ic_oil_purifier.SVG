@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="48dp" viewportHeight="44.97" viewportWidth="64.64" width="68.99533dp" xmlns:android="http://schemas.android.com/apk/res/android">
+	<group>
+		<clip-path d="M-38.3,-4.26h141.02v70.51h-141.02z"/>
+		<path fill="#00000000" d="M0.79,44.22V27.28h63V44.22H0.79m2.39,-33.3c-0.26,-0.74 0.91,-1.45 3,-1.85a20.14,20.14 0,0 1,6.84 0c2.1,0.4 3.27,1.11 3,1.85h0.12v5.64h-13V10.92h0m1,16.36V16.56H15.1V27.28H4.21M26.88,5.48V27h-1V4.57A3.75,3.75 0,0 1,29.34 0.94v0H43v0.92H30.82a3.81,3.81 0,0 0,-3.94 3.66m2,4.3h-0.09V27H61.09V9.83c0.85,-3.26 -5.43,-6.16 -14.19,-6.54V0.9H43V3.28c-8.7,0.38 -15,3.27 -14.1,6.5H60.8" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.22"/>
+	</group>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="100dp" viewportHeight="200" viewportWidth="200" width="100dp" xmlns:android="http://schemas.android.com/apk/res/android">
+	<group>
+		<clip-path d="M0,0h200v200h-200z"/>
+		<path fill="#fff" d="M198.26,0.72h1.04v1.04h-1.04z"/>
+		<path fill="#00000000" d="M198.26,0.72h1.04v1.04h-1.04z" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.39"/>
+		<path fill="#fff" d="M0.69,198.24h1.04v1.04h-1.04z"/>
+		<path fill="#00000000" d="M0.69,198.24h1.04v1.04h-1.04z" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.39"/>
+		<path fill="#fff" fill-rule="evenOdd" d="M83.58,18.59a91,91 0,1 0,31 0V4.85A4.15,4.15 0,0 0,110.47 0.72H87.71a4.14,4.14 0,0 0,-4.13 4.13Z"/>
+		<path fill="#fec010" fill-rule="evenOdd" d="M83.85,26.92a82.5,82.5 0,1 0,31 0V40.83a68.89,68.89 0,1 1,-30.95 0Z"/>
+		<path fill="#26499f" d="M93.38,8.7h11.21v51.57h-11.21z"/>
+		<path fill="#FF000000" fill-rule="evenOdd" d="M99.33,116.62a8.28,8.28 0,1 1,8.27 -8.27A8.28,8.28 0,0 1,99.33 116.62Z"/>
+		<path fill="#00000000" d="M99.33,116.62a8.28,8.28 0,1 1,8.27 -8.27A8.28,8.28 0,0 1,99.33 116.62Z" stroke="#000" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.39"/>
+		<path fill="#FF000000" d="M97.67,75.59h3.31v66.19h-3.31z"/>
+		<path fill="#00000000" d="M97.67,75.59h3.31v66.19h-3.31z" stroke="#000" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.39"/>
+	</group>
+</svg>

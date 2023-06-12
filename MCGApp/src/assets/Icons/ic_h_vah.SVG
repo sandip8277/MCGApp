@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="100dp" viewportHeight="200" viewportWidth="200" width="100dp" xmlns:android="http://schemas.android.com/apk/res/android">
+	<group>
+		<clip-path d="M0,0h200v200h-200z"/>
+		<path fill="#fff" fill-rule="evenOdd" d="M200,0.59a0.53,0.53 0,0 1,-0.52 0.52,0.53 0.53,0 0,1 0,-1A0.53,0.53 0,0 1,200 0.59Z"/>
+		<path fill="#fff" fill-rule="evenOdd" d="M1.08,199.46a0.53,0.53 0,1 1,-0.52 -0.52A0.52,0.52 0,0 1,1.08 199.46Z"/>
+		<path fill="#fff" fill-rule="evenOdd" d="M181.13,94.72C173.1,77.86 130.9,66 84,67.49S1.07,83.24 1.07,100.35s36,31.4 82.93,32.86 89.1,-10.36 97.13,-27.23h13.69c2.27,0 4.12,-0.67 4.12,-1.5V96.23c0,-0.83 -1.85,-1.5 -4.12,-1.5Z"/>
+		<path fill="#fec010" fill-rule="evenOdd" d="M172.84,94.84c-8,-15.15 -46.28,-25.62 -88.51,-24.17S9.85,85 9.85,100.44s32.26,28.31 74.48,29.76 80.56,-9 88.51,-24.16H159c-7.83,12.37 -40,20.64 -74.65,19.2s-60.9,-12.1 -60.9,-24.8 26.21,-23.37 60.9,-24.81S151.15,82.46 159,94.84Z"/>
+		<path fill="#26499f" d="M139.6,97.27h51.39v5.69h-51.39z"/>
+		<path fill="#FF000000" fill-rule="evenOdd" d="M83.44,100.35a8.25,8.25 0,1 1,8.24 8.25A8.24,8.24 0,0 1,83.44 100.35Z"/>
+		<path fill="#00000000" d="M83.44,100.35a8.25,8.25 0,1 1,8.24 8.25A8.24,8.24 0,0 1,83.44 100.35Z" stroke="#000" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.39"/>
+		<path fill="#FF000000" d="M58.36,99.46h65.96v1.68h-65.96z"/>
+		<path fill="#00000000" d="M58.36,99.46h65.96v1.68h-65.96z" stroke="#000" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.39"/>
+	</group>
+</svg>

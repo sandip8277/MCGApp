@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="48dp" viewportHeight="44.63" viewportWidth="52.19" width="56.130856dp" xmlns:android="http://schemas.android.com/apk/res/android">
+	<group>
+		<clip-path d="M-0.27,-3.47h62.55v48.09h-62.55z"/>
+		<path fill="#00000000" d="M22.93,21.66a10.16,10.16 0,0 0,-0.68 -7,10 10,0 0,0 -8.86,3.69c3,0.33 5.53,1.44 6.87,3A3,3 0,0 1,22.93 21.66Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M18.5,23.37a2.66,2.66 0,0 1,1.76 -2.1c-1.34,-1.55 -3.88,-2.66 -6.88,-3a8.72,8.72 0,0 0,-0.89 9.49A10.89,10.89 0,0 1,18.5 23.37Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M19.6,25.82a2.53,2.53 0,0 1,-1.1 -2.45,10.94 10.94,0 0,0 -6,4.39 9.79,9.79 0,0 0,7.8 5.09A10.19,10.19 0,0 1,19.6 25.82Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M30.04,19.66a9.76,9.76 0,0 0,-7.79 -5.09,10.18 10.18,0 0,1 0.68,7 2.56,2.56 0,0 1,1.1 2.45A10.89,10.89 0,0 0,30.04 19.66Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M22.26,26.16a2.93,2.93 0,0 1,-2.65 -0.34,10.17 10.17,0 0,0 0.66,7 10.06,10.06 0,0 0,8.87 -3.68C26.15,28.83 23.6,27.72 22.26,26.16Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M22.26,26.16c1.34,1.55 3.89,2.67 6.88,3A8.73,8.73 0,0 0,30.05 19.66a10.91,10.91 0,0 1,-6 4.4A2.66,2.66 0,0 1,22.26 26.16Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M21.27,24.91a1.19,1.19 0,1 1,1.21 -1.19A1.21,1.21 0,0 1,21.27 24.91Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M21.27,39.2A15.62,15.62 0,0 1,5.52 23.72,15.62 15.62,0 0,1 21.27,8.24 15.61,15.61 0,0 1,37.01 23.72,15.61 15.61,0 0,1 21.27,39.2Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M32.73,18.49a1.27,1.27 0,1 1,1.29 -1.27A1.28,1.28 0,0 1,32.73 18.49Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M32.73,31.49a1.27,1.27 0,1 1,1.29 -1.27A1.28,1.28 0,0 1,32.73 31.49Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M9.82,18.54a1.27,1.27 0,1 1,1.28 -1.26A1.27,1.27 0,0 1,9.82 18.54Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M9.82,31.55a1.27,1.27 0,1 1,1.28 -1.27A1.28,1.28 0,0 1,9.82 31.55Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M21.27,12.05a1.27,1.27 0,1 1,1.28 -1.27A1.28,1.28 0,0 1,21.27 12.05Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M21.27,37.9A1.27,1.27 0,1 1,22.55 36.66,1.28 1.28,0 0,1 21.27,37.9Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M51.58,1.88L51.58,0.66L48.82,0.66L48.82,1.88h0L48.82,3.42L21.27,3.42a20.6,20.6 0,0 0,-20 15.14,20.17 20.17,0 0,0 9.8,22.83 20.91,20.91 0,0 0,25 -3.52,20 20,0 0,0 2.9,-24.61h9.84v1.3h0v1.28h2.76Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#00000000" d="M32.04,8.23L38.81,8.23" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.24"/>
+		<path fill="#003ab5" fill-rule="evenOdd" d="M38.81,4.53l11.29,3.7l-11.29,3.7l0,-7.4"/>
+	</group>
+</svg>

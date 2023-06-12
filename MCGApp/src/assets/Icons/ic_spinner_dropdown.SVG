@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="@dimen/vector_height_24" tint="#B7BFC6" viewportHeight="24.0" viewportWidth="24.0" width="@dimen/vector_width_24" xmlns:android="http://schemas.android.com/apk/res/android">
+	<path fill="#FF000000" d="M7,10l5,5 5,-5z"/>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="48dp" viewportHeight="44.97" viewportWidth="51.23" width="54.68179dp" xmlns:android="http://schemas.android.com/apk/res/android">
+	<group>
+		<clip-path d="M-0.17,0.25h51.57v44.46h-51.57z"/>
+		<path fill="#00000000" d="M30.39,0.67h12.56v23.98h-12.56z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M30.79,0.66L42.56,2.66" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M30.79,2.66L42.56,4.66" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M30.79,4.66L42.56,6.66" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M30.79,6.66L42.56,8.66" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M30.79,8.66L42.56,10.66" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M30.79,10.66L42.56,12.65" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M30.79,12.65L42.56,14.65" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M30.79,14.65L42.56,16.65" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M30.79,16.65L42.56,18.65" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M30.79,18.65L42.56,20.65" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M30.79,20.64L42.56,22.65" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M30.79,22.65L42.56,24.64" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#003ab5" d="M30.39,25.08h12.56v11.99h-12.56z"/>
+		<path fill="#00000000" d="M30.39,25.08h12.56v11.99h-12.56z" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M42.56,25.08L30.78,27.08" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M42.56,27.08L30.78,29.08" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M42.56,29.08L30.78,31.08" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M42.56,31.08L30.78,33.08" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M42.56,33.08L30.78,35.07" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M42.56,35.07L30.78,37.07" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#003ab5" d="M10.78,4.51h12.73v13.07h-12.73z"/>
+		<path fill="#00000000" d="M10.78,4.51h12.73v13.07h-12.73z" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M23.11,4.51L11.19,6.69" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M23.11,6.69L11.19,8.87" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M23.11,8.87L11.19,11.04" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M23.11,11.04L11.19,13.22" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M23.11,13.22L11.19,15.4" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M23.11,15.4L11.19,17.58" stroke="#fff" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M11.18,18.16L23.11,20.34" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M11.18,20.34L23.11,22.52" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M11.19,22.52L23.11,24.7" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M11.18,24.7L23.11,26.87" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M11.18,26.88L23.11,29.05" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M11.18,29.05L23.11,31.23" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M11.18,31.23L23.11,33.41" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M11.18,33.41L23.11,35.58" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M11.18,35.59L23.11,37.76" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M11.18,37.76L23.11,39.94" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M11.18,39.94L23.11,42.12" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M11.19,42.12L23.11,44.3" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M23.51,29.05h7.62v4.36h-7.62z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M7.9,29.05h3.02v4.36h-3.02z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M0.66,8.87h10.76v4.36h-10.76z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M22.79,8.65h3.02v4.79h-3.02z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M42.95,10.48h7.62v4.36h-7.62z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M42.25,28.9h3.02v4.36h-3.02z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M28.32,10.26h2.07v4.79h-2.07z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+		<path fill="#00000000" d="M10.78,18.17h12.73v26.13h-12.73z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="0.83"/>
+	</group>
+</svg>

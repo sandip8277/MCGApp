@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="48dp" viewportHeight="44.97" viewportWidth="61.79" width="65.9533dp" xmlns:android="http://schemas.android.com/apk/res/android">
+	<group>
+		<clip-path d="M-38.6,-3.21h138.89v69.62h-138.89z"/>
+		<path fill="#00000000" d="M52.62,27.21V14.35h4.8C59.07,18 62,26.6 59.46,34.88c-0.2,0.63 -0.42,1.26 -1.85,5.54h-5v-5.9H46.21v9.35h-17l-5.1,-6.3H7.74V13.28h7.79v-5h22.7V14h8.55v6.48h5.84" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.69"/>
+		<path fill="#00000000" d="M29.24,8.23L29.24,1.14" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.69"/>
+		<path fill="#00000000" d="M23.02,8.23L23.02,1.14" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.69"/>
+		<path fill="#00000000" d="M37.66,1.14L14.15,1.14" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.69"/>
+		<path fill="#00000000" d="M1.23,25L7.74,25" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.69"/>
+		<path fill="#00000000" d="M1.23,37.57L1.23,12.39" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.69"/>
+	</group>
+</svg>

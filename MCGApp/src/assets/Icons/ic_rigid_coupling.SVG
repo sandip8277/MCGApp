@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:android="http://schemas.android.com/apk/res/android" width="50dp" height="60dp" viewportWidth="104.785" viewportHeight="79.0686">
+	<path d="M52.476,40.355L90.996,40.355A3.558,1.982 -90,1 0,90.996 33.235A3.558,1.982 -90,0 0,90.886 33.245A3.558,1.938 90,0 1,90.996 33.235A3.558,1.938 90,0 1,90.206 32.935A3.558,1.938 90,0 1,89.596 32.145A3.558,1.938 90,0 1,89.186 30.985A3.558,1.938 90,0 1,89.056 29.675A3.558,1.938 90,0 1,90.996 26.125L52.476,26.125L52.336,26.125L13.816,26.125A1.982,3.558 -180,1 0,13.816 33.235A1.982,3.558 -180,0 0,13.926 33.235A3.558,1.938 90,0 1,13.816 33.235A3.558,1.938 90,0 1,14.606 33.545A3.558,1.938 90,0 1,15.216 34.325A3.558,1.938 90,0 1,15.626 35.485A3.558,1.938 90,0 1,15.756 36.795A3.558,1.938 90,0 1,13.816 40.355L52.336,40.355L52.476,40.355Z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path fill="#FF000000" d="M90.947,26.12A3.558,1.938 63.38,0 0,89.017 29.68A3.558,1.938 63.38,0 0,90.947 33.24" strokeLineJoin="round" stroke-width="0.75" stroke="#003ab5" strokeLineCap="round"/>
+	<path fill="#FF000000" d="M91.037,33.24A3.558,1.938 63.38,0 0,92.977 29.68A3.558,1.938 63.38,0 0,91.037 26.12" strokeLineJoin="round" stroke-width="0.75" stroke="#003ab5" strokeLineCap="round"/>
+	<path fill="#FF000000" d="M13.77,33.236A3.558,1.938 63.38,0 0,11.84 36.796A3.558,1.938 63.38,0 0,13.77 40.356" strokeLineJoin="round" stroke-width="0.75" stroke="#003ab5" strokeLineCap="round"/>
+	<path fill="#FF000000" d="M13.86,40.356A3.558,1.938 63.38,0 0,15.8 36.796A3.558,1.938 63.38,0 0,13.86 33.236" strokeLineJoin="round" stroke-width="0.75" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M41.719,21.969h10.688v20.638h-10.688z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M52.406,21.969h10.688v20.638h-10.688z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M50.156,15.92h2.25v32.737h-2.25z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M52.406,15.92h2.25v32.737h-2.25z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M49.313,17.344h0.844v1.423h-0.844z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M54.656,17.344h0.844v1.423h-0.844z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M49.313,45.81h0.844v1.423h-0.844z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M54.656,45.81h0.844v1.423h-0.844z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M49.313,38.931h0.844v1.423h-0.844z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M54.656,38.931h0.844v1.423h-0.844z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M49.313,30.865h0.844v1.423h-0.844z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M54.656,30.865h0.844v1.423h-0.844z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M49.313,23.749h0.844v1.423h-0.844z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M54.656,23.749h0.844v1.423h-0.844z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#003ab5" strokeLineCap="round"/>
+	<path d="M103.567,0.937a0.422,0.563 0,1 0,0.844 0a0.422,0.563 0,1 0,-0.844 0z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#00000000" strokeLineCap="round"/>
+	<path d="M0.375,78.117a0.422,0.563 0,1 0,0.844 0a0.422,0.563 0,1 0,-0.844 0z" strokeLineJoin="round" stroke-width="0.75" fill="#ffffff" stroke="#00000000" strokeLineCap="round"/>
+</svg>
