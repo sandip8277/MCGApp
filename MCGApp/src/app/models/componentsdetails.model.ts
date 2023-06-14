@@ -1,4 +1,8 @@
 export class componentsdetailsModel {
-    [key: number]: string;
+    public eaKey: string='';
+    public state: any;
+    public selectedValue: string='';
+    public components: any;
+    public componentStateTitle: any;
  }
  

@@ -1,1 +1,32 @@
-<p>second-json-component works!</p>
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+        select  {{panel.componentValue}} component &nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>
+        <div class="selected-value selected-data-width" *ngIf="selectedData.length>0"><b><span>[</span>{{selectedDataToPrint}}<span>]</span></b></div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <span *ngIf="showBothButtons"> {{componentStateTitle}}</span><br/><br/>
+      <mat-panel-description *ngIf="showBothButtons">
+         <mat-button-toggle-group #group="matButtonToggleGroup" [value]="currentSelectedValue">
+           <div *ngFor="let component of components; index as i">
+            <div class="btn-alignments">
+                <mat-button-toggle *ngIf="component.text!==undefined" value="{{component.text}}" (change)="onValChange($event.value)" >
+                  <img *ngIf="component.iconKey !==undefined && component.iconKey>0" src="{{getImageFromIconKey(component.iconKey)}}" width="20px;" height="30px;">
+                  {{component.text}}
+                </mat-button-toggle> 
+    
+                <mat-button-toggle *ngIf="component.text===undefined" value="{{component}}" (change)="onValChange($event.value)" >
+                  <img *ngIf="component.iconKey !==undefined && component.iconKey>0" src="{{getImageFromIconKey(component.iconKey)}}" width="20px;" height="30px;">  
+                  {{component}}
+                   </mat-button-toggle> 
+            </div> &nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
+          </mat-button-toggle-group>
+      </mat-panel-description>
+     
+      <div class="example-button-row" *ngIf="showBothButtons">
+         <button *ngIf="componentStateTitle!=='Select next component'" mat-button color="primary" (click)="onBack()" > <label><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</label> </button>&nbsp;&nbsp;
+         <button mat-button color="primary" (click)="onNext()" >Next <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+       </div>
+    </mat-expansion-panel>
+       

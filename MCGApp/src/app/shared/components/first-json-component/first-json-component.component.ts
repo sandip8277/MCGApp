@@ -14,23 +14,21 @@ import { componentsdetailsModel } from '../../../models/componentsdetails.model'
 export class FirstJsonComponentComponent implements OnInit {
   @Input() panel: any;
   panelOpenState = false;
-  panelDataDetails: string[] = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th"];
-  public showBothButtons:boolean=true;
-  public initialPanelValue: string;
+  public showBothButtons: boolean = true;
   public intialPanelNumber: number = 0;
   public selectedData: string[];
-  public selectedDataToPrint: string="";
+  public selectedDataToPrint: string = "";
   stringJson1: any;
   stringObject1: any;
   components: any;
   currentState: any;
-  currentComponents: [];
+  currentComponents: any;
   previousState: any;
-  previousComponents: [];
+  previousComponents: []=[];
 
-  currentSelectedValue: string;
+  currentSelectedValue: string="";
   previousSelectedValue: string;
-  componentStateTitle: string;
+  componentStateTitle: string="";
   currentComponentStateTitle: string;
   previousComponentStateTitle: string;
   currentEAKey: string;
@@ -39,33 +37,30 @@ export class FirstJsonComponentComponent implements OnInit {
   isPrimeMoverNotMonitored: boolean;
   isCloseCoupled: boolean;
   closeCoupledSelectedValue: string;
+
+  lstselctedComponentDetails:Array<componentsdetailsModel>=[];
   constructor() {
-    this.showBothButtons=true;
+    this.showBothButtons = true;
     this.isPrimeMoverNotMonitored = false;
     this.isCloseCoupled = false;
     this.closeCoupledSelectedValue = "";
-    this.initialPanelValue = this.panelDataDetails[0];
     this.intialPanelNumber = -1;
-    componentsdetailsModel: [];
-    this.components = [];
-    this.currentComponents = [];
-
-    this.previousState = "";
-    this.previousComponents = [];
-
-    this.currentSelectedValue = "Prime Mover";
     this.previousSelectedValue = "";
-
     this.currentEAKey = '';
     this.previousEAKey = '';
     this.selectedData = [];
-    this.selectedDataToPrint="";
-    this.componentStateTitle = '';
+    this.selectedDataToPrint = "";
     this.previousComponentStateTitle = '';
     this.currentComponentStateTitle = '';
   }
 
-  ngOnInit(): void {
+  public initializeSelectedCompnents(){
+    this.currentComponents = [];
+    this.previousState = "";
+    this.previousComponents = [];
+    this.components = [];
+    this.componentStateTitle = '';
+    this.currentSelectedValue = "Prime Mover";
     this.stringJson1 = JSON.stringify(ComponentsJson_1);
     this.stringObject1 = JSON.parse(this.stringJson1);
     let start = this.stringObject1.start;
@@ -78,10 +73,23 @@ export class FirstJsonComponentComponent implements OnInit {
     this.previousEAKey = this.currentEAKey;
     this.components = this.stringObject1.data[options];
     this.currentComponents = this.components;
+
+    let objcomponentsdetailsModel={} as componentsdetailsModel;
+    objcomponentsdetailsModel.eaKey=this.currentEAKey;
+    objcomponentsdetailsModel.state=this.currentState;
+    objcomponentsdetailsModel.selectedValue=this.currentSelectedValue;
+    objcomponentsdetailsModel.components=this.components;
+    objcomponentsdetailsModel.componentStateTitle=this.componentStateTitle;
+    this.lstselctedComponentDetails.push(objcomponentsdetailsModel);
+  }
+  ngOnInit(): void {
+    this.initializeSelectedCompnents();
   }
 
   onValChange(value: any) {
     this.currentSelectedValue = value;
+    let len=this.lstselctedComponentDetails.length;
+    this.lstselctedComponentDetails[len-1].selectedValue=this.currentSelectedValue;
   }
 
   checkIsPrimeMoverNotMonitored() {
@@ -100,16 +108,39 @@ export class FirstJsonComponentComponent implements OnInit {
       this.closeCoupledSelectedValue = this.currentSelectedValue;
     }
   }
+
+  addNextStepComponent(){
+    let objcomponentsdetailsModel={} as componentsdetailsModel;
+    objcomponentsdetailsModel.eaKey=this.currentEAKey;
+    objcomponentsdetailsModel.state=this.currentState;
+    objcomponentsdetailsModel.selectedValue=this.currentSelectedValue;
+    objcomponentsdetailsModel.components=this.components;
+    objcomponentsdetailsModel.componentStateTitle=this.componentStateTitle;
+    this.lstselctedComponentDetails.push(objcomponentsdetailsModel);
+  }
+
+  removeCurrentStepComponentAndBack(){
+    this.lstselctedComponentDetails.pop();
+    let len=this.lstselctedComponentDetails.length;
+
+    let currentData=this.lstselctedComponentDetails[len-1];
+    if(currentData!==undefined){
+    this.currentEAKey = currentData.eaKey;
+    this.currentState = currentData.state;
+    this.currentComponents = currentData.components;
+    this.components = this.currentComponents;
+    this.currentSelectedValue = currentData.selectedValue;
+    this.currentComponentStateTitle = currentData.componentStateTitle;
+    this.componentStateTitle = this.currentComponentStateTitle;
+    }
+  }
   onNext() {
     this.checkIsPrimeMoverNotMonitored();
     this.checkIsCloseCoupled();
     this.checkCloseCoupledValue();
-    this.previousEAKey = this.currentEAKey;
-    this.previousState = this.currentState;
-    this.previousSelectedValue = this.currentSelectedValue;
-    this.previousComponents = this.currentComponents;
-    
-
+    if(this.lstselctedComponentDetails.length===1){
+      this.lstselctedComponentDetails[0].selectedValue=this.currentSelectedValue;
+    }
     let transitions = this.stringObject1.transitions;
     let key = '';
     if (isNaN(Number(this.currentSelectedValue))) {
@@ -118,9 +149,8 @@ export class FirstJsonComponentComponent implements OnInit {
       key = this.currentEAKey + "==" + this.currentSelectedValue;
     }
 
-    let currentSelectedDataToPush=key.replace("==",":").replace("'","");
-    this.selectedData.push(currentSelectedDataToPush);
-    this.selectedDataToPrint=this.selectedData.toString();
+    let currentSelectedDataToPush = key.replace("==", ":").replace("'", "").replace("'", "");
+
     let finalKey = this.constructFinalKey(this.currentState, this.currentEAKey, key);
     key = finalKey;
     // let toState = transitions.filter((x: {
@@ -147,28 +177,38 @@ export class FirstJsonComponentComponent implements OnInit {
       this.componentStateTitle = states["text"];
       this.components = this.stringObject1.data[options];
       this.currentComponents = this.components;
-
-      this.previousComponentStateTitle = this.currentComponentStateTitle;
       this.currentComponentStateTitle = this.componentStateTitle;
+      this.selectDefaultItem();
+      this.addSelectedData(currentSelectedDataToPush);
+      this.addNextStepComponent();
     }
-    else{
+    else {
       this.panelOpenState = false;
-      this.showBothButtons=false;
+      this.showBothButtons = false;
+      this.addSelectedData(currentSelectedDataToPush);
+    }
+  }
+
+  addSelectedData(currentSelectedDataToPush:any){
+    this.selectedData.push(currentSelectedDataToPush);
+    this.selectedDataToPrint = this.selectedData.toString();
+  }
+  selectDefaultItem() {
+    if (this.currentComponents.length > 0) {
+      if (this.currentComponents[0].text !== undefined) {
+        this.currentSelectedValue = this.currentComponents[0].text;
+      }
+      else {
+        this.currentSelectedValue = this.currentComponents[0];
+      }
     }
   }
   onBack() {
-    if(this.selectedData.length>0){
-    this.selectedData.pop();
-    this.selectedDataToPrint=this.selectedData.toString();
+    if (this.selectedData.length > 0) {
+      this.selectedData.pop();
+      this.selectedDataToPrint = this.selectedData.toString();
     }
-    this.currentEAKey = this.previousEAKey;
-    this.currentState = this.previousState;
-    this.currentComponents = this.previousComponents;
-    this.components = this.currentComponents;
-    this.currentSelectedValue = this.previousSelectedValue;
-
-    this.currentComponentStateTitle = this.previousComponentStateTitle;
-    this.componentStateTitle = this.currentComponentStateTitle;
+    this.removeCurrentStepComponentAndBack();
   }
   constructFinalKey(currentState: string, currentEAKey: string, key: string) {
     let constructedKey = '';
@@ -189,15 +229,38 @@ export class FirstJsonComponentComponent implements OnInit {
         constructedKey = 'exit';
         break;
       }
+      case "D-S40": {
+        if (key == "nonPrimeMovers=='Skip'") {
+          if (this.selectedData.includes("component:Driven")) {
+            constructedKey = "nonPrimeMovers=='Skip' && component=='Driven'";
+          }
+          if (this.selectedData.includes("component:Coupling")) {
+            constructedKey = "nonPrimeMovers=='Skip' && component=='Coupling'";
+          }
+          if (this.selectedData.includes("component:Gearbox")) {
+            constructedKey = "nonPrimeMovers=='Skip' && component=='Gearbox'";
+          }
+          if (this.selectedData.includes("component:Belt or Chain Drive")) {
+            constructedKey = "nonPrimeMovers=='Skip' && component=='Belt or Chain Drive'";
+          }
+        }
+        else if (key == "nonPrimeMovers=='Add'") {
+          constructedKey = key;
+        }
+        else {
+          constructedKey = 'exit';
+        }
+        break;
+      }
       case "D-S54": {
         constructedKey = 'exit';
         break;
       }
       case "CCPL-S6": {
-        if (this.closeCoupledSelectedValue == 'Motor' && key!="driven=='Compressor'") {
+        if (this.closeCoupledSelectedValue == 'Motor' && key != "driven=='Compressor'") {
           constructedKey = "closeCoupled=='Motor' && " + key;
         }
-        else if (this.closeCoupledSelectedValue == 'Motor' && key!="driven=='Compressor'") {
+        else if (this.closeCoupledSelectedValue == 'Motor' && key != "driven=='Compressor'") {
           constructedKey = "closeCoupled=='Turbine' && " + key;
         }
         else {
@@ -212,8 +275,6 @@ export class FirstJsonComponentComponent implements OnInit {
     }
     return constructedKey;
   }
- 
-
   getImageFromIconKey(value: string) {
     let imageName = this.getImageName(value);
     if (value !== "0") {

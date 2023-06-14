@@ -110,8 +110,9 @@
               <div class="card-body">
                <div>
                  <h5 class="card-title">Components 
-                  <button mat-raised-button color="primary" class="my-button" (click)="removePanel(intialPanelNumber)"> - Remove</button> 
+                  <button mat-raised-button color="primary" class="my-button" (click)="removePanel(intialPanelNumber)"> - Clear Selection</button> 
                   <button mat-raised-button color="primary" class="my-button" (click)="addPanel(intialPanelNumber)"> + Add</button>
+  
                </h5>
                 
                <div *ngFor="let panel of panelData let i = index">
@@ -119,8 +120,8 @@
                      <app-first-json-component [panel]="panel"></app-first-json-component> 
                   </div>
                   <div *ngIf="panel.value>0">
-                     <!-- <app-second-json-component [panel]="panel"></app-second-json-component>  -->
-                     <app-first-json-component [panel]="panel"></app-first-json-component> 
+                     <app-second-json-component [panel]="panel"></app-second-json-component> 
+                     <!-- <app-first-json-component [panel]="panel"></app-first-json-component>  -->
                   </div>
                </div>
                </div>

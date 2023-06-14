@@ -42,15 +42,17 @@ export class DashboardComponent implements OnInit {
   }
 
   removePanel(intialPanelNumber:number) {
-    if(intialPanelNumber>9){
-      this.intialPanelNumber=9;
-    }
+    // if(intialPanelNumber>9){
+    //   this.intialPanelNumber=9;
+    // }
 
-    if(intialPanelNumber!=-1){
-      this.intialPanelNumber=this.intialPanelNumber-1;
-    }
-    let index = this.panelData.findIndex(d => d.value === intialPanelNumber);
-    this.panelData.splice(index, 1);
+    // if(intialPanelNumber!=-1){
+    //   this.intialPanelNumber=this.intialPanelNumber-1;
+    // }
+    // let index = this.panelData.findIndex(d => d.value === intialPanelNumber);
+    // this.panelData.splice(index, 1);
+    this.panelData=[];
+    this.intialPanelNumber=-1;
   }
   onNext(value:any) {
     // if(value==='1'){
