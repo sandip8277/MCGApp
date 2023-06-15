@@ -98,6 +98,7 @@ export class FirstJsonComponentComponent implements OnInit {
     }
   }
 
+
   checkIsCloseCoupled() {
     if (this.currentEAKey == 'component' && this.currentSelectedValue == 'Close Coupled Machine') {
       this.isCloseCoupled = true;
@@ -213,6 +214,51 @@ export class FirstJsonComponentComponent implements OnInit {
   constructFinalKey(currentState: string, currentEAKey: string, key: string) {
     let constructedKey = '';
     switch (currentState) {
+      case "D-S3": {
+        if (key == "drive=='Unknown'"){
+        constructedKey = 'exit';
+        }
+        break;
+      }
+      case "D-S2": {
+        if (this.isPrimeMoverNotMonitored){
+          constructedKey = 'exit';
+          }
+          else{
+            constructedKey = key;
+          }
+          break;
+      }
+      case "D-S9": {
+        if (this.isPrimeMoverNotMonitored){
+        constructedKey = 'exit';
+        }
+        else{
+          constructedKey = key;
+        }
+        break;
+      }
+      case "D-S12": {
+        if (key==="turbineTbrg=='No'" && this.isPrimeMoverNotMonitored){
+        constructedKey = 'exit';
+        }
+        else if(key==="turbineTbrg=='Yes'"){
+          constructedKey = key;
+        }
+        else{
+          constructedKey = key;
+        }
+        break;
+      }
+      case "D-S14": {
+        if (this.isPrimeMoverNotMonitored){
+        constructedKey = 'exit';
+        }
+        else{
+          constructedKey = key;
+        }
+        break;
+      }
       case "D-S15": {
         if (key == 'Driver_locations==1' && !this.isPrimeMoverNotMonitored && !this.isCloseCoupled) {
           constructedKey = "Driver_locations==1 && PRIME_MOVER!='Not Monitored'";
@@ -261,6 +307,12 @@ export class FirstJsonComponentComponent implements OnInit {
           constructedKey = "closeCoupled=='Motor' && " + key;
         }
         else if (this.closeCoupledSelectedValue == 'Motor' && key != "driven=='Compressor'") {
+          constructedKey = "closeCoupled=='Turbine' && " + key;
+        }
+        else if (this.closeCoupledSelectedValue == 'Motor' && key == "driven=='Fan'") {
+          constructedKey = "closeCoupled=='Motor' && " + key;
+        }
+        else if (this.closeCoupledSelectedValue == 'Turbine' && key == "driven=='Fan'") {
           constructedKey = "closeCoupled=='Turbine' && " + key;
         }
         else {
