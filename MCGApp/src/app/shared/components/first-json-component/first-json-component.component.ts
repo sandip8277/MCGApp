@@ -24,11 +24,11 @@ export class FirstJsonComponentComponent implements OnInit {
   currentState: any;
   currentComponents: any;
   previousState: any;
-  previousComponents: []=[];
+  previousComponents: [] = [];
 
-  currentSelectedValue: string="";
+  currentSelectedValue: string = "";
   previousSelectedValue: string;
-  componentStateTitle: string="";
+  componentStateTitle: string = "";
   currentComponentStateTitle: string;
   previousComponentStateTitle: string;
   currentEAKey: string;
@@ -36,13 +36,21 @@ export class FirstJsonComponentComponent implements OnInit {
 
   isPrimeMoverNotMonitored: boolean;
   isCloseCoupled: boolean;
+  isBeltOrChainDrive: boolean;
+  isCoupling:boolean;  // ----
+  isGearbox:boolean;  // ----
+  isDriven:boolean;  // ----
   closeCoupledSelectedValue: string;
 
-  lstselctedComponentDetails:Array<componentsdetailsModel>=[];
+  lstselctedComponentDetails: Array<componentsdetailsModel> = [];
   constructor() {
     this.showBothButtons = true;
     this.isPrimeMoverNotMonitored = false;
     this.isCloseCoupled = false;
+    this.isBeltOrChainDrive = false;
+    this.isCoupling=false; //--
+    this.isGearbox=false;  //--
+    this.isDriven=false;  //--
     this.closeCoupledSelectedValue = "";
     this.intialPanelNumber = -1;
     this.previousSelectedValue = "";
@@ -54,7 +62,7 @@ export class FirstJsonComponentComponent implements OnInit {
     this.currentComponentStateTitle = '';
   }
 
-  public initializeSelectedCompnents(){
+  public initializeSelectedCompnents() {
     this.currentComponents = [];
     this.previousState = "";
     this.previousComponents = [];
@@ -74,12 +82,12 @@ export class FirstJsonComponentComponent implements OnInit {
     this.components = this.stringObject1.data[options];
     this.currentComponents = this.components;
 
-    let objcomponentsdetailsModel={} as componentsdetailsModel;
-    objcomponentsdetailsModel.eaKey=this.currentEAKey;
-    objcomponentsdetailsModel.state=this.currentState;
-    objcomponentsdetailsModel.selectedValue=this.currentSelectedValue;
-    objcomponentsdetailsModel.components=this.components;
-    objcomponentsdetailsModel.componentStateTitle=this.componentStateTitle;
+    let objcomponentsdetailsModel = {} as componentsdetailsModel;
+    objcomponentsdetailsModel.eaKey = this.currentEAKey;
+    objcomponentsdetailsModel.state = this.currentState;
+    objcomponentsdetailsModel.selectedValue = this.currentSelectedValue;
+    objcomponentsdetailsModel.components = this.components;
+    objcomponentsdetailsModel.componentStateTitle = this.componentStateTitle;
     this.lstselctedComponentDetails.push(objcomponentsdetailsModel);
   }
   ngOnInit(): void {
@@ -88,8 +96,8 @@ export class FirstJsonComponentComponent implements OnInit {
 
   onValChange(value: any) {
     this.currentSelectedValue = value;
-    let len=this.lstselctedComponentDetails.length;
-    this.lstselctedComponentDetails[len-1].selectedValue=this.currentSelectedValue;
+    let len = this.lstselctedComponentDetails.length;
+    this.lstselctedComponentDetails[len - 1].selectedValue = this.currentSelectedValue;
   }
 
   checkIsPrimeMoverNotMonitored() {
@@ -104,43 +112,67 @@ export class FirstJsonComponentComponent implements OnInit {
       this.isCloseCoupled = true;
     }
   }
+  checkIsBeltOrChainDrive() {
+    if (this.currentEAKey == 'component' && this.currentSelectedValue == 'Belt or Chain Drive') {
+      this.isBeltOrChainDrive = true;
+    }
+  }
+  checkIsCoupling() {  //--
+    if (this.currentEAKey == 'component' && this.currentSelectedValue == 'Coupling') {
+      this.isCoupling = true;
+    }
+  }
+  checkIsGearBox() {  //--
+    if (this.currentEAKey == 'component' && this.currentSelectedValue == 'Gearbox') {
+      this.isGearbox = true;
+    }
+  }
+  checkIsDriven() { //--
+    if (this.currentEAKey == 'component' && this.currentSelectedValue == 'Driven') {
+      this.isDriven = true;
+    }
+  }
   checkCloseCoupledValue() {
     if (this.isCloseCoupled && this.currentEAKey !== 'component' && this.closeCoupledSelectedValue == "") {
       this.closeCoupledSelectedValue = this.currentSelectedValue;
     }
   }
 
-  addNextStepComponent(){
-    let objcomponentsdetailsModel={} as componentsdetailsModel;
-    objcomponentsdetailsModel.eaKey=this.currentEAKey;
-    objcomponentsdetailsModel.state=this.currentState;
-    objcomponentsdetailsModel.selectedValue=this.currentSelectedValue;
-    objcomponentsdetailsModel.components=this.components;
-    objcomponentsdetailsModel.componentStateTitle=this.componentStateTitle;
+  addNextStepComponent() {
+    let objcomponentsdetailsModel = {} as componentsdetailsModel;
+    objcomponentsdetailsModel.eaKey = this.currentEAKey;
+    objcomponentsdetailsModel.state = this.currentState;
+    objcomponentsdetailsModel.selectedValue = this.currentSelectedValue;
+    objcomponentsdetailsModel.components = this.components;
+    objcomponentsdetailsModel.componentStateTitle = this.componentStateTitle;
     this.lstselctedComponentDetails.push(objcomponentsdetailsModel);
   }
 
-  removeCurrentStepComponentAndBack(){
+  removeCurrentStepComponentAndBack() {
     this.lstselctedComponentDetails.pop();
-    let len=this.lstselctedComponentDetails.length;
+    let len = this.lstselctedComponentDetails.length;
 
-    let currentData=this.lstselctedComponentDetails[len-1];
-    if(currentData!==undefined){
-    this.currentEAKey = currentData.eaKey;
-    this.currentState = currentData.state;
-    this.currentComponents = currentData.components;
-    this.components = this.currentComponents;
-    this.currentSelectedValue = currentData.selectedValue;
-    this.currentComponentStateTitle = currentData.componentStateTitle;
-    this.componentStateTitle = this.currentComponentStateTitle;
+    let currentData = this.lstselctedComponentDetails[len - 1];
+    if (currentData !== undefined) {
+      this.currentEAKey = currentData.eaKey;
+      this.currentState = currentData.state;
+      this.currentComponents = currentData.components;
+      this.components = this.currentComponents;
+      this.currentSelectedValue = currentData.selectedValue;
+      this.currentComponentStateTitle = currentData.componentStateTitle;
+      this.componentStateTitle = this.currentComponentStateTitle;
     }
   }
   onNext() {
     this.checkIsPrimeMoverNotMonitored();
     this.checkIsCloseCoupled();
     this.checkCloseCoupledValue();
-    if(this.lstselctedComponentDetails.length===1){
-      this.lstselctedComponentDetails[0].selectedValue=this.currentSelectedValue;
+    this.checkIsBeltOrChainDrive();
+    this.checkIsCoupling(); //--
+    this.checkIsGearBox(); //--
+    this.checkIsDriven(); //--
+    if (this.lstselctedComponentDetails.length === 1) {
+      this.lstselctedComponentDetails[0].selectedValue = this.currentSelectedValue;
     }
     let transitions = this.stringObject1.transitions;
     let key = '';
@@ -190,12 +222,12 @@ export class FirstJsonComponentComponent implements OnInit {
     }
   }
 
-  addSelectedData(currentSelectedDataToPush:any){
+  addSelectedData(currentSelectedDataToPush: any) {
     this.selectedData.push(currentSelectedDataToPush);
     this.selectedDataToPrint = this.selectedData.toString();
   }
   selectDefaultItem() {
-    if (this.currentComponents.length > 0) {
+    if (this.currentComponents!==undefined && this.currentComponents.length > 0) {
       if (this.currentComponents[0].text !== undefined) {
         this.currentSelectedValue = this.currentComponents[0].text;
       }
@@ -215,46 +247,58 @@ export class FirstJsonComponentComponent implements OnInit {
     let constructedKey = '';
     switch (currentState) {
       case "D-S3": {
-        if (key == "drive=='Unknown'"){
-        constructedKey = 'exit';
+        if (key == "drive=='Unknown'") {
+          constructedKey = 'exit';
         }
         break;
       }
       case "D-S2": {
-        if (this.isPrimeMoverNotMonitored){
+        if (this.isPrimeMoverNotMonitored) {
           constructedKey = 'exit';
-          }
-          else{
-            constructedKey = key;
-          }
-          break;
+        }
+        else if (!this.isPrimeMoverNotMonitored && (this.isBeltOrChainDrive || this.isCoupling || this.isGearbox || this.isDriven )) {
+          constructedKey = 'exit';
+        }
+        else {
+          constructedKey = key;
+        }
+        break;
       }
       case "D-S9": {
-        if (this.isPrimeMoverNotMonitored){
-        constructedKey = 'exit';
+        if (this.isPrimeMoverNotMonitored) {
+          constructedKey = 'exit';
         }
-        else{
+        else if (!this.isPrimeMoverNotMonitored && (this.isBeltOrChainDrive || this.isCoupling || this.isGearbox || this.isDriven)) {
+          constructedKey = 'exit';
+        }
+        else {
           constructedKey = key;
         }
         break;
       }
       case "D-S12": {
-        if (key==="turbineTbrg=='No'" && this.isPrimeMoverNotMonitored){
-        constructedKey = 'exit';
+        if (key === "turbineTbrg=='No'" && this.isPrimeMoverNotMonitored) {
+          constructedKey = 'exit';
         }
-        else if(key==="turbineTbrg=='Yes'"){
+        else if (key === "turbineTbrg=='No'" && !this.isPrimeMoverNotMonitored && (this.isBeltOrChainDrive || this.isCoupling || this.isGearbox || this.isDriven )) {
+          constructedKey = 'exit';
+        }
+        else if (key === "turbineTbrg=='Yes'") {
           constructedKey = key;
         }
-        else{
+        else {
           constructedKey = key;
         }
         break;
       }
       case "D-S14": {
-        if (this.isPrimeMoverNotMonitored){
-        constructedKey = 'exit';
+        if (this.isPrimeMoverNotMonitored) {
+          constructedKey = 'exit';
         }
-        else{
+        else if (!this.isPrimeMoverNotMonitored && (this.isBeltOrChainDrive || this.isCoupling || this.isGearbox || this.isDriven )) {
+          constructedKey = 'exit';
+        }
+        else {
           constructedKey = key;
         }
         break;
