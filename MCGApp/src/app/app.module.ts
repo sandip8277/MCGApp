@@ -12,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginService } from './services/login.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './shared/guard/auth.guard';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { AuthGuard } from './shared/guard/auth.guard';
     AppRoutingModule,
     MatExpansionModule,
     MatButtonToggleModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule
+    
   ],
   exports:[],
   providers: [LoginService],

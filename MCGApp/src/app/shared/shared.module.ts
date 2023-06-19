@@ -8,6 +8,9 @@ import { FirstJsonComponentComponent } from './components/first-json-component/f
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { SecondJsonComponentComponent } from './components/second-json-component/second-json-component.component';
+import {MatRadioModule} from '@angular/material/radio';
+
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { SecondJsonComponentComponent } from './components/second-json-component
     CommonModule,
     SharedRoutingModule,
     MatExpansionModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatRadioModule,
+    MatDialogModule
   ],
   exports:[TopBarComponent,LogoutComponent,FirstJsonComponentComponent,SecondJsonComponentComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

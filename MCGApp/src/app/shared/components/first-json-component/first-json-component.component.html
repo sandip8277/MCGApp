@@ -1,32 +1,108 @@
 <mat-expansion-panel>
-<mat-expansion-panel-header>
+  <mat-expansion-panel-header>
     <mat-panel-title>
-    select  {{panel.componentValue}} component &nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>
-    <div class="selected-value selected-data-width" *ngIf="selectedData.length>0"><b><span>[</span>{{selectedDataToPrint}}<span>]</span></b></div>
+      select {{panel.componentValue}} component &nbsp;&nbsp;&nbsp;&nbsp;<br /><br />
+      <div class="selected-value selected-data-width" *ngIf="selectedData.length>0">
+        <b><span>[</span>{{selectedDataToPrint}}<span>]</span></b></div>
     </mat-panel-title>
   </mat-expansion-panel-header>
-  <span *ngIf="showBothButtons"> {{componentStateTitle}}</span><br/><br/>
+  <span *ngIf="showBothButtons"> {{componentStateTitle}}</span><br /><br />
   <mat-panel-description *ngIf="showBothButtons">
-     <mat-button-toggle-group #group="matButtonToggleGroup" [value]="currentSelectedValue">
-       <div *ngFor="let component of components; index as i">
+    <mat-button-toggle-group #group="matButtonToggleGroup" [value]="currentSelectedValue">
+      <div *ngFor="let component of components; index as i">
         <div class="btn-alignments">
-            <mat-button-toggle *ngIf="component.text!==undefined" value="{{component.text}}" (change)="onValChange($event.value)" >
-              <img *ngIf="component.iconKey !==undefined && component.iconKey>0" src="{{getImageFromIconKey(component.iconKey)}}" width="20px;" height="30px;">
-              {{component.text}}
-            </mat-button-toggle> 
+          <mat-button-toggle *ngIf="component.text!==undefined" value="{{component.text}}"
+            (change)="onValChange($event.value)">
+            <img *ngIf="component.iconKey !==undefined && component.iconKey>0"
+              src="{{getImageFromIconKey(component.iconKey)}}" width="20px;" height="30px;">
+            {{component.text}}
+          </mat-button-toggle>
 
-            <mat-button-toggle *ngIf="component.text===undefined" value="{{component}}" (change)="onValChange($event.value)" >
-              <img *ngIf="component.iconKey !==undefined && component.iconKey>0" src="{{getImageFromIconKey(component.iconKey)}}" width="20px;" height="30px;">  
-              {{component}}
-               </mat-button-toggle> 
+          <mat-button-toggle *ngIf="component.text===undefined" value="{{component}}"
+            (change)="onValChange($event.value)">
+            <img *ngIf="component.iconKey !==undefined && component.iconKey>0"
+              src="{{getImageFromIconKey(component.iconKey)}}" width="20px;" height="30px;">
+            {{component}}
+          </mat-button-toggle>
         </div> &nbsp;&nbsp;&nbsp;&nbsp;
       </div>
-      </mat-button-toggle-group>
+      <div *ngIf="isSpeedChangeControl">
+        <button mat-raised-button color="primary" class="my-button" (click)="openPopUpForSpeedChange()"> Change
+          speed</button>
+      </div>
+    </mat-button-toggle-group>
   </mat-panel-description>
- 
+
   <div class="example-button-row" *ngIf="showBothButtons">
-     <button *ngIf="lstselctedComponentDetails.length>1" mat-button color="primary" (click)="onBack()" > <label><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</label> </button>&nbsp;&nbsp;
-     <button mat-button color="primary" (click)="onNext()" >Next <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-   </div>
+    <br /><br />
+    <button *ngIf="lstselctedComponentDetails.length>1" mat-button color="primary" (click)="onBack()"> <label><i
+          class="fa fa-arrow-left" aria-hidden="true"></i> Back</label> </button>&nbsp;&nbsp;
+    <button mat-button color="primary" (click)="onNext()">Next <i class="fa fa-arrow-right"
+        aria-hidden="true"></i></button>
+  </div>
 </mat-expansion-panel>
-   
+
+<!-- Start speed change dialog-->
+<ng-template let-data #speedChangeDialog>
+  <h2 mat-dialog-title>Speed Type</h2>
+  <div mat-dialog-content class="mat-typography">
+    <!--- Here Data will goes-->
+    <mat-radio-group [(ngModel)]="speedChangeTypeSelected">
+      <mat-radio-button value="Speed Increaser" color="primary" (change)="speedChangeRadioChange($event)">Speed
+        Increaser</mat-radio-button>
+      <mat-radio-button value="Speed Reducer" color="primary" (change)="speedChangeRadioChange($event)">Speed
+        Reducer</mat-radio-button>
+    </mat-radio-group>
+    <br/><br/>
+    <table class="example-full-width" cellspacing="1">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="speedChangeValue1" (keyup)="speedChangeValue(speedChangeValue1)">
+          </mat-form-field>
+        </td>
+        <td>
+          &nbsp;<span> L:0 </span> &nbsp; &nbsp;
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="speedChangeValue2" (keyup)="speedChangeValue(speedChangeValue2)">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+           <label></label>
+        </td>
+        <td>
+          &nbsp; &nbsp;<span></span> &nbsp; &nbsp;
+        </td>
+        <td>
+            <label></label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+           <label>Belt Ratio: </label>
+        </td>
+        <td>
+          &nbsp; &nbsp;<span></span> &nbsp; &nbsp;
+        </td>
+        <td>
+            <label>Belt Length: 0</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+           <label>Will be automatically populated from the values entered above. </label>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <mat-dialog-actions align="end">
+    <br/> 
+    <button mat-button mat-dialog-close (click)="onCancelSpeedChangeDialog()">Cancel</button> &nbsp; &nbsp;
+    <button mat-button mat-dialog-close (click)="onSaveSpeedChangeDialog()">Save</button>
+  </mat-dialog-actions>
+</ng-template>
+<!-- End  speed change dialog-->

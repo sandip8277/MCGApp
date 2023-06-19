@@ -34,3 +34,23 @@
   .selected-data-width{
     width: 50%;
   }
+
+  .my-button {
+    background-color: #51cbce;
+    color: white;
+    border: none;
+    border-radius: 1px;
+    padding: 0px 10px;
+    font-size: 20px;
+    float: right;
+  margin-right: 10px;
+  width: auto;
+  height: auto;
+  }
+  .example-full-width {
+    width: 100%;
+  }
+  
+  td {
+    padding-right: 8px;
+  }

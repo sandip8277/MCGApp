@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges,TemplateRef,ViewChild  } from '@angular/core';
 import * as ComponentsJson_1 from '../../../../assets/JSON_Files/prime_mover_without_location_1.json';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
 
 import { componentsdetailsModel } from '../../../models/componentsdetails.model';
-
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-first-json-component',
   templateUrl: './first-json-component.component.html',
@@ -12,6 +12,11 @@ import { componentsdetailsModel } from '../../../models/componentsdetails.model'
   viewProviders: [MatExpansionPanel]
 })
 export class FirstJsonComponentComponent implements OnInit {
+  /* Start Speed change dialog */
+  speedChangedialogRef: any; 
+  @ViewChild('speedChangeDialog') speedChangeDialog = {} as TemplateRef<string>;
+  /* End Speed change dialog */
+
   @Input() panel: any;
   panelOpenState = false;
   public showBothButtons: boolean = true;
@@ -37,20 +42,28 @@ export class FirstJsonComponentComponent implements OnInit {
   isPrimeMoverNotMonitored: boolean;
   isCloseCoupled: boolean;
   isBeltOrChainDrive: boolean;
-  isCoupling:boolean;  // ----
-  isGearbox:boolean;  // ----
-  isDriven:boolean;  // ----
+  isCoupling: boolean;  // ----
+  isGearbox: boolean;  // ----
+  isDriven: boolean;  // ----
   closeCoupledSelectedValue: string;
 
   lstselctedComponentDetails: Array<componentsdetailsModel> = [];
-  constructor() {
+
+  /* Start Speed change dialog */
+  public isSpeedChangeControl:boolean=false;
+  public speedChangeTypeSelected="Speed Increaser";
+  public speedChangeValue1:number=0;
+  public speedChangeValue2:number=0;
+  /* End Speed change dialog */
+
+  constructor(public dialog: MatDialog) {
     this.showBothButtons = true;
     this.isPrimeMoverNotMonitored = false;
     this.isCloseCoupled = false;
     this.isBeltOrChainDrive = false;
-    this.isCoupling=false; //--
-    this.isGearbox=false;  //--
-    this.isDriven=false;  //--
+    this.isCoupling = false; //--
+    this.isGearbox = false;  //--
+    this.isDriven = false;  //--
     this.closeCoupledSelectedValue = "";
     this.intialPanelNumber = -1;
     this.previousSelectedValue = "";
@@ -60,6 +73,7 @@ export class FirstJsonComponentComponent implements OnInit {
     this.selectedDataToPrint = "";
     this.previousComponentStateTitle = '';
     this.currentComponentStateTitle = '';
+    this.isSpeedChangeControl=false;
   }
 
   public initializeSelectedCompnents() {
@@ -106,7 +120,6 @@ export class FirstJsonComponentComponent implements OnInit {
     }
   }
 
-
   checkIsCloseCoupled() {
     if (this.currentEAKey == 'component' && this.currentSelectedValue == 'Close Coupled Machine') {
       this.isCloseCoupled = true;
@@ -149,6 +162,7 @@ export class FirstJsonComponentComponent implements OnInit {
   }
 
   removeCurrentStepComponentAndBack() {
+    this.isSpeedChangeControl=false;
     this.lstselctedComponentDetails.pop();
     let len = this.lstselctedComponentDetails.length;
 
@@ -201,19 +215,34 @@ export class FirstJsonComponentComponent implements OnInit {
       if (toState1.length === 1) {
         toState = toState1;
       }
-      this.currentState = toState[0].to;
-      let nextState = toState[0].to;
-      let states = this.stringObject1.states[nextState];
-      let currentSelectedEAKey = states.eaKey;
-      this.currentEAKey = currentSelectedEAKey;
-      let options = states["options"];
-      this.componentStateTitle = states["text"];
-      this.components = this.stringObject1.data[options];
-      this.currentComponents = this.components;
-      this.currentComponentStateTitle = this.componentStateTitle;
-      this.selectDefaultItem();
-      this.addSelectedData(currentSelectedDataToPush);
-      this.addNextStepComponent();
+      if (toState.length > 0) {
+        this.currentState = toState[0].to;
+        let nextState = toState[0].to;
+        let states = this.stringObject1.states[nextState];
+        let currentSelectedEAKey = states.eaKey;
+        this.currentEAKey = currentSelectedEAKey;
+        let options = states["options"];
+        if (options !== undefined) {
+          this.components = this.stringObject1.data[options];
+          this.currentComponents = this.components;
+        }
+        else{
+          this.components=[];
+          this.currentComponents = this.components;
+        }
+
+        if(states["inputType"]!==undefined && states["inputType"]==='speedChange'){
+          this.isSpeedChangeControl=true;
+        }
+        else{
+          this.isSpeedChangeControl=false;
+        }
+        this.componentStateTitle = states["text"];
+        this.currentComponentStateTitle = this.componentStateTitle;
+        this.selectDefaultItem();
+        this.addSelectedData(currentSelectedDataToPush);
+        this.addNextStepComponent();
+      }
     }
     else {
       this.panelOpenState = false;
@@ -222,12 +251,35 @@ export class FirstJsonComponentComponent implements OnInit {
     }
   }
 
+  /* Start Speed change dialog */
+  public openPopUpForSpeedChange(){
+    this.speedChangeTypeSelected="Speed Increaser";
+    this.speedChangedialogRef = this.dialog.open(this.speedChangeDialog ,
+      { data: "", height: '55%', width: '50%' });
+
+     this.speedChangedialogRef.afterClosed().subscribe((result: any) => {
+      let data=result;
+    });
+  }
+  onCancelSpeedChangeDialog() {
+    this.speedChangedialogRef.close();
+  }
+  speedChangeRadioChange(event: any){
+    this.speedChangeTypeSelected=event.value
+  }
+  onSaveSpeedChangeDialog() {
+    
+  }
+  speedChangeValue(selectedValue:any){
+   let currentselectedValue=selectedValue;
+  }
+  /* End  Speed change dialog */
   addSelectedData(currentSelectedDataToPush: any) {
     this.selectedData.push(currentSelectedDataToPush);
     this.selectedDataToPrint = this.selectedData.toString();
   }
   selectDefaultItem() {
-    if (this.currentComponents!==undefined && this.currentComponents.length > 0) {
+    if (this.currentComponents !== undefined && this.currentComponents.length > 0) {
       if (this.currentComponents[0].text !== undefined) {
         this.currentSelectedValue = this.currentComponents[0].text;
       }
@@ -256,7 +308,7 @@ export class FirstJsonComponentComponent implements OnInit {
         if (this.isPrimeMoverNotMonitored) {
           constructedKey = 'exit';
         }
-        else if (!this.isPrimeMoverNotMonitored && (this.isBeltOrChainDrive || this.isCoupling || this.isGearbox || this.isDriven )) {
+        else if (!this.isPrimeMoverNotMonitored && (this.isBeltOrChainDrive || this.isCoupling || this.isGearbox || this.isDriven)) {
           constructedKey = 'exit';
         }
         else {
@@ -280,7 +332,7 @@ export class FirstJsonComponentComponent implements OnInit {
         if (key === "turbineTbrg=='No'" && this.isPrimeMoverNotMonitored) {
           constructedKey = 'exit';
         }
-        else if (key === "turbineTbrg=='No'" && !this.isPrimeMoverNotMonitored && (this.isBeltOrChainDrive || this.isCoupling || this.isGearbox || this.isDriven )) {
+        else if (key === "turbineTbrg=='No'" && !this.isPrimeMoverNotMonitored && (this.isBeltOrChainDrive || this.isCoupling || this.isGearbox || this.isDriven)) {
           constructedKey = 'exit';
         }
         else if (key === "turbineTbrg=='Yes'") {
@@ -295,7 +347,7 @@ export class FirstJsonComponentComponent implements OnInit {
         if (this.isPrimeMoverNotMonitored) {
           constructedKey = 'exit';
         }
-        else if (!this.isPrimeMoverNotMonitored && (this.isBeltOrChainDrive || this.isCoupling || this.isGearbox || this.isDriven )) {
+        else if (!this.isPrimeMoverNotMonitored && (this.isBeltOrChainDrive || this.isCoupling || this.isGearbox || this.isDriven)) {
           constructedKey = 'exit';
         }
         else {
