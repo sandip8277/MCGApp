@@ -55,7 +55,7 @@
     </mat-radio-group>
     <br/><br/>
     <table class="example-full-width" cellspacing="1">
-      <tr>
+      <!-- <tr>
         <td>
           <mat-form-field class="example-full-width">
             <input matInput [(ngModel)]="speedChangeValue1" (keyup)="speedChangeValue(speedChangeValue1)" appDecimaNumberDirective>
@@ -66,10 +66,45 @@
         </td>
         <td>
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="speedChangeValue2" (keyup)="speedChangeValue(speedChangeValue2)" appDecimaNumberDirective>
+            <input matInput  [(ngModel)]="speedChangeValue2" (keyup)="speedChangeValue(speedChangeValue2)" appDecimaNumberDirective>
           </mat-form-field>
         </td>
+      </tr> -->
+      
+      <tr *ngIf="speedChangeTypeSelected==='Speed Increaser'">
+          <td>
+            <div class="textcircle-1">
+              <input class="textinput-1" [(ngModel)]="speedChangeValue1" (keyup)="speedChangeValue(speedChangeValue1)" appDecimaNumberDirective>
+            </div>
+          </td>
+      
+        <td class="td-width">
+          <label class="label-margin">L:O</label>
+         <hr/>
+        </td>
+        <td>
+          <div class="textcircle-2">
+            <input class="textinput-1" [(ngModel)]="speedChangeValue2" (keyup)="speedChangeValue(speedChangeValue2)" appDecimaNumberDirective>
+          </div>
+        </td>
       </tr>
+      <tr *ngIf="speedChangeTypeSelected==='Speed Reducer'">
+        <td>
+          <div class="textcircle-2">
+            <input class="textinput-1" [(ngModel)]="speedChangeValue1" (keyup)="speedChangeValue(speedChangeValue1)" appDecimaNumberDirective>
+          </div>
+        </td>
+    
+      <td class="td-width">
+        <label class="label-margin">L:O</label>
+       <hr/>
+      </td>
+      <td>
+        <div class="textcircle-1">
+          <input class="textinput-1" [(ngModel)]="speedChangeValue2" (keyup)="speedChangeValue(speedChangeValue2)" appDecimaNumberDirective>
+        </div>
+      </td>
+    </tr>
       <tr>
         <td>
            <label></label>
@@ -80,6 +115,12 @@
         <td>
             <label></label>
         </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+           <label>click on the circle to insert value</label>
+        </td>
+       
       </tr>
       <tr>
         <td>

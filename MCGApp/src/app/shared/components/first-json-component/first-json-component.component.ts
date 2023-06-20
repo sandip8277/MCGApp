@@ -264,7 +264,7 @@ export class FirstJsonComponentComponent implements OnInit {
   public openPopUpForSpeedChange(){
     this.speedChangeTypeSelected="Speed Increaser";
     this.speedChangedialogRef = this.dialog.open(this.speedChangeDialog ,
-      { data: "", height: '55%', width: '50%' });
+      { data: "", height: '70%', width: '60%' });
 
      this.speedChangedialogRef.afterClosed().subscribe((result: any) => {
       let data=result;
