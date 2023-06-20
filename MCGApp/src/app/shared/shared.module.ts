@@ -11,13 +11,15 @@ import { SecondJsonComponentComponent } from './components/second-json-component
 import {MatRadioModule} from '@angular/material/radio';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { DecimaNumberDirective } from '../directive/DecimaNumberDirective';
 
 @NgModule({
   declarations: [
     TopBarComponent,
     LogoutComponent,
     FirstJsonComponentComponent,
-    SecondJsonComponentComponent
+    SecondJsonComponentComponent,
+    DecimaNumberDirective
   ],
   imports: [
     FormsModule,
@@ -29,7 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatRadioModule,
     MatDialogModule
   ],
-  exports:[TopBarComponent,LogoutComponent,FirstJsonComponentComponent,SecondJsonComponentComponent],
+  exports:[TopBarComponent,LogoutComponent,FirstJsonComponentComponent,SecondJsonComponentComponent,DecimaNumberDirective],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class SharedModule { }

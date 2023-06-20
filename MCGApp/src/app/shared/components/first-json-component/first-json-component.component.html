@@ -36,8 +36,8 @@
   <div class="example-button-row" *ngIf="showBothButtons">
     <br /><br />
     <button *ngIf="lstselctedComponentDetails.length>1" mat-button color="primary" (click)="onBack()"> <label><i
-          class="fa fa-arrow-left" aria-hidden="true"></i> Back</label> </button>&nbsp;&nbsp;
-    <button mat-button color="primary" (click)="onNext()">Next <i class="fa fa-arrow-right"
+          class="fa fa-arrow-left" aria-hidden="true"></i> PREVIOUS</label> </button>&nbsp;&nbsp;
+    <button mat-button color="primary" (click)="onNext()">NEXT <i class="fa fa-arrow-right"
         aria-hidden="true"></i></button>
   </div>
 </mat-expansion-panel>
@@ -58,7 +58,7 @@
       <tr>
         <td>
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="speedChangeValue1" (keyup)="speedChangeValue(speedChangeValue1)">
+            <input matInput [(ngModel)]="speedChangeValue1" (keyup)="speedChangeValue(speedChangeValue1)" appDecimaNumberDirective>
           </mat-form-field>
         </td>
         <td>
@@ -66,7 +66,7 @@
         </td>
         <td>
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="speedChangeValue2" (keyup)="speedChangeValue(speedChangeValue2)">
+            <input matInput [(ngModel)]="speedChangeValue2" (keyup)="speedChangeValue(speedChangeValue2)" appDecimaNumberDirective>
           </mat-form-field>
         </td>
       </tr>
@@ -83,7 +83,7 @@
       </tr>
       <tr>
         <td>
-           <label>Belt Ratio: </label>
+           <label>Belt Ratio: {{displayChangeBeltRatio}}</label>
         </td>
         <td>
           &nbsp; &nbsp;<span></span> &nbsp; &nbsp;

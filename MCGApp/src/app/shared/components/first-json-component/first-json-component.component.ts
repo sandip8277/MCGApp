@@ -42,9 +42,9 @@ export class FirstJsonComponentComponent implements OnInit {
   isPrimeMoverNotMonitored: boolean;
   isCloseCoupled: boolean;
   isBeltOrChainDrive: boolean;
-  isCoupling: boolean;  // ----
-  isGearbox: boolean;  // ----
-  isDriven: boolean;  // ----
+  isCoupling: boolean;  
+  isGearbox: boolean;  
+  isDriven: boolean;  
   closeCoupledSelectedValue: string;
 
   lstselctedComponentDetails: Array<componentsdetailsModel> = [];
@@ -52,8 +52,10 @@ export class FirstJsonComponentComponent implements OnInit {
   /* Start Speed change dialog */
   public isSpeedChangeControl:boolean=false;
   public speedChangeTypeSelected="Speed Increaser";
-  public speedChangeValue1:number=0;
-  public speedChangeValue2:number=0;
+  public speedChangeValue1:number=1.00;
+  public speedChangeValue2:number=1.00;
+  public speedChangeBeltRatio:number=1.00;
+  public displayChangeBeltRatio:string="";
   /* End Speed change dialog */
 
   constructor(public dialog: MatDialog) {
@@ -61,9 +63,9 @@ export class FirstJsonComponentComponent implements OnInit {
     this.isPrimeMoverNotMonitored = false;
     this.isCloseCoupled = false;
     this.isBeltOrChainDrive = false;
-    this.isCoupling = false; //--
-    this.isGearbox = false;  //--
-    this.isDriven = false;  //--
+    this.isCoupling = false; 
+    this.isGearbox = false;  
+    this.isDriven = false;  
     this.closeCoupledSelectedValue = "";
     this.intialPanelNumber = -1;
     this.previousSelectedValue = "";
@@ -130,17 +132,17 @@ export class FirstJsonComponentComponent implements OnInit {
       this.isBeltOrChainDrive = true;
     }
   }
-  checkIsCoupling() {  //--
+  checkIsCoupling() {  
     if (this.currentEAKey == 'component' && this.currentSelectedValue == 'Coupling') {
       this.isCoupling = true;
     }
   }
-  checkIsGearBox() {  //--
+  checkIsGearBox() {  
     if (this.currentEAKey == 'component' && this.currentSelectedValue == 'Gearbox') {
       this.isGearbox = true;
     }
   }
-  checkIsDriven() { //--
+  checkIsDriven() { 
     if (this.currentEAKey == 'component' && this.currentSelectedValue == 'Driven') {
       this.isDriven = true;
     }
@@ -182,9 +184,9 @@ export class FirstJsonComponentComponent implements OnInit {
     this.checkIsCloseCoupled();
     this.checkCloseCoupledValue();
     this.checkIsBeltOrChainDrive();
-    this.checkIsCoupling(); //--
-    this.checkIsGearBox(); //--
-    this.checkIsDriven(); //--
+    this.checkIsCoupling(); 
+    this.checkIsGearBox(); 
+    this.checkIsDriven(); 
     if (this.lstselctedComponentDetails.length === 1) {
       this.lstselctedComponentDetails[0].selectedValue = this.currentSelectedValue;
     }
@@ -196,7 +198,7 @@ export class FirstJsonComponentComponent implements OnInit {
       key = this.currentEAKey + "==" + this.currentSelectedValue;
     }
 
-    let currentSelectedDataToPush = key.replace("==", ":").replace("'", "").replace("'", "");
+    let currentSelectedDataToPush=this.constructSelectedDataToPush(key);
 
     let finalKey = this.constructFinalKey(this.currentState, this.currentEAKey, key);
     key = finalKey;
@@ -251,6 +253,13 @@ export class FirstJsonComponentComponent implements OnInit {
     }
   }
 
+  constructSelectedDataToPush(key:any){
+    let constructedData= key.replace("==", ":").replace("'", "").replace("'", "");
+    if(this.currentState==="B-S1"){
+      constructedData="speed:"+this.displayChangeBeltRatio;
+    }
+    return constructedData;
+  }
   /* Start Speed change dialog */
   public openPopUpForSpeedChange(){
     this.speedChangeTypeSelected="Speed Increaser";
@@ -265,16 +274,33 @@ export class FirstJsonComponentComponent implements OnInit {
     this.speedChangedialogRef.close();
   }
   speedChangeRadioChange(event: any){
-    this.speedChangeTypeSelected=event.value
+    this.speedChangeTypeSelected=event.value;
+    this.calculateSpeedChangeBeltRatio();
   }
   onSaveSpeedChangeDialog() {
-    
+    this.componentStateTitle="Speed ratio :"+" "+this.displayChangeBeltRatio;
+    this.speedChangedialogRef.close();
   }
   speedChangeValue(selectedValue:any){
-   let currentselectedValue=selectedValue;
+    this.calculateSpeedChangeBeltRatio();
+  }
+
+  calculateSpeedChangeBeltRatio(){
+    this.displayChangeBeltRatio="";
+    if(this.speedChangeValue1>0 && this.speedChangeValue2>0){
+      if(this.speedChangeTypeSelected==="Speed Increaser"){
+       this.speedChangeBeltRatio=this.speedChangeValue2/this.speedChangeValue1;
+       this.displayChangeBeltRatio="1:"+this.speedChangeBeltRatio;
+      }
+      if(this.speedChangeTypeSelected==="Speed Reducer"){
+        this.speedChangeBeltRatio=this.speedChangeValue1/this.speedChangeValue2;
+        this.displayChangeBeltRatio=this.speedChangeBeltRatio+":1";
+      }
+     }
   }
   /* End  Speed change dialog */
   addSelectedData(currentSelectedDataToPush: any) {
+    
     this.selectedData.push(currentSelectedDataToPush);
     this.selectedDataToPrint = this.selectedData.toString();
   }
@@ -298,10 +324,8 @@ export class FirstJsonComponentComponent implements OnInit {
   constructFinalKey(currentState: string, currentEAKey: string, key: string) {
     let constructedKey = '';
     switch (currentState) {
-      case "D-S3": {
-        if (key == "drive=='Unknown'") {
+      case "B-S1": {
           constructedKey = 'exit';
-        }
         break;
       }
       case "D-S2": {
@@ -313,6 +337,12 @@ export class FirstJsonComponentComponent implements OnInit {
         }
         else {
           constructedKey = key;
+        }
+        break;
+      }
+      case "D-S3": {
+        if (key == "drive=='Unknown'") {
+          constructedKey = 'exit';
         }
         break;
       }
