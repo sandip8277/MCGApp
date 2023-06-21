@@ -122,6 +122,11 @@
         </td>
        
       </tr>
+      <tr *ngIf="speedChangeErrorMessage!==''">
+        <td colspan="3">
+           <label class="error">{{speedChangeErrorMessage}}</label>
+        </td>
+      </tr>
       <tr>
         <td>
            <label>Belt Ratio: {{displayChangeBeltRatio}}</label>
@@ -143,7 +148,7 @@
   <mat-dialog-actions align="end">
     <br/> 
     <button mat-button mat-dialog-close (click)="onCancelSpeedChangeDialog()">Cancel</button> &nbsp; &nbsp;
-    <button mat-button mat-dialog-close (click)="onSaveSpeedChangeDialog()">Save</button>
+    <button mat-button  (click)="onSaveSpeedChangeDialog()">Save</button>
   </mat-dialog-actions>
 </ng-template>
 <!-- End  speed change dialog-->
