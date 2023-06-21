@@ -51,7 +51,7 @@ export class FirstJsonComponentComponent implements OnInit {
 
   /* Start Speed change dialog */
   public isSpeedChangeControl: boolean = false;
-  public speedChangeTypeSelected = "Speed Increaser";
+  public speedChangeTypeSelected = "Speed Reducer";
   public speedChangeValue1: number = 1.00;
   public speedChangeValue2: number = 1.00;
   public speedChangeBeltRatio: number = 1.00;
