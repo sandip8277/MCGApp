@@ -59,6 +59,10 @@ export class FirstJsonComponentComponent implements OnInit {
   public speedChangeErrorMessage: string = "";
   /* End Speed change dialog */
 
+  /* Start ratio control */
+  public isRatioControl:boolean=false;
+  public iscValue:number=1;
+   /* End ratio control */
   constructor(public dialog: MatDialog) {
     this.showBothButtons = true;
     this.isPrimeMoverNotMonitored = false;
@@ -77,6 +81,8 @@ export class FirstJsonComponentComponent implements OnInit {
     this.previousComponentStateTitle = '';
     this.currentComponentStateTitle = '';
     this.isSpeedChangeControl = false;
+    this.isRatioControl=false;
+    this.iscValue=1;
   }
 
   public initializeSelectedCompnents() {
@@ -165,6 +171,7 @@ export class FirstJsonComponentComponent implements OnInit {
   }
 
   removeCurrentStepComponentAndBack() {
+    this.isRatioControl = false;
     this.isSpeedChangeControl = false;
     this.lstselctedComponentDetails.pop();
     let len = this.lstselctedComponentDetails.length;
@@ -234,12 +241,7 @@ export class FirstJsonComponentComponent implements OnInit {
           this.currentComponents = this.components;
         }
 
-        if (states["inputType"] !== undefined && states["inputType"] === 'speedChange') {
-          this.isSpeedChangeControl = true;
-        }
-        else {
-          this.isSpeedChangeControl = false;
-        }
+        this.decideControlVisibility(states,key);
         this.componentStateTitle = states["text"];
         this.currentComponentStateTitle = this.componentStateTitle;
         this.selectDefaultItem();
@@ -254,6 +256,31 @@ export class FirstJsonComponentComponent implements OnInit {
     }
   }
 
+  decideControlVisibility(states:any,key:any){
+    this.iscValue=1;
+    if (states["inputType"] !== undefined && states["inputType"] === 'speedChange') {
+      this.isSpeedChangeControl = true;
+    }
+    else {
+      this.isSpeedChangeControl = false;
+    }
+
+    if (states["inputType"] !== undefined && states["inputType"] === 'ratios' && states["optionFilters"] !== undefined) {
+      this.isRatioControl = true;
+      if(key=='ISC==1'){
+        this.iscValue=1;
+      }
+      if(key=='ISC==2'){
+        this.iscValue=2;
+      }
+      if(key=="ISC=='Multi'"){
+        this.iscValue=3;
+      }
+    }
+    else {
+      this.isRatioControl = false;
+    }
+  }
   constructSelectedDataToPush(key: any) {
     let constructedData = key.replace("==", ":").replace("'", "").replace("'", "");
     if (this.currentState === "B-S1") {
@@ -265,7 +292,7 @@ export class FirstJsonComponentComponent implements OnInit {
   public openPopUpForSpeedChange() {
     this.speedChangeTypeSelected = "Speed Reducer";
     this.speedChangedialogRef = this.dialog.open(this.speedChangeDialog,
-      { data: "", height: '70%', width: '60%' });
+      { data: "", height: '90%', width: '60%' });
 
     this.speedChangedialogRef.afterClosed().subscribe((result: any) => {
       let data = result;
@@ -330,7 +357,6 @@ export class FirstJsonComponentComponent implements OnInit {
   }
   /* End  Speed change dialog */
   addSelectedData(currentSelectedDataToPush: any) {
-
     this.selectedData.push(currentSelectedDataToPush);
     this.selectedDataToPrint = this.selectedData.toString();
   }

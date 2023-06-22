@@ -30,6 +30,60 @@
         <button mat-raised-button color="primary" class="my-button" (click)="openPopUpForSpeedChange()"> Change
           speed</button>
       </div>
+
+      <div *ngIf="isRatioControl">
+        <div>
+          <table cellspacing="1">
+            <tr *ngIf="iscValue>0">
+                <td>
+                  <label>Ratio 1 or Overall</label>
+                </td>
+              <td>
+                <input matInput  type="text" maxlength="6" appDecimaNumberThreePlacesDirective/>
+              </td>
+              <td>
+                <label> :</label>
+              </td>
+              <td>
+                <input matInput type="text" maxlength="6" class="example-right-align" appDecimaNumberThreePlacesDirective />
+              </td>
+              <td>
+                <label class="error"> *Required</label>
+              </td>
+            </tr>
+            <tr *ngIf="iscValue>1">
+              <td>
+                <label>Ratio 2 (If known)</label>
+              </td>
+            <td>
+              <input matInput  type="text" maxlength="6" appDecimaNumberThreePlacesDirective/>
+            </td>
+            <td>
+              <label> :</label>
+            </td>
+            <td>
+              <input matInput type="text" maxlength="6" class="example-right-align"appDecimaNumberThreePlacesDirective />
+            </td>
+            <td></td>
+          </tr>
+          <tr *ngIf="iscValue>2">
+            <td>
+              <label>Ratio 3 (If known)</label>
+            </td>
+          <td>
+            <input matInput  type="text" maxlength="6" appDecimaNumberThreePlacesDirective/>
+          </td>
+          <td>
+            <label> :</label>
+          </td>
+          <td>
+            <input matInput type="text" maxlength="6" class="example-right-align" appDecimaNumberThreePlacesDirective/>
+          </td>
+          <td></td>
+        </tr>
+          </table>
+        </div>
+      </div>
     </mat-button-toggle-group>
   </mat-panel-description>
 
@@ -55,22 +109,6 @@
     </mat-radio-group>
     <br/><br/>
     <table class="example-full-width" cellspacing="1">
-      <!-- <tr>
-        <td>
-          <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="speedChangeValue1" (keyup)="speedChangeValue(speedChangeValue1)" appDecimaNumberDirective>
-          </mat-form-field>
-        </td>
-        <td>
-          &nbsp;<span> L:0 </span> &nbsp; &nbsp;
-        </td>
-        <td>
-          <mat-form-field class="example-full-width">
-            <input matInput  [(ngModel)]="speedChangeValue2" (keyup)="speedChangeValue(speedChangeValue2)" appDecimaNumberDirective>
-          </mat-form-field>
-        </td>
-      </tr> -->
-      
       <tr *ngIf="speedChangeTypeSelected==='Speed Increaser'">
           <td>
             <div class="textcircle-1">

@@ -12,6 +12,7 @@ import {MatRadioModule} from '@angular/material/radio';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { DecimaNumberDirective } from '../directive/DecimaNumberDirective';
+import { DecimaNumberThreePlacesDirective } from '../directive/DecimaNumberThreePlacesDirective';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DecimaNumberDirective } from '../directive/DecimaNumberDirective';
     LogoutComponent,
     FirstJsonComponentComponent,
     SecondJsonComponentComponent,
-    DecimaNumberDirective
+    DecimaNumberDirective,
+    DecimaNumberThreePlacesDirective
   ],
   imports: [
     FormsModule,
@@ -31,7 +33,7 @@ import { DecimaNumberDirective } from '../directive/DecimaNumberDirective';
     MatRadioModule,
     MatDialogModule
   ],
-  exports:[TopBarComponent,LogoutComponent,FirstJsonComponentComponent,SecondJsonComponentComponent,DecimaNumberDirective],
+  exports:[TopBarComponent,LogoutComponent,FirstJsonComponentComponent,SecondJsonComponentComponent,DecimaNumberDirective,DecimaNumberThreePlacesDirective],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class SharedModule { }
