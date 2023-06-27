@@ -39,13 +39,13 @@
                   <label>Ratio 1 or Overall</label>
                 </td>
               <td>
-                <input matInput  type="text" maxlength="6" appDecimaNumberThreePlacesDirective/>
+                <input matInput  type="text" maxlength="6"  [(ngModel)]="R1_1" appDecimaNumberThreePlacesDirective/>
               </td>
               <td>
                 <label> :</label>
               </td>
               <td>
-                <input matInput type="text" maxlength="6" class="example-right-align" appDecimaNumberThreePlacesDirective />
+                <input matInput type="text" maxlength="6" [(ngModel)]="R1_2" class="example-right-align" appDecimaNumberThreePlacesDirective />
               </td>
               <td>
                 <label class="error"> *Required</label>
@@ -56,13 +56,13 @@
                 <label>Ratio 2 (If known)</label>
               </td>
             <td>
-              <input matInput  type="text" maxlength="6" appDecimaNumberThreePlacesDirective/>
+              <input matInput  type="text" maxlength="6" [(ngModel)]="R2_1" appDecimaNumberThreePlacesDirective/>
             </td>
             <td>
               <label> :</label>
             </td>
             <td>
-              <input matInput type="text" maxlength="6" class="example-right-align"appDecimaNumberThreePlacesDirective />
+              <input matInput type="text" maxlength="6" [(ngModel)]="R2_2" class="example-right-align"appDecimaNumberThreePlacesDirective />
             </td>
             <td></td>
           </tr>
@@ -71,15 +71,20 @@
               <label>Ratio 3 (If known)</label>
             </td>
           <td>
-            <input matInput  type="text" maxlength="6" appDecimaNumberThreePlacesDirective/>
+            <input matInput  type="text" maxlength="6" [(ngModel)]="R3_1" appDecimaNumberThreePlacesDirective/>
           </td>
           <td>
             <label> :</label>
           </td>
           <td>
-            <input matInput type="text" maxlength="6" class="example-right-align" appDecimaNumberThreePlacesDirective/>
+            <input matInput type="text" maxlength="6" [(ngModel)]="R3_2" class="example-right-align" appDecimaNumberThreePlacesDirective/>
           </td>
           <td></td>
+        </tr>
+        <tr>
+          <td colspan="4" *ngIf="errorRatioValueRequired!==''">
+            <span class="error">{{errorRatioValueRequired}} </span>
+          </td>
         </tr>
           </table>
         </div>

@@ -59,10 +59,18 @@ export class FirstJsonComponentComponent implements OnInit {
   public speedChangeErrorMessage: string = "";
   /* End Speed change dialog */
 
-  /* Start ratio control */
-  public isRatioControl:boolean=false;
-  public iscValue:number=1;
-   /* End ratio control */
+  /* Start ratio control Gearbox */
+  public isRatioControl: boolean = false;
+  public iscValue: number = 1;
+  public R1_1: string = "";
+  public R1_2: string = "";
+  public R2_1: string = "";
+  public R2_2: string = "";
+  public R3_1: string = "";
+  public R3_2: string = "";
+  public errorRatioValueRequired: string = "";
+  public nolValue: string = "";
+  /* End ratio control Gearbox*/
   constructor(public dialog: MatDialog) {
     this.showBothButtons = true;
     this.isPrimeMoverNotMonitored = false;
@@ -81,8 +89,9 @@ export class FirstJsonComponentComponent implements OnInit {
     this.previousComponentStateTitle = '';
     this.currentComponentStateTitle = '';
     this.isSpeedChangeControl = false;
-    this.isRatioControl=false;
-    this.iscValue=1;
+    this.isRatioControl = false;
+    this.iscValue = 1;
+    this.nolValue = "1";
   }
 
   public initializeSelectedCompnents() {
@@ -172,6 +181,7 @@ export class FirstJsonComponentComponent implements OnInit {
 
   removeCurrentStepComponentAndBack() {
     this.isRatioControl = false;
+    this.resetRatioControls();
     this.isSpeedChangeControl = false;
     this.lstselctedComponentDetails.pop();
     let len = this.lstselctedComponentDetails.length;
@@ -186,8 +196,33 @@ export class FirstJsonComponentComponent implements OnInit {
       this.currentComponentStateTitle = currentData.componentStateTitle;
       this.componentStateTitle = this.currentComponentStateTitle;
     }
+    if (this.currentState === "G-S16") {
+      this.isRatioControl = true;
+    }
   }
   onNext() {
+    if (this.currentState === "G-S16" && this.isRatioControl) {
+      this.errorRatioValueRequired = "";
+      if (this.R1_1 === "" || this.R1_2 === "") {
+        this.errorRatioValueRequired = "* marked fields are mandatory."
+      }
+      else {
+        this.errorRatioValueRequired = "";
+        this.executeNext();
+      }
+    }
+    else {
+      this.executeNext();
+    }
+  }
+  /* Start ratio control Gearbox */
+  public setNOLValueForRatioControlGearboxComponent(selectedValue: any) {
+    if (this.currentState === "G-S11" && this.currentEAKey === "NOL") {
+      this.nolValue = selectedValue;
+    }
+  }
+  /* End ratio control Gearbox */
+  public executeNext() {
     this.checkIsPrimeMoverNotMonitored();
     this.checkIsCloseCoupled();
     this.checkCloseCoupledValue();
@@ -206,6 +241,7 @@ export class FirstJsonComponentComponent implements OnInit {
       key = this.currentEAKey + "==" + this.currentSelectedValue;
     }
 
+    this.setNOLValueForRatioControlGearboxComponent(this.currentSelectedValue);
     let currentSelectedDataToPush = this.constructSelectedDataToPush(key);
 
     let finalKey = this.constructFinalKey(this.currentState, this.currentEAKey, key);
@@ -239,9 +275,10 @@ export class FirstJsonComponentComponent implements OnInit {
         else {
           this.components = [];
           this.currentComponents = this.components;
+          this.setStateBasedComponent(nextState, states, key, this.currentSelectedValue);
         }
 
-        this.decideControlVisibility(states,key);
+        this.decideControlVisibility(states, key);
         this.componentStateTitle = states["text"];
         this.currentComponentStateTitle = this.componentStateTitle;
         this.selectDefaultItem();
@@ -255,9 +292,60 @@ export class FirstJsonComponentComponent implements OnInit {
       this.addSelectedData(currentSelectedDataToPush);
     }
   }
+  setStateBasedComponent(nextState: string, states: any, key: any, selectedValue: any) {
+    switch (nextState) {
+      case "G-S12":
+      case "G-S13":
+      case "G-S14":
+      case "G-S15":
+        {
+          if (states["filterOption"] !== undefined && states["optionFilters"] !== undefined && states["filterOption"] === true) {
+            let dataOption = "";
+            if (this.iscValue === 1) {
+              dataOption = "locationOption1";
+            }
+            if (this.iscValue === 2) {
+              dataOption = "locationOption2";
+            }
+            if (this.iscValue === 3) {
+              dataOption = "locationOption3";
+            }
+            this.components = this.stringObject1.data[dataOption];
+            this.currentComponents = this.components;
+            if (selectedValue === "2") {
+              let arr = [] = this.components;
+              this.components = arr.slice(0, -1);
+              this.currentComponents = this.components;
+            }
+            if (selectedValue === "3") {
+              let arr = [] = this.components;
+              this.components = arr.slice(0, -2);
+              this.currentComponents = this.components;
+            }
+            if (selectedValue === "4") {
+              let arr = [] = this.components;
+              this.components = arr.slice(0, -3);
+              this.currentComponents = this.components;
+            }
 
-  decideControlVisibility(states:any,key:any){
-    this.iscValue=1;
+            if (selectedValue.includes("brg")) {
+              let arr = [] = this.components;
+              let index=arr.indexOf(selectedValue)
+              this.components = arr.slice(index +1, arr.length);
+              this.currentComponents = this.components;
+            }
+          }
+          break;
+        }
+      default: {
+        this.components = [];
+        this.currentComponents = this.components;
+        break;
+      }
+    }
+  }
+  decideControlVisibility(states: any, key: any) {
+    //this.iscValue = 1;
     if (states["inputType"] !== undefined && states["inputType"] === 'speedChange') {
       this.isSpeedChangeControl = true;
     }
@@ -267,14 +355,14 @@ export class FirstJsonComponentComponent implements OnInit {
 
     if (states["inputType"] !== undefined && states["inputType"] === 'ratios' && states["optionFilters"] !== undefined) {
       this.isRatioControl = true;
-      if(key=='ISC==1'){
-        this.iscValue=1;
+      if (key == 'ISC==1') {
+        this.iscValue = 1;
       }
-      if(key=='ISC==2'){
-        this.iscValue=2;
+      if (key == 'ISC==2') {
+        this.iscValue = 2;
       }
-      if(key=="ISC=='Multi'"){
-        this.iscValue=3;
+      if (key == "ISC=='Multi'") {
+        this.iscValue = 3;
       }
     }
     else {
@@ -286,8 +374,32 @@ export class FirstJsonComponentComponent implements OnInit {
     if (this.currentState === "B-S1") {
       constructedData = "speed:" + this.displayChangeBeltRatio;
     }
+    if (this.currentState === "G-S16") {
+      constructedData = "ratios :{R1=" + this.R1_1 + ":" + this.R1_2 + "}";
+      if ((this.R2_1 !== "" && this.R2_2 !== "") && (this.R3_1 === "" || this.R3_2 === "")) {
+        constructedData = "ratios :{R1=" + this.R1_1 + ":" + this.R1_2 + "}" + "{R2=" + this.R2_1 + ":" + this.R2_2 + "}";
+      }
+      if ((this.R2_1 === "" || this.R2_2 === "") && (this.R3_1 !== "" && this.R3_2 !== "")) {
+        constructedData = "ratios :{R1=" + this.R1_1 + ":" + this.R1_2 + "}" + "{R3=" + this.R3_1 + ":" + this.R3_2 + "}";
+      }
+      if ((this.R2_1 !== "" && this.R2_2 !== "") && (this.R3_1 !== "" && this.R3_2 !== "")) {
+        constructedData = "ratios :{R1=" + this.R1_1 + ":" + this.R1_2 + "}" + "{R2=" + this.R2_1 + ":" + this.R2_2 + "}" + "{R3=" + this.R3_1 + ":" + this.R3_2 + "}";
+      }
+    }
     return constructedData;
   }
+  /* Start ratio change */
+  public resetRatioControls() {
+    this.R1_1 = "";
+    this.R1_2 = "";
+    this.R2_1 = "";
+    this.R2_2 = "";
+    this.R3_1 = "";
+    this.R3_2 = "";
+    this.errorRatioValueRequired = "";
+  }
+  /* End ratio change */
+
   /* Start Speed change dialog */
   public openPopUpForSpeedChange() {
     this.speedChangeTypeSelected = "Speed Reducer";
@@ -302,7 +414,7 @@ export class FirstJsonComponentComponent implements OnInit {
     this.speedChangeValue1 = 1;
     this.speedChangeValue2 = 1;
     this.speedChangeBeltRatio = 1;
-    this.componentStateTitle ="Show Speed Widget";
+    this.componentStateTitle = "Show Speed Widget";
   }
   onCancelSpeedChangeDialog() {
     this.speedChangedialogRef.close();
@@ -313,32 +425,36 @@ export class FirstJsonComponentComponent implements OnInit {
     this.speedChangeValue2 = 1;
     this.speedChangeBeltRatio = 1;
     this.displayChangeBeltRatio = "1:1";
+    this.checkValidationsForSpeedChangeCirclevalues();
     this.validateSpeedChangeValues();
-    if (this.speedChangeErrorMessage==="") {
-       this.calculateSpeedChangeBeltRatio();
+    if (this.speedChangeErrorMessage === "") {
+      this.calculateSpeedChangeBeltRatio();
     }
   }
   onSaveSpeedChangeDialog() {
+    this.checkValidationsForSpeedChangeCirclevalues();
     this.validateSpeedChangeValues();
-    if (this.speedChangeErrorMessage==="") {
+    if (this.speedChangeErrorMessage === "") {
       this.componentStateTitle = "Speed ratio :" + " " + this.displayChangeBeltRatio;
       this.speedChangedialogRef.close();
     }
   }
 
-  validateSpeedChangeValues(){
-    this.speedChangeErrorMessage = "";
-    if (this.speedChangeValue1.toString() !== "" && this.speedChangeValue2.toString() !== "") {
-      this.speedChangeErrorMessage = "";
-    }
-    else {
-      this.speedChangeErrorMessage = "Enter all the values";
+  validateSpeedChangeValues() {
+    if (this.speedChangeErrorMessage === "") {
+      if (this.speedChangeValue1.toString() !== "" && this.speedChangeValue1.toString() !== "0" && this.speedChangeValue2.toString() !== "" && this.speedChangeValue2.toString() !== "0") {
+        this.speedChangeErrorMessage = "";
+      }
+      else {
+        this.speedChangeErrorMessage = "Enter all the values";
+      }
     }
   }
   speedChangeValue(selectedValue: any) {
+    this.checkValidationsForSpeedChangeCirclevalues();
     this.validateSpeedChangeValues();
-    if (this.speedChangeErrorMessage==="") {
-       this.calculateSpeedChangeBeltRatio();
+    if (this.speedChangeErrorMessage === "") {
+      this.calculateSpeedChangeBeltRatio();
     }
   }
 
@@ -352,6 +468,21 @@ export class FirstJsonComponentComponent implements OnInit {
       if (this.speedChangeTypeSelected === "Speed Reducer") {
         this.speedChangeBeltRatio = Number((this.speedChangeValue1 / this.speedChangeValue2).toFixed(3));
         this.displayChangeBeltRatio = this.speedChangeBeltRatio + ":1";
+      }
+    }
+  }
+  checkValidationsForSpeedChangeCirclevalues() {
+    this.speedChangeErrorMessage = "";
+    if (this.speedChangeValue1 > 0 && this.speedChangeValue2 > 0) {
+      if (this.speedChangeTypeSelected === "Speed Increaser") {
+        if (this.speedChangeValue1 < this.speedChangeValue2) {
+          this.speedChangeErrorMessage = "Value in second circle should be less than the value in first circle";
+        }
+      }
+      if (this.speedChangeTypeSelected === "Speed Reducer") {
+        if (this.speedChangeValue2 < this.speedChangeValue1) {
+          this.speedChangeErrorMessage = "Value in first circle should be less than the value in second circle";
+        }
       }
     }
   }
@@ -503,6 +634,24 @@ export class FirstJsonComponentComponent implements OnInit {
         }
         else {
           constructedKey = key;
+        }
+        break;
+      }
+      case "G-S12": {
+        if (this.nolValue === "1") {
+          constructedKey = 'exit';
+        }
+        if (Number(this.nolValue) > 1) {
+          constructedKey = 'NOL>1';
+        }
+        break;
+      }
+      case "G-S13": {
+        if (this.nolValue === "1" || this.nolValue === "2") {
+          constructedKey = 'exit';
+        }
+        if (Number(this.nolValue) > 2) {
+          constructedKey = 'NOL>2';
         }
         break;
       }
