@@ -13,7 +13,9 @@ import { LoginService } from './services/login.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './shared/guard/auth.guard';
 import {MatButtonModule} from '@angular/material/button';
+import {MatRadioModule} from '@angular/material/radio';
 
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -30,8 +32,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatExpansionModule,
     MatButtonToggleModule,
     HttpClientModule,
-    MatButtonModule
-    
+    MatButtonModule,
+    MatRadioModule,
+    MatDialogModule
   ],
   exports:[],
   providers: [LoginService],

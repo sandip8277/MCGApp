@@ -4,7 +4,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
 
 import { componentsdetailsModel } from '../../../models/componentsdetails.model';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 @Component({
   selector: 'app-first-json-component',
   templateUrl: './first-json-component.component.html',
@@ -435,13 +435,16 @@ export class FirstJsonComponentComponent implements OnInit {
   /* Start Speed change dialog */
   public openPopUpForSpeedChange() {
     this.speedChangeTypeSelected = "Speed Reducer";
-    this.speedChangedialogRef = this.dialog.open(this.speedChangeDialog,
-      { data: "", height: '90%', width: '60%' });
-
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "90%";
+    dialogConfig.width = "60%";
+    this.speedChangedialogRef = this.dialog.open(this.speedChangeDialog,dialogConfig);
     this.speedChangedialogRef.afterClosed().subscribe((result: any) => {
       let data = result;
     });
-
     this.speedChangeErrorMessage = '';
     this.speedChangeValue1 = 1;
     this.speedChangeValue2 = 1;

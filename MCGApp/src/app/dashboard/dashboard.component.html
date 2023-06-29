@@ -132,3 +132,21 @@
      </div>
   </section>
 </main>
+
+<!-- Start alert dialog-->
+<ng-template let-data #alertDialog>
+   <h2 mat-dialog-title>Alert</h2>
+   <div mat-dialog-content class="mat-typography">
+      <span><label>
+         Are you sure you want to clear the component  and location selections and start over?
+      </label></span>
+     <br/><br/>
+     
+   </div>
+   <mat-dialog-actions align="end">
+     <br/> 
+     <button mat-button mat-dialog-close (click)="cancel()">CANCEL</button> &nbsp; &nbsp;
+     <button mat-button  (click)="Yes()">YES</button>
+   </mat-dialog-actions>
+ </ng-template>
+ <!-- End  alert dialog-->
