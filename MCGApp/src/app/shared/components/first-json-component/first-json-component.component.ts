@@ -328,7 +328,39 @@ export class FirstJsonComponentComponent implements OnInit {
               this.currentComponents = this.components;
             }
 
-            if (selectedValue.includes("brg")) {
+            if (selectedValue.includes("brg") && this.nolValue==="2") {
+              let arr = [] = this.components;
+              let index=arr.indexOf(selectedValue)
+              this.components = arr.slice(index +1, arr.length);
+              this.currentComponents = this.components;
+            }
+
+            if (selectedValue.includes("brg") && this.nolValue==="3" && states["eaKey"]!==undefined && states["eaKey"]==="location_2") {
+              let arr = [] = this.components;
+              let index=arr.indexOf(selectedValue)
+              this.components = arr.slice(index +1, arr.length-1);
+              this.currentComponents = this.components;
+            }
+            if (selectedValue.includes("brg") && this.nolValue==="3" && states["eaKey"]!==undefined && states["eaKey"]!=="location_2") {
+              let arr = [] = this.components;
+              let index=arr.indexOf(selectedValue)
+              this.components = arr.slice(index +1, arr.length);
+              this.currentComponents = this.components;
+            }
+
+            if (selectedValue.includes("brg") && this.nolValue==="4" && states["eaKey"]!==undefined && states["eaKey"]==="location_2") {
+              let arr = [] = this.components;
+              let index=arr.indexOf(selectedValue)
+              this.components = arr.slice(index +1, arr.length-2);
+              this.currentComponents = this.components;
+            }
+            if (selectedValue.includes("brg") && this.nolValue==="4" && states["eaKey"]!==undefined && states["eaKey"]==="location_3") {
+              let arr = [] = this.components;
+              let index=arr.indexOf(selectedValue)
+              this.components = arr.slice(index +1, arr.length-1);
+              this.currentComponents = this.components;
+            }
+            if (selectedValue.includes("brg") && this.nolValue==="4" && states["eaKey"]!==undefined && states["eaKey"]==="location_4") {
               let arr = [] = this.components;
               let index=arr.indexOf(selectedValue)
               this.components = arr.slice(index +1, arr.length);
@@ -653,6 +685,19 @@ export class FirstJsonComponentComponent implements OnInit {
         if (Number(this.nolValue) > 2) {
           constructedKey = 'NOL>2';
         }
+        break;
+      }
+      case "G-S14": {
+        if ((this.nolValue === "1") || (this.nolValue === "2")|| (this.nolValue === "3")) {
+          constructedKey = 'exit';
+        }
+        if (Number(this.nolValue) > 3) {
+          constructedKey = 'NOL>3';
+        }
+        break;
+      }
+      case "G-S15": {
+          constructedKey = 'exit';
         break;
       }
       default: {
