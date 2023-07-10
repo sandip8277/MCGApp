@@ -8,7 +8,8 @@
   </mat-expansion-panel-header>
   <span *ngIf="showBothButtons"> {{componentStateTitle}}</span><br /><br />
   <mat-panel-description *ngIf="showBothButtons">
-    <mat-button-toggle-group #group="matButtonToggleGroup" [value]="currentSelectedValue">
+    <div id="allBtnContents">
+    <mat-button-toggle-group #group="matButtonToggleGroup" [value]="currentSelectedValue" [ngClass]="{'wrap' : components.length>6}">
       <div *ngFor="let component of components; index as i">
         <div class="btn-alignments">
           <mat-button-toggle *ngIf="component.text!==undefined" value="{{component.text}}"
@@ -89,7 +90,11 @@
           </table>
         </div>
       </div>
+      <div *ngIf="isDrivenComponentTextinput">
+        <input type="text" (keypress)="numberOnly($event)" maxlength="3"[(ngModel)]="drivenVanesEntered">
+      </div>
     </mat-button-toggle-group>
+    </div>
   </mat-panel-description>
 
   <div class="example-button-row" *ngIf="showBothButtons">
