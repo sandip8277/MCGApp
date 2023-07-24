@@ -83,6 +83,7 @@ export class FirstJsonComponentComponent implements OnInit {
   public isDrivenComponentTextinput: boolean = false;
   drivenVanesEntered: string = '';
   Impelleronmain:string="";
+  crankintbrg:string="";
   /* End driven */
   constructor(public dialog: MatDialog) {
     this.showBothButtons = true;
@@ -180,7 +181,7 @@ export class FirstJsonComponentComponent implements OnInit {
   }
 
   checkDrivenPumpType() {
-    if ((this.currentState === "DR-S2" || this.currentState === "DR-S6") && this.isDriven) {
+    if ((this.currentState === "DR-S2" || this.currentState === "DR-S3" || this.currentState === "DR-S6") && this.isDriven) {
       this.drivenc = this.currentSelectedValue;
     }
 
@@ -190,7 +191,7 @@ export class FirstJsonComponentComponent implements OnInit {
   }
 
   checkDrivenComponent() {
-    if (this.currentState === "DR-S1" && this.isDriven) {
+    if ((this.currentState === "DR-S1") && this.isDriven) {
       this.driven = this.currentSelectedValue;
     }
   }
@@ -303,6 +304,11 @@ export class FirstJsonComponentComponent implements OnInit {
       this.Impelleronmain = selectedValue;
     }
   }
+  public set_crankintbrg(currentEAKey: string, selectedValue: any) {
+    if (currentEAKey === "crankintbrg") {
+      this.crankintbrg = selectedValue;
+    }
+  }
   public set_drivenbrgs(currentEAKey: string, selectedValue: any) {
     if (currentEAKey === "drivenbrgs") {
       this.drivenbrgs = selectedValue;
@@ -318,6 +324,7 @@ export class FirstJsonComponentComponent implements OnInit {
     this.set_rotorOH(this.currentEAKey, this.currentSelectedValue);
     this.set_Aop(this.currentEAKey, this.currentSelectedValue);
     this.set_Impelleronmain(this.currentEAKey, this.currentSelectedValue);
+    this.set_crankintbrg(this.currentEAKey, this.currentSelectedValue);
     this.set_drivenbrgs(this.currentEAKey, this.currentSelectedValue);
     this.set_type(this.currentEAKey, this.currentSelectedValue);
   }
@@ -376,7 +383,7 @@ export class FirstJsonComponentComponent implements OnInit {
         if (options !== undefined) {
           this.components = this.stringObject1.data[options];
           this.currentComponents = this.components;
-          if (this.currentState === "DR-S11" || this.currentState === "DR-S12" || this.currentState === "DR-S19") {
+          if (this.currentState === "DR-S11" || this.currentState === "DR-S12" || this.currentState === "DR-S19" || this.currentState === "DR-S20") {
             this.components = [];
             this.currentComponents = this.components;
             this.setStateBasedComponent(nextState, states, key, this.currentSelectedValue);
@@ -786,6 +793,27 @@ export class FirstJsonComponentComponent implements OnInit {
             }
             break;
           }
+          case "DR-S20":
+            {
+              if (states["optionFilters"] !== undefined) {
+                let dataOption = "";
+                if (this.drivenc === 'Screw (twin) Compressor') {
+                  dataOption = "yesNoScrewTwin";
+                }
+                if (this.drivenc === 'Screw Compressor') {
+                  dataOption = "yesNoBoth";
+                }
+                if (this.drivenc === 'Reciprocating Compressor' && this.crankintbrg!=='Not Specified') {
+                  dataOption = "no";
+                }
+                if (this.drivenc === 'Reciprocating Compressor' && this.crankintbrg==='Not Specified') {
+                  dataOption = "yes";
+                }
+                this.components = this.stringObject1.data[dataOption];
+                this.currentComponents = this.components;
+              }
+              break;
+            }
       default: {
         this.components = [];
         this.currentComponents = this.components;
@@ -1264,6 +1292,30 @@ export class FirstJsonComponentComponent implements OnInit {
           }
           break;
         }
+        case "DR-S20": {
+          if (this.drivenc === 'Centrifugal Compressor'  && this.Impelleronmain === 'Yes'  ) {
+            constructedKey = "drivenc=='Centrifugal Compressor' && Impelleronmain == 'Yes'";
+          }
+          if (this.drivenc === 'Centrifugal Compressor'  && this.Impelleronmain !== 'Yes'  ) {
+            constructedKey = "drivenc=='Centrifugal Compressor' && Impelleronmain != 'Yes'";
+          }
+          if (this.not_monitored_driven==='Compressor' && this.drivenc === 'Centrifugal Compressor'  && this.Impelleronmain !== 'Yes'  ) {
+            constructedKey = "not_monitored_driven=='Compressor' && drivenc=='Centrifugal Compressor' && Impelleronmain != 'Yes'";
+          }
+          if ( this.driven === 'Compressor'  && this.drivenc === 'Reciprocating Compressor'  ) {
+            constructedKey = "Driven=='Compressor' && drivenc=='Reciprocating Compressor'";
+          }
+          if ( this.not_monitored_driven === 'Compressor'  && this.drivenc === 'Reciprocating Compressor'  ) {
+            constructedKey = "not_monitored_driven=='Compressor' && drivenc=='Reciprocating Compressor'";
+          }
+          if ((this.driven === 'Compressor')  && (this.drivenc === 'Screw Compressor' || this.drivenc==='Screw (twin) Compressor')) {
+            constructedKey = "(Driven=='Compressor') && (drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor')";
+          }
+          if ((this.not_monitored_driven === 'Compressor')  && (this.drivenc === 'Screw Compressor' || this.drivenc==='Screw (twin) Compressor')) {
+            constructedKey = "(not_monitored_driven=='Compressor')  && (drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor')";
+          }
+          break;
+        }
       case "DR-S23": {
         constructedKey = 'exit';
         break;
@@ -1275,7 +1327,7 @@ export class FirstJsonComponentComponent implements OnInit {
         if (this.not_monitored_driven === 'Pump'  && this.drivenc !== "Screw Pump" ) {
           constructedKey = "not_monitored_driven=='Pump' && drivenc!= 'Screw Pump'";
         }
-        if ((this.driven === 'Pump'  || this.driven === "Compressor") &&(this.drivenc==="Screw Pump" ||this.drivenc==="Screw Compressor"|| this.drivenc==="Screw (twin) Compressor'")) {
+        if ((this.driven === 'Pump'  || this.driven === "Compressor") &&(this.drivenc==="Screw Pump" ||this.drivenc==="Screw Compressor"|| this.drivenc==="Screw (twin) Compressor")) {
           constructedKey = "(Driven=='Pump' || Driven=='Compressor') && drivenc== 'Screw Pump' || drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor'";
         }
         break;
