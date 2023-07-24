@@ -84,6 +84,7 @@ export class FirstJsonComponentComponent implements OnInit {
   drivenVanesEntered: string = '';
   Impelleronmain:string="";
   crankintbrg:string="";
+  stages:string="";
   /* End driven */
   constructor(public dialog: MatDialog) {
     this.showBothButtons = true;
@@ -181,7 +182,7 @@ export class FirstJsonComponentComponent implements OnInit {
   }
 
   checkDrivenPumpType() {
-    if ((this.currentState === "DR-S2" || this.currentState === "DR-S3" || this.currentState === "DR-S6") && this.isDriven) {
+    if ((this.currentState === "DR-S2" || this.currentState === "DR-S3" || this.currentState === "DR-S4"|| this.currentState === "DR-S6") && this.isDriven) {
       this.drivenc = this.currentSelectedValue;
     }
 
@@ -239,7 +240,7 @@ export class FirstJsonComponentComponent implements OnInit {
     if (this.currentState === "G-S16") {
       this.isRatioControl = true;
     }
-    if (this.currentState === "DR-S10" ||this.currentState === "DR-S28" || this.currentState === "DR-S29" || this.currentState === "DR-S30" || this.currentState === "DR-S31" || this.currentState === "DR-S35" || this.currentState === "DR-S39"|| this.currentState === "DR-S32" || this.currentState === "DR-S36") {
+    if (this.currentState === "DR-S10" ||this.currentState === "DR-S28" || this.currentState === "DR-S29" || this.currentState === "DR-S30" || this.currentState === "DR-S31" || this.currentState === "DR-S33" || this.currentState === "DR-S34"|| this.currentState === "DR-S35" || this.currentState === "DR-S39"|| this.currentState === "DR-S32" || this.currentState === "DR-S36"|| this.currentState === "DR-S37") {
       this.isDrivenComponentTextinput = true;
     }
     if( this.currentState === "DR-S10" && this.drivenc==="Lobed Vacuum Pump"){
@@ -309,6 +310,11 @@ export class FirstJsonComponentComponent implements OnInit {
       this.crankintbrg = selectedValue;
     }
   }
+  public set_stages(currentEAKey: string, selectedValue: any) {
+    if (currentEAKey === "stages") {
+      this.stages = selectedValue;
+    }
+  }
   public set_drivenbrgs(currentEAKey: string, selectedValue: any) {
     if (currentEAKey === "drivenbrgs") {
       this.drivenbrgs = selectedValue;
@@ -325,6 +331,7 @@ export class FirstJsonComponentComponent implements OnInit {
     this.set_Aop(this.currentEAKey, this.currentSelectedValue);
     this.set_Impelleronmain(this.currentEAKey, this.currentSelectedValue);
     this.set_crankintbrg(this.currentEAKey, this.currentSelectedValue);
+    this.set_stages(this.currentEAKey, this.currentSelectedValue);
     this.set_drivenbrgs(this.currentEAKey, this.currentSelectedValue);
     this.set_type(this.currentEAKey, this.currentSelectedValue);
   }
@@ -383,7 +390,7 @@ export class FirstJsonComponentComponent implements OnInit {
         if (options !== undefined) {
           this.components = this.stringObject1.data[options];
           this.currentComponents = this.components;
-          if (this.currentState === "DR-S11" || this.currentState === "DR-S12" || this.currentState === "DR-S19" || this.currentState === "DR-S20") {
+          if ( this.currentState === "DR-S11" || this.currentState === "DR-S12" || this.currentState === "DR-S19" || this.currentState === "DR-S20" || this.currentState === "DR-S21") {
             this.components = [];
             this.currentComponents = this.components;
             this.setStateBasedComponent(nextState, states, key, this.currentSelectedValue);
@@ -414,7 +421,7 @@ export class FirstJsonComponentComponent implements OnInit {
         this.currentComponentStateTitle = this.componentStateTitle;
         this.selectDefaultItem();
         this.addSelectedData(currentSelectedDataToPush);
-        if (this.currentState === "DR-S35" || this.currentState === "DR-S36"){
+        if (this.currentState === "DR-S33"|| this.currentState === "DR-S34"||this.currentState === "DR-S35" || this.currentState === "DR-S36"|| this.currentState === "DR-S37"){
           this.drivenVanesEntered="";
         }
         this.addNextStepComponent();
@@ -577,6 +584,8 @@ export class FirstJsonComponentComponent implements OnInit {
             }
             break;
           }
+        
+        
         case "DR-S11":
         {
           if (states["optionFilters"] !== undefined) {
@@ -814,6 +823,27 @@ export class FirstJsonComponentComponent implements OnInit {
               }
               break;
             }
+            case "DR-S21":
+              {
+                if (states["optionFilters"] !== undefined) {
+                  let dataOption = "";
+                  if (this.drivenc === 'Lobed Fan or Blower') {
+                    dataOption = "yesNoBoth";
+                  }
+                  if (this.drivenc === 'Overhung Rotor Fan or Blower' && this.stages==="2+") {
+                    dataOption = "yes";
+                  }
+                  if (this.drivenc === 'Overhung Rotor Fan or Blower' && this.stages==="1") {
+                    dataOption = "yesNo";
+                  }
+                  if((dataOption==="" || dataOption===undefined) && states["options"]!==undefined){
+                    dataOption=states["options"];
+                  }
+                  this.components = this.stringObject1.data[dataOption];
+                  this.currentComponents = this.components;
+                }
+                break;
+              }
       default: {
         this.components = [];
         this.currentComponents = this.components;
@@ -885,12 +915,22 @@ export class FirstJsonComponentComponent implements OnInit {
     if (this.currentState === "DR-S32") {
       constructedData = "input_lobes:" + this.drivenVanesEntered;
     }
-    if (this.currentState === "DR-S36") {
-      constructedData = "Idler_lobes:" + this.drivenVanesEntered;
+    if (this.currentState === "DR-S33") {
+      constructedData = "stage1_fan_blades:" + this.drivenVanesEntered;
+    }
+    if (this.currentState === "DR-S34") {
+      constructedData = "fan_blades:" + this.drivenVanesEntered;
     }
     if (this.currentState === "DR-S35") {
       constructedData = "Idler_threads:" + this.drivenVanesEntered;
     }
+    if (this.currentState === "DR-S36") {
+      constructedData = "Idler_lobes:" + this.drivenVanesEntered;
+    }
+    if (this.currentState === "DR-S37") {
+      constructedData = "stage2_fan_blades:" + this.drivenVanesEntered;
+    }
+  
     if (this.currentState === "DR-S39") {
       constructedData = "propeller_blades:" + this.drivenVanesEntered;
     }
@@ -1191,6 +1231,16 @@ export class FirstJsonComponentComponent implements OnInit {
         }
         break;
       }
+      case "DR-S4": {
+        if (this.drivenc === "Overhung Rotor Fan or Blower") {
+          constructedKey = "drivenc == 'Overhung Rotor Fan or Blower'";
+        }
+        if (this.drivenc !== "Overhung Rotor Fan or Blower") {
+          constructedKey = "drivenc != 'Overhung Rotor Fan or Blower'";
+        }
+        
+        break;
+      }
       case "DR-S10": {
         if (this.driven === "Generator") {
           constructedKey = "Driven=='Generator'";
@@ -1313,6 +1363,21 @@ export class FirstJsonComponentComponent implements OnInit {
           }
           if ((this.not_monitored_driven === 'Compressor')  && (this.drivenc === 'Screw Compressor' || this.drivenc==='Screw (twin) Compressor')) {
             constructedKey = "(not_monitored_driven=='Compressor')  && (drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor')";
+          }
+          break;
+        }
+        case "DR-S21": {
+          if (this.driven === 'Fan or Blower'  && this.drivenc === 'Lobed Fan or Blower') {
+            constructedKey = "Driven=='Fan or Blower' && drivenc == 'Lobed Fan or Blower'";
+          }
+          if (this.not_monitored_driven === 'Fan or Blower'  && this.drivenc === 'Lobed Fan or Blower') {
+            constructedKey = "not_monitored_driven=='Fan or Blower' && drivenc == 'Lobed Fan or Blower'";
+          }
+          if (this.drivenc === 'Overhung Rotor Fan or Blower'  && this.stages === '2+') {
+            constructedKey = "drivenc == 'Overhung Rotor Fan or Blower' && stages =='2+'";
+          }
+          if (this.drivenc === 'Supported Rotor Fan or Blower' ||(this.drivenc==="Overhung Rotor Fan or Blower" && this.stages==="1") ) {
+            constructedKey = "drivenc == 'Supported Rotor Fan or Blower' || (drivenc == 'Overhung Rotor Fan or Blower' && stages =='1')";
           }
           break;
         }
