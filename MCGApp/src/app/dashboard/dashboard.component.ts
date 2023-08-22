@@ -5,6 +5,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { componentsdetailsModel } from '../models/componentsdetails.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { SharedService } from '../services/shared.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit {
   stringObject1: any;
   components: any;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog,public sharedService:SharedService) {
     this.initialPanelValue = this.panelDataDetails[0];
     this.intialPanelNumber = -1;
     componentsdetailsModel: [];
@@ -59,7 +60,12 @@ export class DashboardComponent implements OnInit {
   Yes() {
     this.panelData = [];
     this.intialPanelNumber = -1;
+    this.sharedService.clearInsertedConfigurations();
     this.alertdialogRef.close();
+  }
+
+  public submitAll(){
+
   }
   public openPopUpForAlert() {
     const dialogConfig = new MatDialogConfig();

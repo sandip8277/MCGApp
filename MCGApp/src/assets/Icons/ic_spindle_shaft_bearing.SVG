@@ -1,12 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="48dp" viewportHeight="44.97" viewportWidth="59.91" width="63.946632dp" xmlns:android="http://schemas.android.com/apk/res/android">
-	<group>
-		<clip-path d="M0.28,0.24h59.32v44.49h-59.32z"/>
-		<path fill="#00000000" d="M44.4,19.73A14.38,14.38 0,1 1,30 5.26,14.41 14.41,0 0,1 44.4,19.73Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.46"/>
-		<path fill="#00000000" d="M15.38,19.73H11v0.2h4.43Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.46"/>
-		<path fill="#00000000" d="M44.13,19.73v0.2h4.43v-0.2Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.46"/>
-		<path fill="#00000000" d="M46.36,11.05a18.75,18.75 0,0 0,-33.2 0h-12v8.68H15.38a14.58,14.58 0,0 1,3 -8.68,14.32 14.32,0 0,1 22.69,0 14.58,14.58 0,0 1,3 8.68H58.86V11.05Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.46"/>
-		<path fill="#00000000" d="M48.56,19.73H44.13a14.38,14.38 0,0 1,-28.75 0H1V44H58.87V19.73Z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.46"/>
-		<path fill="#00000000" d="M50.08,7.99h5.86v2.93h-5.86z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.46"/>
-		<path fill="#00000000" d="M4.12,7.99h5.86v2.93h-5.86z" stroke="#003ab5" strokeLineCap="round" strokeLineJoin="round" stroke-width="1.46"/>
-	</group>
-</svg>
+<svg id="Layer_7" data-name="Layer 7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 59.91 44.97"><defs><style>.cls-1,.cls-4{fill:none;}.cls-2{isolation:isolate;}.cls-3{clip-path:url(#clip-path);}.cls-4{stroke:#003ab5;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.46px;}</style><clipPath id="clip-path"><rect class="cls-1" x="0.28" y="0.24" width="59.32" height="44.49"/></clipPath></defs><g class="cls-2"><g class="cls-3"><path class="cls-4" d="M44.4,19.73A14.38,14.38,0,1,1,30,5.26,14.41,14.41,0,0,1,44.4,19.73Z"/><path class="cls-4" d="M15.38,19.73H11v.2h4.43Z"/><path class="cls-4" d="M44.13,19.73v.2h4.43v-.2Z"/><path class="cls-4" d="M46.36,11.05a18.75,18.75,0,0,0-33.2,0h-12v8.68H15.38a14.58,14.58,0,0,1,3-8.68,14.32,14.32,0,0,1,22.69,0,14.58,14.58,0,0,1,3,8.68H58.86V11.05Z"/><path class="cls-4" d="M48.56,19.73H44.13a14.38,14.38,0,0,1-28.75,0H1V44H58.87V19.73Z"/><rect class="cls-4" x="50.08" y="7.99" width="5.86" height="2.93"/><rect class="cls-4" x="4.12" y="7.99" width="5.86" height="2.93"/></g></g></svg>

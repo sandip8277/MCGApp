@@ -29,6 +29,7 @@
     border: 2px solid gray; 
     margin-left: 10px;
     margin-right: 10px;
+    margin-top: 20px;
   }
 
   .selected-data-width{
@@ -100,4 +101,9 @@
   /* Below class added to show all data with components length greater than 6 . Especially for driven component*/
   .wrap{
     display:block!important
+  }
+
+  .btn-with-image{
+    width:60px;
+    height:70px
   }

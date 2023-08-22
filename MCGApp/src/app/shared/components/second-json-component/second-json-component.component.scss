@@ -1,36 +1,109 @@
 .mat-mdc-form-field + .mat-mdc-form-field {
-    margin-left: 8px;
+  margin-left: 8px;
 }
 .my-button {
-    background-color: #51cbce;
-    color: white;
-    border: none;
-    border-radius: 1px;
-    padding: 0px 10px;
-    font-size: 10px;
-    float: right;
+  background-color: #51cbce;
+  color: white;
+  border: none;
+  border-radius: 1px;
+  padding: 0px 10px;
+  font-size: 10px;
+  float: right;
+margin-right: 10px;
+}
+.mat-button-toggle-checked {
+  background-color: green;
+  color: white;
+}
+
+.example-selected-value {
+  margin: 15px 0;
+}
+
+
+.mat-raised-button  .mat-raised-button {
+  margin-left: 20px;
+}
+
+.btn-alignments{
+  border: 2px solid gray; 
+  margin-left: 10px;
   margin-right: 10px;
-  }
-  .mat-button-toggle-checked {
-    background-color: green;
-    color: white;
-  }
+  margin-top: 20px;
+}
 
-  .example-selected-value {
-    margin: 15px 0;
-  }
+.selected-data-width{
+  width: 50%;
+}
 
+.my-button {
+  background-color: #51cbce;
+  color: white;
+  border: none;
+  border-radius: 1px;
+  padding: 0px 10px;
+  font-size: 20px;
+  float: right;
+margin-right: 10px;
+width: auto;
+height: auto;
+}
+.example-full-width {
+  width: 100%;
+}
 
-  .mat-raised-button  .mat-raised-button {
-    margin-left: 20px;
-  }
+td {
+  padding-right: 8px;
+}
 
-  .btn-alignments{
-    border: 2px solid gray; 
-    margin-left: 10px;
-    margin-right: 10px;
-  }
+.textcircle-1{
+  width:200px;
+  height: 200px;
+  border-radius: 1000px;
+  border: 1px solid #888080;
+  box-shadow: 1px 1px 1px 1px;
+  text-align: center;
+  font-size: 18px;
+  font-family: Museo-Sans;
+  font-weight: 300;
+  background: whitesmoke
+}
+.textcircle-2{
+  width:150px;
+  height: 150px;
+  border-radius: 1000px;
+  border: 1px solid #888080;
+  box-shadow: 1px 1px 1px 1px;
+  text-align: center;
+  font-size: 18px;
+  font-family: Museo-Sans;
+  font-weight: 300;
+  background: whitesmoke
+}
 
-  .selected-data-width{
-    width: 50%;
-  }
+.textinput-1{
+  height: 15%;
+  width: 40%;
+  margin-top: 40%;
+}
+
+.label-margin{
+  margin-left: 40%;
+}
+
+.td-width{
+  width: 40%;
+}
+.error{
+  color: red;
+}
+
+/* Below class added to show all data with components length greater than 6 . Especially for driven component*/
+.wrap{
+  display:block!important
+}
+
+.btn-with-image{
+  width:60px;
+  height:70px
+}

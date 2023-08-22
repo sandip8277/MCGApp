@@ -5,6 +5,7 @@ import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansi
 
 import { componentsdetailsModel } from '../../../models/componentsdetails.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { SharedService } from 'src/app/services/shared.service';
 @Component({
   selector: 'app-first-json-component',
   templateUrl: './first-json-component.component.html',
@@ -82,11 +83,12 @@ export class FirstJsonComponentComponent implements OnInit {
   type: any = "";
   public isDrivenComponentTextinput: boolean = false;
   drivenVanesEntered: string = '';
-  Impelleronmain:string="";
-  crankintbrg:string="";
-  stages:string="";
+  Impelleronmain: string = "";
+  crankintbrg: string = "";
+  stages: string = "";
+  exc: string = "";
   /* End driven */
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog,public sharedService:SharedService) {
     this.showBothButtons = true;
     this.isPrimeMoverNotMonitored = false;
     this.isCloseCoupled = false;
@@ -182,7 +184,7 @@ export class FirstJsonComponentComponent implements OnInit {
   }
 
   checkDrivenPumpType() {
-    if ((this.currentState === "DR-S2" || this.currentState === "DR-S3" || this.currentState === "DR-S4"|| this.currentState === "DR-S6") && this.isDriven) {
+    if ((this.currentState === "DR-S2" || this.currentState === "DR-S3" || this.currentState === "DR-S4" || this.currentState === "DR-S6") && this.isDriven) {
       this.drivenc = this.currentSelectedValue;
     }
 
@@ -240,13 +242,23 @@ export class FirstJsonComponentComponent implements OnInit {
     if (this.currentState === "G-S16") {
       this.isRatioControl = true;
     }
-    if (this.currentState === "DR-S10" ||this.currentState === "DR-S28" || this.currentState === "DR-S29" || this.currentState === "DR-S30" || this.currentState === "DR-S31" || this.currentState === "DR-S33" || this.currentState === "DR-S34"|| this.currentState === "DR-S35" || this.currentState === "DR-S39"|| this.currentState === "DR-S32" || this.currentState === "DR-S36"|| this.currentState === "DR-S37") {
+    if (this.currentState === "DR-S10" || this.currentState === "DR-S28" || this.currentState === "DR-S29" || this.currentState === "DR-S30" || this.currentState === "DR-S31" || this.currentState === "DR-S33" || this.currentState === "DR-S34" || this.currentState === "DR-S35" || this.currentState === "DR-S39" || this.currentState === "DR-S32" || this.currentState === "DR-S36" || this.currentState === "DR-S37" || this.currentState === "DR-S42" || this.currentState === "DR-S46" || this.currentState === "DR-S47") {
       this.isDrivenComponentTextinput = true;
     }
-    if( this.currentState === "DR-S10" && this.drivenc==="Lobed Vacuum Pump"){
+    if (this.currentState === "DR-S10" && this.drivenc === "Lobed Vacuum Pump") {
       this.isDrivenComponentTextinput = false;
     }
-    if( this.currentState === "DR-S10" && this.drivenc==="Reciprocating Vacuum Pump"){
+    if (this.currentState === "DR-S10" && (this.drivenc === "Reciprocating Vacuum Pump" || this.drivenc==="Centrifugal Vacuum Pump" ||this.drivenc==="Radial Recip Vacuum Pump" )) {
+      this.isDrivenComponentTextinput = false;
+    }
+
+    if (this.currentState === "DR-S10" && (this.driven === "Generator" || this.drivenc === "Axial Recip Vacuum Pump")) {
+      this.isDrivenComponentTextinput = false;
+    }
+    if (this.currentState === "DR-S13" && this.drivenc === "Axial Recip Vacuum Pump") {
+      this.isDrivenComponentTextinput = false;
+    }
+    if (this.currentState === "DR-S10" && this.drivenc === "Generator") {
       this.isDrivenComponentTextinput = false;
     }
   }
@@ -290,7 +302,7 @@ export class FirstJsonComponentComponent implements OnInit {
     }
   }
   public set_rotorOH(currentEAKey: string, selectedValue: any) {
-    if (currentEAKey === "rotorOH") {
+    if (currentEAKey === "rotorOH" || currentEAKey==="RotorOH") {
       this.rotorOH = selectedValue;
     }
   }
@@ -315,6 +327,11 @@ export class FirstJsonComponentComponent implements OnInit {
       this.stages = selectedValue;
     }
   }
+  public set_exc(currentEAKey: string, selectedValue: any) {
+    if (currentEAKey === "exc") {
+      this.exc = selectedValue;
+    }
+  }
   public set_drivenbrgs(currentEAKey: string, selectedValue: any) {
     if (currentEAKey === "drivenbrgs") {
       this.drivenbrgs = selectedValue;
@@ -332,6 +349,7 @@ export class FirstJsonComponentComponent implements OnInit {
     this.set_Impelleronmain(this.currentEAKey, this.currentSelectedValue);
     this.set_crankintbrg(this.currentEAKey, this.currentSelectedValue);
     this.set_stages(this.currentEAKey, this.currentSelectedValue);
+    this.set_exc(this.currentEAKey, this.currentSelectedValue);
     this.set_drivenbrgs(this.currentEAKey, this.currentSelectedValue);
     this.set_type(this.currentEAKey, this.currentSelectedValue);
   }
@@ -390,7 +408,7 @@ export class FirstJsonComponentComponent implements OnInit {
         if (options !== undefined) {
           this.components = this.stringObject1.data[options];
           this.currentComponents = this.components;
-          if ( this.currentState === "DR-S11" || this.currentState === "DR-S12" || this.currentState === "DR-S19" || this.currentState === "DR-S20" || this.currentState === "DR-S21") {
+          if (this.currentState === "DR-S2" || this.currentState === "DR-S7" || this.currentState === "DR-S8" || this.currentState === "DR-S9" || this.currentState === "DR-S11" || this.currentState === "DR-S12" || this.currentState === "DR-S19" || this.currentState === "DR-S20" || this.currentState === "DR-S21") {
             this.components = [];
             this.currentComponents = this.components;
             this.setStateBasedComponent(nextState, states, key, this.currentSelectedValue);
@@ -421,8 +439,8 @@ export class FirstJsonComponentComponent implements OnInit {
         this.currentComponentStateTitle = this.componentStateTitle;
         this.selectDefaultItem();
         this.addSelectedData(currentSelectedDataToPush);
-        if (this.currentState === "DR-S33"|| this.currentState === "DR-S34"||this.currentState === "DR-S35" || this.currentState === "DR-S36"|| this.currentState === "DR-S37"){
-          this.drivenVanesEntered="";
+        if (this.currentState === "DR-S33" || this.currentState === "DR-S34" || this.currentState === "DR-S35" || this.currentState === "DR-S36" || this.currentState === "DR-S37" || this.currentState === "DR-S47") {
+          this.drivenVanesEntered = "";
         }
         this.addNextStepComponent();
       }
@@ -431,7 +449,13 @@ export class FirstJsonComponentComponent implements OnInit {
       this.panelOpenState = false;
       this.showBothButtons = false;
       this.addSelectedData(currentSelectedDataToPush);
+      this.addSelectedToGlobalArray();
     }
+  }
+
+  public addSelectedToGlobalArray(){
+    let dataSelected="[" + this.selectedDataToPrint +"]";
+    this.sharedService.insertConfiguration(dataSelected);
   }
   setStateBasedComponent(nextState: string, states: any, key: any, selectedValue: any) {
     switch (nextState) {
@@ -510,83 +534,141 @@ export class FirstJsonComponentComponent implements OnInit {
           }
           break;
         }
-        case "DR-S10":
+        case "DR-S2":
           {
-            if (states["optionFilters"] !== undefined) {
+            if (states["options"] !== undefined) {
               let dataOption = "";
-              if (this.driven === 'Generator') {
-                dataOption = "generatorBearingTypes";
+             
+              if ((dataOption === "" || dataOption === undefined) && states["options"] !== undefined) {
+                dataOption = states["options"];
               }
-              if (this.driven === 'Vacuum Pump' && this.drivenc === "Axial Recip Vacuum Pump" && this.Aop === "Yes") {
-                dataOption = "vacuumBearingTypes1";
-              }
-              if (this.driven === 'Vacuum Pump' && this.drivenc === "Radial Recip Vacuum Pump" ) {
-                dataOption = "notSpecified";
-              }
-              if (this.driven === 'Vacuum Pump' && this.drivenc === "Axial Recip Vacuum Pump" && this.Aop === "No") {
-                dataOption = "vacuumBearingTypes";
-              }
-              if (this.driven === 'Vacuum Pump' && this.drivenc === "Reciprocating Vacuum Pump" ) {
-                dataOption = "reciprocatingBearing";
-              }
-              if (this.driven === 'Vacuum Pump' && this.drivenc === "Lobed Vacuum Pump" ) {
-                dataOption = "lobedBearing";
-              }
-              if (this.driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && this.Impelleronmain === "Yes") {
-                dataOption = "centrifugalBearing";
-              }
-              if (this.driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && this.Impelleronmain === "No") {
-                dataOption = "centrifugalBearing1";
-              }
-              if (this.driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && this.rotorOH === "No") {
-                dataOption = "centrifugalBearing2";
-              }
-              if (this.driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && this.rotorOH === "Yes") {
-                dataOption = "centrifugalBearing3";
-              }
-              if (this.not_monitored_driven === 'Generator') {
-                dataOption = "generatorBearingTypes";
-              }
-              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Axial Recip Vacuum Pump" && this.Aop === "Yes") {
-                dataOption = "vacuumBearingTypes1";
-              }
-              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Radial Recip Vacuum Pump" ) {
-                dataOption = "notSpecified";
-              }
-              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Axial Recip Vacuum Pump" && this.Aop === "No") {
-                dataOption = "vacuumBearingTypes";
-              }
-              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Reciprocating Vacuum Pump" ) {
-                dataOption = "reciprocatingBearing";
-              }
-              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Lobed Vacuum Pump" ) {
-                dataOption = "lobedBearing";
-              }
-              if (this.nolValue === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && this.Impelleronmain === "Yes") {
-                dataOption = "centrifugalBearing";
-              }
-              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && this.Impelleronmain === "No") {
-                dataOption = "centrifugalBearing1";
-              }
-              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && this.rotorOH === "No") {
-                dataOption = "centrifugalBearing2";
-              }
-              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && this.rotorOH === "Yes") {
-                dataOption = "centrifugalBearing3";
-              }
-
-              if((dataOption==="" || dataOption===undefined) && states["options"]!==undefined){
-                dataOption=states["options"];
-              }
-
               this.components = this.stringObject1.data[dataOption];
               this.currentComponents = this.components;
             }
             break;
           }
-        
-        
-        case "DR-S11":
+      case "DR-S7":
+        {
+          if (states["optionFilters"] !== undefined) {
+            let dataOption = "";
+            if (this.drivenbrgs === 'Ball Bearings Both Ends') {
+              dataOption = "no";
+            }
+            if ((dataOption === "" || dataOption === undefined) && states["options"] !== undefined) {
+              dataOption = states["options"];
+            }
+            this.components = this.stringObject1.data[dataOption];
+            this.currentComponents = this.components;
+          }
+          break;
+        }
+      case "DR-S8":
+        {
+          if (states["optionFilters"] !== undefined) {
+            let dataOption = "";
+            if (this.drivenbrgs === 'NDE Journal') {
+              dataOption = "overHung";
+            }
+            if ((dataOption === "" || dataOption === undefined) && states["options"] !== undefined) {
+              dataOption = states["options"];
+            }
+            this.components = this.stringObject1.data[dataOption];
+            this.currentComponents = this.components;
+          }
+          break;
+        }
+      case "DR-S9":
+        {
+          if (states["optionFilters"] !== undefined) {
+            let dataOption = "";
+            ///To Do 
+            if ((dataOption === "" || dataOption === undefined) && states["options"] !== undefined) {
+              dataOption = states["options"];
+            }
+            this.components = this.stringObject1.data[dataOption];
+            this.currentComponents = this.components;
+          }
+          break;
+        }
+        case "DR-S10":
+        {
+          if (states["optionFilters"] !== undefined) {
+            let dataOption = "";
+            if (this.driven === 'Generator') {
+              dataOption = "generatorBearingTypes";
+            }
+            if (this.driven === 'Vacuum Pump' && this.drivenc === "Axial Recip Vacuum Pump" && this.Aop === "Yes") {
+              dataOption = "vacuumBearingTypes1";
+            }
+            if (this.driven === 'Vacuum Pump' && this.drivenc === "Radial Recip Vacuum Pump") {
+              dataOption = "notSpecified";
+            }
+            if (this.driven === 'Vacuum Pump' && this.drivenc === "Axial Recip Vacuum Pump" && this.Aop === "No") {
+              dataOption = "vacuumBearingTypes";
+            }
+            if (this.driven === 'Vacuum Pump' && this.drivenc === "Reciprocating Vacuum Pump") {
+              dataOption = "reciprocatingBearing";
+            }
+            if (this.driven === 'Vacuum Pump' && this.drivenc === "Lobed Vacuum Pump") {
+              dataOption = "lobedBearing";
+            }
+            if (this.driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && this.Impelleronmain === "Yes") {
+              dataOption = "centrifugalBearing";
+            }
+            if (this.driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && (this.Impelleronmain === "" || this.Impelleronmain === "No")) {
+              dataOption = "centrifugalBearing1";
+            }
+            if (this.driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && (this.rotorOH === "No")) {
+              dataOption = "centrifugalBearing2";
+            }
+            if (this.driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && this.rotorOH === "Yes") {
+              dataOption = "centrifugalBearing3";
+            }
+            if (this.not_monitored_driven === 'Generator') {
+              dataOption = "generatorBearingTypes";
+            }
+            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Axial Recip Vacuum Pump" && this.Aop === "Yes") {
+              dataOption = "vacuumBearingTypes1";
+            }
+            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Radial Recip Vacuum Pump") {
+              dataOption = "notSpecified";
+            }
+            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Axial Recip Vacuum Pump" && this.Aop === "No") {
+              dataOption = "vacuumBearingTypes";
+            }
+            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Reciprocating Vacuum Pump") {
+              dataOption = "reciprocatingBearing";
+            }
+            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Lobed Vacuum Pump") {
+              dataOption = "lobedBearing";
+            }
+            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && this.Impelleronmain === "Yes") {
+              dataOption = "centrifugalBearing";
+            }
+            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && (this.Impelleronmain === "" || this.Impelleronmain === "No")) {
+              dataOption = "centrifugalBearing1";
+            }
+            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && (this.rotorOH === "" || this.rotorOH === "No") && (this.selectedDataToPrint.includes("rotorOH") || this.selectedDataToPrint.includes("Rotor"))) {
+              dataOption = "centrifugalBearing2";
+            }
+            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === "Centrifugal Vacuum Pump" && this.rotorOH === "Yes") {
+             if(dataOption===""){
+              dataOption = "centrifugalBearing3";
+             }
+            }
+
+            if ((dataOption === "" || dataOption === undefined) && states["options"] !== undefined) {
+              dataOption = states["options"];
+            }
+
+            this.components = this.stringObject1.data[dataOption];
+            this.currentComponents = this.components;
+          }
+          break;
+        }
+
+
+      case "DR-S11":
         {
           if (states["optionFilters"] !== undefined) {
             let dataOption = "";
@@ -596,12 +678,15 @@ export class FirstJsonComponentComponent implements OnInit {
             if (this.not_monitored_driven === 'Pump' && this.drivenc === 'Sliding Vane Pump') {
               dataOption = "yesNoNotSpecified";
             }
+            if ((dataOption === "" || dataOption === undefined) && states["options"] !== undefined) {
+              dataOption = states["options"];
+            }
             this.components = this.stringObject1.data[dataOption];
             this.currentComponents = this.components;
           }
           break;
         }
-        
+
       case "DR-S12":
         {
           if (states["optionFilters"] !== undefined) {
@@ -624,226 +709,247 @@ export class FirstJsonComponentComponent implements OnInit {
             if (this.drivenc === 'Radial Recip Pump') {
               dataOption = "notSpecified";
             }
-            if((dataOption==="" || dataOption===undefined) && states["options"]!==undefined){
-              dataOption=states["options"];
+            if ((dataOption === "" || dataOption === undefined) && states["options"] !== undefined) {
+              dataOption = states["options"];
             }
             this.components = this.stringObject1.data[dataOption];
             this.currentComponents = this.components;
           }
           break;
         }
-      case "DR-S13":
-        {
-          if (states["optionFilters"] !== undefined) {
-            let dataOption = "";
-            if (((this.driven === 'Pump') && (this.drivenc !== 'Axial Recip Pump')) && ((this.drivenbb === "Yes") || (this.drivenbb === "Both"))) {
-              dataOption = "yesNo";
-            }
-            if (((this.driven === 'Pump') && (this.drivenc !== 'Axial Recip Pump')) && (this.rotorOH === "No") && (this.drivenbb === "No")) {
-              if (dataOption === "") {
-                dataOption = "thrustBearing1";
-              }
-            }
-            if (((this.driven === 'Pump') && (this.drivenc !== 'Axial Recip Pump')) && (this.drivenbb === "No")) {
-              if (dataOption === "") {
-                dataOption = "thrustBearing";
-              }
-            }
-            if (this.driven === 'Compressor') {
-              if (dataOption === "") {
-                dataOption = "yesNo";
-              }
-            }
-            if (((this.driven === 'Pump') && ((this.drivenc === 'Axial Recip Pump' && this.Aop === "Yes") || (this.drivenc === 'Radial Recip Pump')))) {
-              if (dataOption === "") {
-                dataOption = "no";
-              }
-            }
-            if (this.driven === 'Pump' && this.drivenc === 'Axial Recip Pump' && this.Aop === "No" && this.drivenbb === "Yes") {
-              if (dataOption === "") {
-                dataOption = "thrustBearing2";
-              }
-            }
-            if (this.driven === 'Pump' && this.drivenc === 'Axial Recip Pump' && this.Aop === "No" && this.drivenbb === "No") {
-              if (dataOption === "") {
-                dataOption = "thrustBearing3";
-              }
-            }
-            if (this.driven === 'Vacuum Pump' && this.drivenc === 'Axial Recip Vacuum Pump' && this.drivenbrgs == "Ball Bearings") {
-              if (dataOption === "") {
-                dataOption = "no";
-              }
-            }
-            if (this.driven === 'Vacuum Pump' && this.drivenc === 'Axial Recip Vacuum Pump' && this.drivenbrgs == "Journal") {
-              if (dataOption === "") {
-                dataOption = "vacuumThrustBearing";
-              }
-            }
-            if (this.driven === 'Vacuum Pump' && this.drivenc !== 'Centrifugal Vacuum Pump' && this.drivenc !== 'Axial Recip Vacuum Pump' && this.drivenc !== 'Radial Recip Vacuum Pump') {
-              if (dataOption === "") {
-                dataOption = "vacuumThrustBearing";
-              }
-            }
-            if (this.driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === 'Impeller') {
-              if (dataOption === "") {
-                dataOption = "yesNo";
-              }
-            }
-            if (this.driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === 'Rotor' && this.rotorOH === "Yes" && this.drivenbrgs === "Journal") {
-              if (dataOption === "") {
-                dataOption = "vacuumThrustBearing1";
-              }
-            }
-            if (this.driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === 'Rotor' && this.rotorOH === "No" && this.drivenbrgs === "Journal") {
-              if (dataOption === "") {
-                dataOption = "vacuumThrustBearing3";
-              }
-            }
-            if (this.driven === 'Vacuum Pump' && this.drivenc === 'Radial Recip Vacuum Pump') {
-              if (dataOption === "") {
-                dataOption = "no";
-              }
-            }
-            if (this.not_monitored_driven === 'Pump' && this.drivenc !== 'Axial Recip Pump' && (this.drivenbb === "Yes" || this.drivenbb === "Both")) {
-              if (dataOption === "") {
-                dataOption = "yesNo";
-              }
-            }
-            if (this.not_monitored_driven === 'Pump' && this.drivenc !== 'Axial Recip Pump' && this.rotorOH === "No" && this.drivenbb === "No") {
-              if (dataOption === "") {
-                dataOption = "thrustBearing1";
-              }
-            }
-            if (this.not_monitored_driven === 'Pump' && this.drivenc !== 'Axial Recip Pump' && this.drivenbb === "No") {
-              if (dataOption === "") {
-                dataOption = "thrustBearing";
-              }
-            }
-            if (this.not_monitored_driven === 'Compressor') {
-              if (dataOption === "") {
-                dataOption = "yesNo";
-              }
-            }
-            if (this.not_monitored_driven === 'Pump' && ((this.drivenc === 'Axial Recip Pump' && this.Aop === "Yes") || (this.drivenc === "Radial Recip Pump"))) {
-              if (dataOption === "") {
-                dataOption = "no";
-              }
-            }
-            if (this.not_monitored_driven === 'Pump' && this.drivenc === 'Axial Recip Pump' && this.Aop === "No" && this.drivenbb === "Yes") {
-              if (dataOption === "") {
-                dataOption = "thrustBearing2";
-              }
-            }
-            if (this.not_monitored_driven === 'Pump' && this.drivenc === 'Axial Recip Pump' && this.Aop === "No" && this.drivenbb === "No") {
-              if (dataOption === "") {
-                dataOption = "thrustBearing3";
-              }
-            }
-            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Axial Recip Vacuum Pump' && this.drivenbrgs === "Ball Bearings") {
-              if (dataOption === "") {
-                dataOption = "no";
-              }
-            }
-            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Axial Recip Vacuum Pump' && this.drivenbrgs === "Journal") {
-              if (dataOption === "") {
-                dataOption = "vacuumThrustBearing";
-              }
-            }
-            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc !== 'Centrifugal Vacuum Pump' && this.drivenc !== "Axial Recip Vacuum Pump" && this.drivenc !== "Radial Recip Vacuum Pump") {
-              if (dataOption === "") {
-                dataOption = "vacuumThrustBearing";
-              }
-            }
-            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === "Impeller") {
-              if (dataOption === "") {
-                dataOption = "yesNo";
-              }
-            }
-            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === "Rotor" && this.rotorOH === "Yes" && this.drivenbrgs === "Journal") {
-              if (dataOption === "") {
-                dataOption = "vacuumThrustBearing1";
-              }
-            }
-            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === "Rotor" && ((this.rotorOH === "Yes" && this.drivenbrgs === "Ball Bearings") || (this.rotorOH === "No" && (this.drivenbrgs === "Ball Bearings" || this.drivenbrgs === "Both")))) {
-              if (dataOption === "") {
-                dataOption = "vacuumThrustBearing2";
-              }
-            }
-            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === "Rotor" && this.rotorOH === "No" && this.drivenbrgs === "Journal") {
-              if (dataOption === "") {
-                dataOption = "vacuumThrustBearing3";
-              }
-            }
-            if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Radial Recip Vacuum Pump') {
-              if (dataOption === "") {
-                dataOption = "no";
-              }
-            }
-            //  started line
-            this.components = this.stringObject1.data[dataOption];
-            this.currentComponents = this.components;
-          }
-          break;
-        }
-        case "DR-S19":
+        case "DR-S13":
           {
             if (states["optionFilters"] !== undefined) {
               let dataOption = "";
-              if (this.drivenc === 'Radial Recip Pump' || this.drivenc === 'Radial Recip Vacuum Pump') {
-                dataOption = "no";
+              if (((this.driven === 'Pump') && (this.drivenc !== 'Axial Recip Pump')) && ((this.drivenbb === "Yes") || (this.drivenbb === "Both"))) {
+                dataOption = "yesNo";
               }
-
-              if((dataOption==="" || dataOption===undefined) && states["options"]!==undefined){
-                dataOption=states["options"];
+              if (((this.driven === 'Pump') && (this.drivenc !== 'Axial Recip Pump')) && (this.rotorOH === "No") && (this.drivenbb === "No")) {
+                if (dataOption === "") {
+                  dataOption = "thrustBearing1";
+                }
               }
-
+              if (((this.driven === 'Pump') && (this.drivenc !== 'Axial Recip Pump')) && (this.drivenbb === "No")) {
+                if (dataOption === "") {
+                  dataOption = "thrustBearing";
+                }
+              }
+              if (this.driven === 'Compressor') {
+                if (dataOption === "") {
+                  dataOption = "yesNo";
+                }
+              }
+              if (((this.driven === 'Pump') && ((this.drivenc === 'Axial Recip Pump' && this.Aop === "Yes") || (this.drivenc === 'Radial Recip Pump')))) {
+                if (dataOption === "") {
+                  dataOption = "no";
+                }
+              }
+              if (this.driven === 'Pump' && this.drivenc === 'Axial Recip Pump' && this.Aop === "No" && this.drivenbb === "Yes") {
+                if (dataOption === "") {
+                  dataOption = "thrustBearing2";
+                }
+              }
+              if (this.driven === 'Pump' && this.drivenc === 'Axial Recip Pump' && this.Aop === "No" && this.drivenbb === "No") {
+                if (dataOption === "") {
+                  dataOption = "thrustBearing3";
+                }
+              }
+              if (this.driven === 'Vacuum Pump' && this.drivenc === 'Axial Recip Vacuum Pump' && this.drivenbrgs == "Ball Bearings") {
+                if (dataOption === "") {
+                  dataOption = "no";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.driven === 'Vacuum Pump' && this.drivenc === 'Axial Recip Vacuum Pump' && this.drivenbrgs == "Journal") {
+                if (dataOption === "") {
+                  dataOption = "vacuumThrustBearing";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.driven === 'Vacuum Pump' && this.drivenc !== 'Centrifugal Vacuum Pump' && this.drivenc !== 'Axial Recip Vacuum Pump' && this.drivenc !== 'Radial Recip Vacuum Pump') {
+                if (dataOption === "") {
+                  dataOption = "vacuumThrustBearing";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === 'Impeller') {
+                if (dataOption === "") {
+                  dataOption = "yesNo";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === 'Rotor' && this.rotorOH === "Yes" && this.drivenbrgs === "Journal") {
+                if (dataOption === "") {
+                  dataOption = "vacuumThrustBearing1";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === 'Rotor' && ((this.rotorOH == 'Yes' && this.drivenbrgs == 'Ball Bearings') ||(this.rotorOH == 'No' && (this.drivenbrgs == 'Ball Bearings' || this.drivenbrgs == 'Both')))) {
+                if (dataOption === "") {
+                  dataOption = "vacuumThrustBearing2";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === 'Rotor' && this.rotorOH === "No" && this.drivenbrgs === "Journal") {
+                if (dataOption === "") {
+                  dataOption = "vacuumThrustBearing3";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.driven === 'Vacuum Pump' && this.drivenc === 'Radial Recip Vacuum Pump') {
+                if (dataOption === "") {
+                  dataOption = "no";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.not_monitored_driven === 'Pump' && this.drivenc !== 'Axial Recip Pump' && (this.drivenbb === "Yes" || this.drivenbb === "Both")) {
+                if (dataOption === "") {
+                  dataOption = "yesNo";
+                }
+              }
+              if (this.not_monitored_driven === 'Pump' && this.drivenc !== 'Axial Recip Pump' && this.rotorOH === "No" && this.drivenbb === "No") {
+                if (dataOption === "") {
+                  dataOption = "thrustBearing1";
+                }
+              }
+              if (this.not_monitored_driven === 'Pump' && this.drivenc !== 'Axial Recip Pump' && this.drivenbb === "No") {
+                if (dataOption === "") {
+                  dataOption = "thrustBearing";
+                }
+              }
+              if (this.not_monitored_driven === 'Compressor') {
+                if (dataOption === "") {
+                  dataOption = "yesNo";
+                }
+              }
+              if (this.not_monitored_driven === 'Pump' && ((this.drivenc === 'Axial Recip Pump' && this.Aop === "Yes") || (this.drivenc === "Radial Recip Pump"))) {
+                if (dataOption === "") {
+                  dataOption = "no";
+                }
+              }
+              if (this.not_monitored_driven === 'Pump' && this.drivenc === 'Axial Recip Pump' && this.Aop === "No" && this.drivenbb === "Yes") {
+                if (dataOption === "") {
+                  dataOption = "thrustBearing2";
+                }
+              }
+              if (this.not_monitored_driven === 'Pump' && this.drivenc === 'Axial Recip Pump' && this.Aop === "No" && this.drivenbb === "No") {
+                if (dataOption === "") {
+                  dataOption = "thrustBearing3";
+                }
+              }
+              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Axial Recip Vacuum Pump' && this.drivenbrgs === "Ball Bearings") {
+                if (dataOption === "") {
+                  dataOption = "no";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Axial Recip Vacuum Pump' && this.drivenbrgs === "Journal") {
+                if (dataOption === "") {
+                  dataOption = "vacuumThrustBearing";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc !== 'Centrifugal Vacuum Pump' && this.drivenc !== "Axial Recip Vacuum Pump" && this.drivenc !== "Radial Recip Vacuum Pump") {
+                if (dataOption === "") {
+                  dataOption = "vacuumThrustBearing";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === "Impeller") {
+                if (dataOption === "") {
+                  dataOption = "yesNo";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === "Rotor" && this.rotorOH === "Yes" && this.drivenbrgs === "Journal") {
+                if (dataOption === "") {
+                  dataOption = "vacuumThrustBearing1";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === "Rotor" && ((this.rotorOH === "Yes" && this.drivenbrgs === "Ball Bearings") || ((this.rotorOH === "" || this.rotorOH === "No") && (this.drivenbrgs === "Ball Bearings" || this.drivenbrgs === "Both")))) {
+                if (dataOption === "") {
+                  dataOption = "vacuumThrustBearing2";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Centrifugal Vacuum Pump' && this.type === "Rotor" && this.rotorOH === "No" && this.drivenbrgs === "Journal") {
+                if (dataOption === "") {
+                  dataOption = "vacuumThrustBearing3";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              if (this.not_monitored_driven === 'Vacuum Pump' && this.drivenc === 'Radial Recip Vacuum Pump') {
+                if (dataOption === "") {
+                  dataOption = "no";
+                  this.currentEAKey="genTbrg";
+                }
+              }
+              //  started line
               this.components = this.stringObject1.data[dataOption];
               this.currentComponents = this.components;
             }
             break;
           }
-          case "DR-S20":
-            {
-              if (states["optionFilters"] !== undefined) {
-                let dataOption = "";
-                if (this.drivenc === 'Screw (twin) Compressor') {
-                  dataOption = "yesNoScrewTwin";
-                }
-                if (this.drivenc === 'Screw Compressor') {
-                  dataOption = "yesNoBoth";
-                }
-                if (this.drivenc === 'Reciprocating Compressor' && this.crankintbrg!=='Not Specified') {
-                  dataOption = "no";
-                }
-                if (this.drivenc === 'Reciprocating Compressor' && this.crankintbrg==='Not Specified') {
-                  dataOption = "yes";
-                }
-                this.components = this.stringObject1.data[dataOption];
-                this.currentComponents = this.components;
-              }
-              break;
+      case "DR-S19":
+        {
+          if (states["optionFilters"] !== undefined) {
+            let dataOption = "";
+            if (this.drivenc === 'Radial Recip Pump' || this.drivenc === 'Radial Recip Vacuum Pump') {
+              dataOption = "no";
             }
-            case "DR-S21":
-              {
-                if (states["optionFilters"] !== undefined) {
-                  let dataOption = "";
-                  if (this.drivenc === 'Lobed Fan or Blower') {
-                    dataOption = "yesNoBoth";
-                  }
-                  if (this.drivenc === 'Overhung Rotor Fan or Blower' && this.stages==="2+") {
-                    dataOption = "yes";
-                  }
-                  if (this.drivenc === 'Overhung Rotor Fan or Blower' && this.stages==="1") {
-                    dataOption = "yesNo";
-                  }
-                  if((dataOption==="" || dataOption===undefined) && states["options"]!==undefined){
-                    dataOption=states["options"];
-                  }
-                  this.components = this.stringObject1.data[dataOption];
-                  this.currentComponents = this.components;
-                }
-                break;
-              }
+
+            if ((dataOption === "" || dataOption === undefined) && states["options"] !== undefined) {
+              dataOption = states["options"];
+            }
+
+            this.components = this.stringObject1.data[dataOption];
+            this.currentComponents = this.components;
+          }
+          break;
+        }
+      case "DR-S20":
+        {
+          if (states["optionFilters"] !== undefined) {
+            let dataOption = "";
+            if (this.drivenc === 'Screw (twin) Compressor') {
+              dataOption = "yesNoScrewTwin";
+            }
+            if (this.drivenc === 'Screw Compressor') {
+              dataOption = "yesNoBoth";
+            }
+            if (this.drivenc === 'Reciprocating Compressor' && this.crankintbrg !== 'Not Specified') {
+              dataOption = "no";
+            }
+            if (this.drivenc === 'Reciprocating Compressor' && this.crankintbrg === 'Not Specified') {
+              dataOption = "yes";
+            }
+            this.components = this.stringObject1.data[dataOption];
+            this.currentComponents = this.components;
+          }
+          break;
+        }
+      case "DR-S21":
+        {
+          if (states["optionFilters"] !== undefined) {
+            let dataOption = "";
+            if (this.drivenc === 'Lobed Fan or Blower') {
+              dataOption = "yesNoBoth";
+            }
+            if (this.drivenc === 'Overhung Rotor Fan or Blower' && this.stages === "2+") {
+              dataOption = "yes";
+            }
+            if (this.drivenc === 'Overhung Rotor Fan or Blower' && this.stages === "1") {
+              dataOption = "yesNo";
+            }
+            if ((dataOption === "" || dataOption === undefined) && states["options"] !== undefined) {
+              dataOption = states["options"];
+            }
+            this.components = this.stringObject1.data[dataOption];
+            this.currentComponents = this.components;
+          }
+          break;
+        }
       default: {
         this.components = [];
         this.currentComponents = this.components;
@@ -900,6 +1006,7 @@ export class FirstJsonComponentComponent implements OnInit {
         constructedData = "ratios :{R1=" + this.R1_1 + ":" + this.R1_2 + "}" + "{R2=" + this.R2_1 + ":" + this.R2_2 + "}" + "{R3=" + this.R3_1 + ":" + this.R3_2 + "}";
       }
     }
+   
     if (this.currentState === "DR-S28") {
       constructedData = "vanes:" + this.drivenVanesEntered;
     }
@@ -930,9 +1037,24 @@ export class FirstJsonComponentComponent implements OnInit {
     if (this.currentState === "DR-S37") {
       constructedData = "stage2_fan_blades:" + this.drivenVanesEntered;
     }
-  
+
     if (this.currentState === "DR-S39") {
       constructedData = "propeller_blades:" + this.drivenVanesEntered;
+    }
+    if (this.currentState === "DR-S42") {
+      constructedData = "vanes:" + this.drivenVanesEntered;
+    }
+    if (this.currentState === "DR-S43") {
+      constructedData = "Driven_Threads:" + this.drivenVanesEntered;
+    }
+    if (this.currentState === "DR-S45") {
+      constructedData = "pistons:" + this.drivenVanesEntered;
+    }
+    if (this.currentState === "DR-S46") {
+      constructedData = "input_lobes:" + this.drivenVanesEntered;
+    }
+    if (this.currentState === "DR-S47") {
+      constructedData = "Idler_lobes:" + this.drivenVanesEntered;
     }
     return constructedData;
   }
@@ -1162,6 +1284,30 @@ export class FirstJsonComponentComponent implements OnInit {
         }
         break;
       }
+      case "D-S41": {
+        if (this.not_monitored_driven==="Pump") {
+          constructedKey = "not_monitored_driven=='Pump'";
+        }
+        if (this.not_monitored_driven==="Compressor") {
+          constructedKey = "not_monitored_driven=='Compressor'";
+        }
+        if (this.not_monitored_driven==="Fan or Blower") {
+          constructedKey = "not_monitored_driven=='Fan or Blower'";
+        }
+        if (this.not_monitored_driven==="Purifier (Centrifuge)") {
+          constructedKey = "not_monitored_driven=='Purifier (Centrifuge)'";
+        }
+        if (this.not_monitored_driven==="Generator") {
+          constructedKey = "not_monitored_driven=='Generator'";
+        }
+        if (this.not_monitored_driven==="Vacuum Pump") {
+          constructedKey = "not_monitored_driven=='Vacuum Pump'";
+        }
+        if (this.not_monitored_driven==="Spindle Shaft or Bearing") {
+          constructedKey = "not_monitored_driven=='Spindle Shaft or Bearing'";
+        }
+        break;
+      }
       case "D-S46": {
         constructedKey = 'exit';
         break;
@@ -1226,7 +1372,7 @@ export class FirstJsonComponentComponent implements OnInit {
         if (this.drivenc === "Propeller Pump" || this.drivenc === "Rotary Thread Pump" || this.drivenc === "Gear Pump" || this.drivenc === "Screw Pump") {
           constructedKey = "drivenc=='Propeller Pump' || drivenc=='Rotary Thread Pump' || drivenc=='Gear Pump' || drivenc== 'Screw Pump'";
         }
-        if (this.drivenc === "Axial Recip Pump" || this.drivenc === "Radial Recip Pump" ) {
+        if (this.drivenc === "Axial Recip Pump" || this.drivenc === "Radial Recip Pump") {
           constructedKey = "drivenc=='Axial Recip Pump' || drivenc=='Radial Recip Pump'";
         }
         break;
@@ -1238,7 +1384,26 @@ export class FirstJsonComponentComponent implements OnInit {
         if (this.drivenc !== "Overhung Rotor Fan or Blower") {
           constructedKey = "drivenc != 'Overhung Rotor Fan or Blower'";
         }
-        
+
+        break;
+      }
+      case "DR-S5": {
+        if (this.driven === 'Purifier (Centrifuge)') {
+          constructedKey = "Driven=='Purifier (Centrifuge)'";
+        }
+        else{
+          constructedKey = 'exit';
+        }
+        break;
+      }
+      case "DR-S7": {
+        if (this.driven === "Generator" && this.exc === "Yes") {
+          constructedKey = "Driven=='Generator' && exc=='Yes'";
+        }
+        if (this.driven === "Generator" && this.exc !== "Yes") {
+          constructedKey = "Driven=='Generator' &&  exc!='Yes'";
+        }
+
         break;
       }
       case "DR-S10": {
@@ -1248,26 +1413,26 @@ export class FirstJsonComponentComponent implements OnInit {
         if (this.not_monitored_driven === "Generator") {
           constructedKey = "not_monitored_driven=='Generator'";
         }
-        if (this.driven === "Vacuum Pump" && this.drivenc=="Centrifugal Vacuum Pump" &&(this.drivenbrgs=="Journal bearings on main" || this.drivenbrgs=="Ball Bearings on main")) {
+        if (this.driven === "Vacuum Pump" && this.drivenc == "Centrifugal Vacuum Pump" && (this.drivenbrgs == "Journal bearings on main" || this.drivenbrgs == "Ball Bearings on main")) {
           constructedKey = "Driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && (drivenbrgs=='Journal bearings on main' || drivenbrgs=='Ball Bearings on main')";
         }
-        if((this.driven==="Vacuum Pump" || this.not_monitored_driven==="Vacuum Pump") && (this.drivenc==="Axial Recip Vacuum Pump" || this.drivenc==="Radial Recip Vacuum Pump" || (this.drivenc==='Centrifugal Vacuum Pump' && this.drivenbrgs!=="Journal bearings on main" && this.drivenbrgs!=="Ball Bearings on main"))){
-          constructedKey="(Driven=='Vacuum Pump' || not_monitored_driven=='Vacuum Pump') && (drivenc=='Axial Recip Vacuum Pump' || drivenc=='Radial Recip Vacuum Pump' || (drivenc=='Centrifugal Vacuum Pump' && drivenbrgs!='Journal bearings on main' && drivenbrgs!='Ball Bearings on main'))";
+        if ((this.driven === "Vacuum Pump" || this.not_monitored_driven === "Vacuum Pump") && (this.drivenc === "Axial Recip Vacuum Pump" || this.drivenc === "Radial Recip Vacuum Pump" || (this.drivenc === 'Centrifugal Vacuum Pump' && this.drivenbrgs !== "Journal bearings on main" && this.drivenbrgs !== "Ball Bearings on main"))) {
+          constructedKey = "(Driven=='Vacuum Pump' || not_monitored_driven=='Vacuum Pump') && (drivenc=='Axial Recip Vacuum Pump' || drivenc=='Radial Recip Vacuum Pump' || (drivenc=='Centrifugal Vacuum Pump' && drivenbrgs!='Journal bearings on main' && drivenbrgs!='Ball Bearings on main'))";
         }
-        if(this.driven==="Vacuum Pump" && this.drivenc==="Reciprocating Vacuum Pump"){
-          constructedKey="Driven=='Vacuum Pump' && drivenc=='Reciprocating Vacuum Pump'"
+        if (this.driven === "Vacuum Pump" && this.drivenc === "Reciprocating Vacuum Pump") {
+          constructedKey = "Driven=='Vacuum Pump' && drivenc=='Reciprocating Vacuum Pump'"
         }
-        if(this.driven==="Vacuum Pump" && this.drivenc==="Lobed Vacuum Pump"){
-          constructedKey="Driven=='Vacuum Pump' && drivenc=='Lobed Vacuum Pump'";
+        if (this.driven === "Vacuum Pump" && this.drivenc === "Lobed Vacuum Pump") {
+          constructedKey = "Driven=='Vacuum Pump' && drivenc=='Lobed Vacuum Pump'";
         }
-        if(this.not_monitored_driven==="Vacuum Pump" && this.drivenc==="Centrifugal Vacuum Pump" && (this.drivenbrgs==="Journal bearings on main" || this.drivenbrgs==="Ball Bearings on main")){
-          constructedKey="not_monitored_driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && (drivenbrgs=='Journal bearings on main' || drivenbrgs=='Ball Bearings on main')";
+        if (this.not_monitored_driven === "Vacuum Pump" && this.drivenc === "Centrifugal Vacuum Pump" && (this.drivenbrgs === "Journal bearings on main" || this.drivenbrgs === "Ball Bearings on main")) {
+          constructedKey = "not_monitored_driven=='Vacuum Pump' && drivenc=='Centrifugal Vacuum Pump' && (drivenbrgs=='Journal bearings on main' || drivenbrgs=='Ball Bearings on main')";
         }
-        if(this.not_monitored_driven==="Vacuum Pump" && this.drivenc==="Reciprocating Vacuum Pump"){
-          constructedKey="not_monitored_driven=='Vacuum Pump' && drivenc=='Reciprocating Vacuum Pump'";
+        if (this.not_monitored_driven === "Vacuum Pump" && this.drivenc === "Reciprocating Vacuum Pump") {
+          constructedKey = "not_monitored_driven=='Vacuum Pump' && drivenc=='Reciprocating Vacuum Pump'";
         }
-        if(this.not_monitored_driven==="Vacuum Pump" && this.drivenc==="Lobed Vacuum Pump"){
-          constructedKey="not_monitored_driven=='Vacuum Pump' && drivenc=='Lobed Vacuum Pump'";
+        if (this.not_monitored_driven === "Vacuum Pump" && this.drivenc === "Lobed Vacuum Pump") {
+          constructedKey = "not_monitored_driven=='Vacuum Pump' && drivenc=='Lobed Vacuum Pump'";
         }
         break;
       }
@@ -1300,14 +1465,18 @@ export class FirstJsonComponentComponent implements OnInit {
           constructedKey = "Driven=='Not Monitored'";
         }
         if ((this.drivenc !== 'Axial Recip Pump')) {
+          if (constructedKey === "") {
           constructedKey = "drivenc!='Axial Recip Pump'";
+          }
         }
-        if ((this.driven === 'Vacuum Pump' || this.driven === 'Pump') && this.drivenc === "Axial Recip Pump" || this.drivenc === "Axial Recip Vacuum Pump" || this.drivenc === "Radial Recip Pump" || this.drivenc === "Radial Recip Vacuum Pump") {
+        if ((this.driven === 'Vacuum Pump' || this.driven === 'Pump') && ( this.drivenc === "Axial Recip Pump" || this.drivenc === "Axial Recip Vacuum Pump" || this.drivenc === "Radial Recip Pump" || this.drivenc === "Radial Recip Vacuum Pump")) {
+          //if (constructedKey === "") {
           constructedKey = "(Driven=='Vacuum Pump' || Driven=='Pump') && drivenc=='Axial Recip Pump' || drivenc=='Axial Recip Vacuum Pump' || drivenc=='Radial Recip Pump' || drivenc=='Radial Recip Vacuum Pump'";
+          //}
         }
         if ((this.not_monitored_driven === 'Vacuum Pump' || this.not_monitored_driven === 'Pump') && this.drivenc === "Axial Recip Pump" || this.drivenc === "Axial Recip Vacuum Pump" || this.drivenc === "Radial Recip Pump" || this.drivenc === "Radial Recip Vacuum Pump") {
-          if(constructedKey===""){
-          constructedKey = "(not_monitored_driven=='Vacuum Pump' || not_monitored_driven=='Pump') && drivenc=='Axial Recip Pump' || drivenc=='Axial Recip Vacuum Pump' || drivenc=='Radial Recip Pump' || drivenc=='Radial Recip Vacuum Pump'";
+          if (constructedKey === "") {
+            constructedKey = "(not_monitored_driven=='Vacuum Pump' || not_monitored_driven=='Pump') && drivenc=='Axial Recip Pump' || drivenc=='Axial Recip Vacuum Pump' || drivenc=='Radial Recip Pump' || drivenc=='Radial Recip Vacuum Pump'";
           }
         }
         break;
@@ -1324,89 +1493,180 @@ export class FirstJsonComponentComponent implements OnInit {
 
           break;
         }
-        case "DR-S16": {
-          if (this.drivenc==="Centrifugal Compressor") {
-            constructedKey = "drivenc=='Centrifugal Compressor'";
-          }
-          if (this.drivenc=="Centrifugal Vacuum Pump") {
-            constructedKey = "drivenc=='Centrifugal Vacuum Pump'";
-          }
-          break;
+      case "DR-S16": {
+        if (this.drivenc === "Centrifugal Compressor") {
+          constructedKey = "drivenc=='Centrifugal Compressor'";
         }
-        case "DR-S19": {
-          if (this.driven === 'Pump'  || this.not_monitored_driven === 'Pump'  ) {
-            constructedKey = "Driven=='Pump' || not_monitored_driven=='Pump'";
-          }
-          if (this.drivenc === 'Axial Recip Vacuum Pump'  || this.drivenc === 'Radial Recip Vacuum Pump'  ) {
-            constructedKey = "drivenc=='Axial Recip Vacuum Pump' || drivenc=='Radial Recip Vacuum Pump'";
-          }
-          break;
+        if (this.drivenc == "Centrifugal Vacuum Pump") {
+          constructedKey = "drivenc=='Centrifugal Vacuum Pump'";
         }
-        case "DR-S20": {
-          if (this.drivenc === 'Centrifugal Compressor'  && this.Impelleronmain === 'Yes'  ) {
-            constructedKey = "drivenc=='Centrifugal Compressor' && Impelleronmain == 'Yes'";
-          }
-          if (this.drivenc === 'Centrifugal Compressor'  && this.Impelleronmain !== 'Yes'  ) {
-            constructedKey = "drivenc=='Centrifugal Compressor' && Impelleronmain != 'Yes'";
-          }
-          if (this.not_monitored_driven==='Compressor' && this.drivenc === 'Centrifugal Compressor'  && this.Impelleronmain !== 'Yes'  ) {
-            constructedKey = "not_monitored_driven=='Compressor' && drivenc=='Centrifugal Compressor' && Impelleronmain != 'Yes'";
-          }
-          if ( this.driven === 'Compressor'  && this.drivenc === 'Reciprocating Compressor'  ) {
-            constructedKey = "Driven=='Compressor' && drivenc=='Reciprocating Compressor'";
-          }
-          if ( this.not_monitored_driven === 'Compressor'  && this.drivenc === 'Reciprocating Compressor'  ) {
-            constructedKey = "not_monitored_driven=='Compressor' && drivenc=='Reciprocating Compressor'";
-          }
-          if ((this.driven === 'Compressor')  && (this.drivenc === 'Screw Compressor' || this.drivenc==='Screw (twin) Compressor')) {
-            constructedKey = "(Driven=='Compressor') && (drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor')";
-          }
-          if ((this.not_monitored_driven === 'Compressor')  && (this.drivenc === 'Screw Compressor' || this.drivenc==='Screw (twin) Compressor')) {
-            constructedKey = "(not_monitored_driven=='Compressor')  && (drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor')";
-          }
-          break;
+        break;
+      }
+      case "DR-S19": {
+        if (this.driven === 'Pump' || this.not_monitored_driven === 'Pump') {
+          constructedKey = "Driven=='Pump' || not_monitored_driven=='Pump'";
         }
-        case "DR-S21": {
-          if (this.driven === 'Fan or Blower'  && this.drivenc === 'Lobed Fan or Blower') {
-            constructedKey = "Driven=='Fan or Blower' && drivenc == 'Lobed Fan or Blower'";
-          }
-          if (this.not_monitored_driven === 'Fan or Blower'  && this.drivenc === 'Lobed Fan or Blower') {
-            constructedKey = "not_monitored_driven=='Fan or Blower' && drivenc == 'Lobed Fan or Blower'";
-          }
-          if (this.drivenc === 'Overhung Rotor Fan or Blower'  && this.stages === '2+') {
-            constructedKey = "drivenc == 'Overhung Rotor Fan or Blower' && stages =='2+'";
-          }
-          if (this.drivenc === 'Supported Rotor Fan or Blower' ||(this.drivenc==="Overhung Rotor Fan or Blower" && this.stages==="1") ) {
-            constructedKey = "drivenc == 'Supported Rotor Fan or Blower' || (drivenc == 'Overhung Rotor Fan or Blower' && stages =='1')";
-          }
-          break;
+        if (this.drivenc === 'Axial Recip Vacuum Pump' || this.drivenc === 'Radial Recip Vacuum Pump') {
+          constructedKey = "drivenc=='Axial Recip Vacuum Pump' || drivenc=='Radial Recip Vacuum Pump'";
         }
+        break;
+      }
+      case "DR-S20": {
+        if (this.drivenc === 'Centrifugal Compressor' && this.Impelleronmain === 'Yes') {
+          constructedKey = "drivenc=='Centrifugal Compressor' && Impelleronmain == 'Yes'";
+        }
+        if (this.drivenc === 'Centrifugal Compressor' && this.Impelleronmain !== 'Yes') {
+          constructedKey = "drivenc=='Centrifugal Compressor' && Impelleronmain != 'Yes'";
+        }
+        if (this.not_monitored_driven === 'Compressor' && this.drivenc === 'Centrifugal Compressor' && this.Impelleronmain !== 'Yes') {
+          constructedKey = "not_monitored_driven=='Compressor' && drivenc=='Centrifugal Compressor' && Impelleronmain != 'Yes'";
+        }
+        if (this.driven === 'Compressor' && this.drivenc === 'Reciprocating Compressor') {
+          constructedKey = "Driven=='Compressor' && drivenc=='Reciprocating Compressor'";
+        }
+        if (this.not_monitored_driven === 'Compressor' && this.drivenc === 'Reciprocating Compressor') {
+          constructedKey = "not_monitored_driven=='Compressor' && drivenc=='Reciprocating Compressor'";
+        }
+        if ((this.driven === 'Compressor') && (this.drivenc === 'Screw Compressor' || this.drivenc === 'Screw (twin) Compressor')) {
+          constructedKey = "(Driven=='Compressor') && (drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor')";
+        }
+        if ((this.not_monitored_driven === 'Compressor') && (this.drivenc === 'Screw Compressor' || this.drivenc === 'Screw (twin) Compressor')) {
+          constructedKey = "(not_monitored_driven=='Compressor')  && (drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor')";
+        }
+        break;
+      }
+      case "DR-S21": {
+        if (this.driven === 'Fan or Blower' && this.drivenc === 'Lobed Fan or Blower') {
+          constructedKey = "Driven=='Fan or Blower' && drivenc == 'Lobed Fan or Blower'";
+        }
+        if (this.not_monitored_driven === 'Fan or Blower' && this.drivenc === 'Lobed Fan or Blower') {
+          constructedKey = "not_monitored_driven=='Fan or Blower' && drivenc == 'Lobed Fan or Blower'";
+        }
+        if (this.drivenc === 'Overhung Rotor Fan or Blower' && this.stages === '2+') {
+          constructedKey = "drivenc == 'Overhung Rotor Fan or Blower' && stages =='2+'";
+        }
+        if (this.drivenc === 'Supported Rotor Fan or Blower' || (this.drivenc === "Overhung Rotor Fan or Blower" && this.stages === "1")) {
+          constructedKey = "drivenc == 'Supported Rotor Fan or Blower' || (drivenc == 'Overhung Rotor Fan or Blower' && stages =='1')";
+        }
+        break;
+      }
       case "DR-S23": {
         constructedKey = 'exit';
         break;
       }
       case "DR-S29": {
-        if (this.driven === 'Pump'  && this.drivenc !== "Screw Pump" ) {
+        if (this.driven === 'Pump' && this.drivenc !== "Screw Pump") {
           constructedKey = "Driven=='Pump' && drivenc!= 'Screw Pump'";
         }
-        if (this.not_monitored_driven === 'Pump'  && this.drivenc !== "Screw Pump" ) {
+        if (this.not_monitored_driven === 'Pump' && this.drivenc !== "Screw Pump") {
           constructedKey = "not_monitored_driven=='Pump' && drivenc!= 'Screw Pump'";
         }
-        if ((this.driven === 'Pump'  || this.driven === "Compressor") &&(this.drivenc==="Screw Pump" ||this.drivenc==="Screw Compressor"|| this.drivenc==="Screw (twin) Compressor")) {
+        if ((this.driven === 'Pump' || this.driven === "Compressor") && (this.drivenc === "Screw Pump" || this.drivenc === "Screw Compressor" || this.drivenc === "Screw (twin) Compressor")) {
           constructedKey = "(Driven=='Pump' || Driven=='Compressor') && drivenc== 'Screw Pump' || drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor'";
         }
         break;
       }
+      case "DR-S30":
+      case "DR-S39": {
+        if (this.driven === 'Pump') {
+          constructedKey = "Driven=='Pump'";
+        }
+        else{
+          constructedKey = 'exit';
+        }
+        break;
+      }
+      case "DR-S34":
+      case "DR-S37": {
+        if (this.driven === 'Fan or Blower') {
+          constructedKey = "Driven=='Fan or Blower'";
+        }
+        else{
+          constructedKey = 'exit';
+        }
+        break;
+      }
+      case "DR-S38": {
+        if (this.driven === 'Spindle Shaft or Bearing') {
+          constructedKey = "Driven=='Spindle Shaft or Bearing'";
+        }
+        else  if (this.driven === 'Spindle, Shaft or Bearing') {
+          constructedKey = "Driven=='Spindle, Shaft or Bearing'";
+        }
+        else{
+          constructedKey = 'exit';
+        }
+        break;
+      }
+      case "DR-S41": {
+        if (this.not_monitored_driven === 'Pump') {
+          constructedKey = "not_monitored_driven=='Pump'";
+        }
+        if (this.not_monitored_driven === 'Compressor') {
+          constructedKey = "not_monitored_driven=='Compressor'";
+        }
+        if (this.not_monitored_driven === 'Fan or Blower') {
+          constructedKey = "not_monitored_driven=='Fan or Blower'";
+        }
+        if (this.not_monitored_driven === 'Purifier (Centrifuge)') {
+          constructedKey = "not_monitored_driven=='Purifier (Centrifuge)'";
+        }
+        if (this.not_monitored_driven === 'Generator') {
+          constructedKey = "not_monitored_driven=='Generator'";
+        }
+        if (this.not_monitored_driven === 'Vacuum Pump') {
+          constructedKey = "not_monitored_driven=='Vacuum Pump'";
+        }
+        if (this.not_monitored_driven === 'Spindle Shaft or Bearing') {
+          constructedKey = "not_monitored_driven=='Spindle Shaft or Bearing'";
+        }
+        if (this.not_monitored_driven === 'Spindle, Shaft or Bearing') {
+          constructedKey = "not_monitored_driven=='Spindle, Shaft or Bearing'";
+        }
+        if(constructedKey===""){
+          constructedKey = 'exit';
+        }
+        break;
+      }
+      case "DR-S42":
+      case "DR-S43": {
+        constructedKey = 'exit';
+        break;
+      }
       case "DR-S45": {
-        if (this.driven === 'Pump'  && this.drivenc !== "Screw Pump" ) {
+        if (this.driven === 'Pump' && this.drivenc !== "Screw Pump") {
           constructedKey = "Driven=='Pump' && drivenc!= 'Screw Pump'";
         }
-        if (this.not_monitored_driven === 'Pump'  && this.drivenc !== "Screw Pump" ) {
+        if (this.not_monitored_driven === 'Pump' && this.drivenc !== "Screw Pump") {
           constructedKey = "not_monitored_driven=='Pump' && drivenc!= 'Screw Pump'";
         }
-        if ((this.driven === 'Pump'  || this.driven === "Compressor") &&(this.drivenc==="Screw Pump" ||this.drivenc==="Screw Compressor"|| this.drivenc==="Screw (twin) Compressor'")) {
+        if ((this.driven === 'Pump' || this.driven === "Compressor") && (this.drivenc === "Screw Pump" || this.drivenc === "Screw Compressor" || this.drivenc === "Screw (twin) Compressor'")) {
           constructedKey = "(Driven=='Pump' || Driven=='Compressor') && drivenc== 'Screw Pump' || drivenc=='Screw Compressor' || drivenc=='Screw (twin) Compressor'";
         }
+        if(constructedKey===""){
+          constructedKey = 'exit';
+        }
+        break;
+      }
+      case "DR-S47": {
+        constructedKey = 'exit';
+        break;
+      }
+      case "DR-S48": {
+        if (this.not_monitored_driven === 'Generator' && this.exc==="Yes") {
+          constructedKey = "not_monitored_driven=='Generator' && exc=='Yes'";
+        }
+        if (this.not_monitored_driven === 'Generator' && this.exc!=="Yes") {
+          constructedKey = "not_monitored_driven=='Generator' &&  exc!='Yes'";
+        }
+        
+        if(constructedKey===""){
+          constructedKey = 'exit';
+        }
+        break;
+      }
+      case "DR-S50": {
+        constructedKey = 'exit';
         break;
       }
       default: {
@@ -1563,6 +1823,14 @@ export class FirstJsonComponentComponent implements OnInit {
         imageName = "ic_fan_or_blower.svg";
         break;
       }
+      case "36": {
+        imageName = "ic_compressor.svg";
+        break;
+      }
+      case "38": {
+        imageName = "ic_reciprocating_compressor_38.svg";
+        break;
+      }
       case "50": {
         imageName = "ic_rigid_coupling.svg";
         break;
@@ -1587,13 +1855,24 @@ export class FirstJsonComponentComponent implements OnInit {
         imageName = "ic_reciprocating_compressor.svg";
         break;
       }
+      case "51": {
+        imageName = "Single-Stage-Fan-with-Slinger.svg";
+        break;
+      }
       case "101":
       default: {
         imageName = "ic_not_monitored.svg";
         break;
       }
     }
-    imageName = "a_sample_not_to_use.svg"; //Remve later on
+   // imageName = "a_sample_not_to_use.svg"; //Remve later on
+   //  if(imageName.includes("svg")){
+       imageName=imageName.replace("svg","SVG");
+    // }
+
+    if(imageName.includes("ic_reciprocating_compressor_38.SVG")){
+      imageName=imageName.replace("SVG","svg");
+    }
     return imageName;
   }
 }

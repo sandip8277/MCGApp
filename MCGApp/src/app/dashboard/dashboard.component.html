@@ -95,42 +95,47 @@
 </main> -->
 
 
-
-
 <app-top-bar></app-top-bar>
-
 <main id="main" class="main">
-  <div class="pagetitle">
-     <h3>Machine Configuration Generator</h3>
-  </div>
-  <section class="section">
-     <div class="row">
-        <div class="col-lg-12">
-           <div class="card">
-              <div class="card-body">
-               <div>
-                 <h5 class="card-title">Components 
-                  <button mat-raised-button color="primary" class="my-button" (click)="removePanel(intialPanelNumber)"> - Clear Selection</button> 
-                  <button mat-raised-button color="primary" class="my-button" (click)="addPanel(intialPanelNumber)"> + Add</button>
-  
-               </h5>
-                
-               <div *ngFor="let panel of panelData let i = index">
-                  <div *ngIf="panel.value==0">
-                     <app-first-json-component [panel]="panel"></app-first-json-component> 
-                  </div>
-                  <div *ngIf="panel.value>0">
-                     <app-second-json-component [panel]="panel"></app-second-json-component> 
-                     <!-- <app-first-json-component [panel]="panel"></app-first-json-component>  -->
+   <div class="pagetitle">
+      <div class="card">
+         <div class="card-body">
+            <h3>Machine Configuration Generator</h3>
+         </div>
+      </div>
+   </div>
+   <section class="section">
+      <div class="row">
+         <div class="col-lg-12">
+            <div class="card">
+               <div class="card-body">
+                  <div>
+                     <h5 class="card-title">Components
+                        <button mat-raised-button color="primary" class="my-button" (click)="submitAll()"> Submit
+                        </button>
+                        <button mat-raised-button color="primary" class="my-button"
+                           (click)="removePanel(intialPanelNumber)"> - Clear Selection</button>
+                        <button mat-raised-button color="primary" class="my-button"
+                           (click)="addPanel(intialPanelNumber)"> + Add</button>
+
+                     </h5>
+
+                     <div *ngFor="let panel of panelData let i = index">
+                        <div *ngIf="panel.value==0">
+                           <app-first-json-component [panel]="panel"></app-first-json-component>
+                        </div>
+                        <div *ngIf="panel.value>0">
+                           <app-second-json-component [panel]="panel"></app-second-json-component>
+                           <!-- <app-first-json-component [panel]="panel"></app-first-json-component>  -->
+                        </div>
+                     </div>
                   </div>
                </div>
-               </div>
-              </div>
-           </div>
-        </div>
-       
-     </div>
-  </section>
+            </div>
+         </div>
+
+      </div>
+   </section>
 </main>
 
 <!-- Start alert dialog-->
@@ -138,15 +143,15 @@
    <h2 mat-dialog-title>Alert</h2>
    <div mat-dialog-content class="mat-typography">
       <span><label>
-         Are you sure you want to clear the component  and location selections and start over?
-      </label></span>
-     <br/><br/>
-     
+            Are you sure you want to clear the component and location selections and start over?
+         </label></span>
+      <br /><br />
+
    </div>
    <mat-dialog-actions align="end">
-     <br/> 
-     <button mat-button mat-dialog-close (click)="cancel()">CANCEL</button> &nbsp; &nbsp;
-     <button mat-button  (click)="Yes()">YES</button>
+      <br />
+      <button mat-button mat-dialog-close (click)="cancel()">CANCEL</button> &nbsp; &nbsp;
+      <button mat-button (click)="Yes()">YES</button>
    </mat-dialog-actions>
- </ng-template>
- <!-- End  alert dialog-->
+</ng-template>
+<!-- End  alert dialog-->
